@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ResistorCalcFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/calc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/calc_title"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/no_bands_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/no_bands_label"
+            app:layout_constraintBottom_toBottomOf="@+id/bands_options"
+            app:layout_constraintEnd_toStartOf="@+id/bands_options"
+            app:layout_constraintTop_toBottomOf="@+id/calc_title" />
+
+        <RadioGroup
+            android:id="@+id/bands_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calc_title">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/four_bands"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/four_bands_label" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/five_bands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/five_bands_label" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/six_bands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/six_bands_label" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/colors_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/colors"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bands_options" />
+
+        <TextView
+            android:id="@+id/color1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/color1_title"
+            app:layout_constraintBottom_toTopOf="@+id/color1_selection"
+            app:layout_constraintEnd_toEndOf="@+id/color1_selection"
+            app:layout_constraintStart_toStartOf="@+id/color1_selection" />
+
+        <TextView
+            android:id="@+id/color2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/color2_title"
+            app:layout_constraintBottom_toTopOf="@+id/color2_selection"
+            app:layout_constraintEnd_toEndOf="@+id/color2_selection"
+            app:layout_constraintStart_toStartOf="@+id/color2_selection" />
+
+        <TextView
+            android:id="@+id/color3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/color3_title"
+            app:layout_constraintBottom_toTopOf="@+id/color3_selection"
+            app:layout_constraintEnd_toEndOf="@+id/color3_selection"
+            app:layout_constraintStart_toStartOf="@+id/color3_selection" />
+
+        <Spinner
+            android:id="@+id/color1_selection"
+            style="@style/spinner_style"
+            android:entries="@array/color_options"
+            app:layout_constraintEnd_toStartOf="@+id/color2_selection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/color2_selection" />
+
+        <Spinner
+            android:id="@+id/color2_selection"
+            style="@style/spinner_style"
+            android:entries="@array/color_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/colors_title" />
+
+        <Spinner
+            android:id="@+id/color3_selection"
+            style="@style/spinner_style"
+            android:entries="@array/color_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/color2_selection"
+            app:layout_constraintTop_toTopOf="@+id/color2_selection" />
+
+        <TextView
+            android:id="@+id/multiplier_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/multiplier_title"
+            app:layout_constraintBottom_toTopOf="@+id/multiplier_selection"
+            app:layout_constraintEnd_toEndOf="@+id/multiplier_selection"
+            app:layout_constraintStart_toStartOf="@+id/multiplier_selection" />
+
+        <TextView
+            android:id="@+id/tolerance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/tolerance_title"
+            app:layout_constraintBottom_toTopOf="@+id/tolerance_selection"
+            app:layout_constraintEnd_toEndOf="@+id/tolerance_selection"
+            app:layout_constraintStart_toStartOf="@+id/tolerance_selection" />
+
+        <TextView
+            android:id="@+id/ppm_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/ppm_title"
+            app:layout_constraintBottom_toTopOf="@+id/ppm_selection"
+            app:layout_constraintEnd_toEndOf="@+id/ppm_selection"
+            app:layout_constraintStart_toStartOf="@+id/ppm_selection" />
+
+        <Spinner
+            android:id="@+id/multiplier_selection"
+            style="@style/spinner_style"
+            android:entries="@array/multiplier_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/tolerance_selection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
+
+        <Spinner
+            android:id="@+id/tolerance_selection"
+            style="@style/spinner_style"
+            android:entries="@array/tolerance_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/color2_selection" />
+
+        <Spinner
+            android:id="@+id/ppm_selection"
+            style="@style/spinner_style"
+            android:entries="@array/ppm_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tolerance_selection"
+            app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tolerance_selection">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/color1_indicator"
+                style="@style/indicator_style"
+                app:cardCornerRadius="8dp">
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/color2_indicator"
+                style="@style/indicator_style"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="8dp">
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/color3_indicator"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="8dp">
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/multiplier_indicator"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="8dp">
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tolerance_indicator"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="8dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ppm_indicator"
+                android:layout_width="40dp"
+                android:layout_height="70dp"
+                app:cardCornerRadius="8dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/trv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/trv_label"
+            app:layout_constraintEnd_toStartOf="@+id/trv_value"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:id="@+id/trv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/trv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/trv_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/trv_label"
+            app:layout_constraintTop_toTopOf="@+id/trv_label" />
+
+        <TextView
+            android:id="@+id/erv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/erv_label"
+            app:layout_constraintEnd_toStartOf="@+id/erv_value"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trv_label" />
+
+        <EditText
+            android:id="@+id/erv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/erv_value_hint"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/erv_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/erv_label"
+            app:layout_constraintTop_toTopOf="@+id/erv_label" />
+
+        <Button
+            android:id="@+id/details_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/details_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/erv_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

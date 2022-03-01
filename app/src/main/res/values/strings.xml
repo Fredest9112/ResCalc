@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">ResistorCalc</string>
+    <!-- Fragment Resistor Calc Strings -->
+    <string name="calc_title">CALCULADORA DE RESISTENCIAS</string>
+    <string name="no_bands_label">Numero de \nBandas:</string>
+    <string name="four_bands_label">4</string>
+    <string name="five_bands_label">5</string>
+    <string name="six_bands_label">6</string>
+    <string name="colors">COLORES</string>
+    <string name="color1_title">Banda 1</string>
+    <string name="color2_title">Banda 2</string>
+    <string name="color3_title">Banda 3</string>
+    <string name="multiplier_title">Multiplicador</string>
+    <string name="tolerance_title">Tolerancia</string>
+    <string name="ppm_title">PPM</string>
+    <string name="trv_label">Resistencia \n(valor teorico):</string>
+    <string name="trv_value">%1$s ohms, %2$s %</string>
+    <string name="erv_label">Resistencia \n(valor experimental):</string>
+    <string name="erv_value_hint">digite valor entero</string>
+    <string name="details_button">detalles</string>
+    <string-array name="color_options">
+        <item>-----</item>
+        <item>Negro</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+        <item>Gris</item>
+        <item>Blanco</item>
+    </string-array>
+    <string-array name="multiplier_options">
+        <item>-----</item>
+        <item>Negro</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+        <item>Gris</item>
+        <item>Blanco</item>
+        <item>Dorado</item>
+        <item>Plateado</item>
+    </string-array>
+    <string-array name="tolerance_options">
+        <item>-----</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+        <item>Gris</item>
+        <item>Dorado</item>
+        <item>Plateado</item>
+    </string-array>
+    <string-array name="ppm_options">
+        <item>-----</item>
+        <item>Cafe</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+        <item>Amarillo</item>
+        <item>Azul</item>
+        <item>Violeta</item>
+    </string-array>
+
+    <!-- Fragment Resistor Details Strings-->
+    <string name="details_title">DETALLES DE LA RESISTENCIA</string>
+    <string name="chosen_colors_title">Colores:</string>
+    <string name="nominal_value_title">Valor Nominal:</string>
+    <string name="chosen_colors">%s</string>
+    <string name="nominal_value">%s ohms</string>
+    <string name="tolerance_value_title">Tolerancia:</string>
+    <string name="exp_value_title">Valor Experimental:</string>
+    <string name="tolerance_value">±$s ohms</string>
+    <string name="exp_value">$s ohms</string>
+    <string name="val_max_title">Valor Max:</string>
+    <string name="val_min_title">Valor min:</string>
+    <string name="state_title">Estado:</string>
+    <string name="val_max">%s</string>
+    <string name="val_min">%s</string>
+    <string name="state">%s</string>
+</resources>
