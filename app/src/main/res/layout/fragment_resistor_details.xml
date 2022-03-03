@@ -1,173 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".view.ResistorDetailsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.resistorcalc.model.ResCalcViewModel" />
+
+        <variable
+            name="resistorDetailsFrag"
+            type="com.example.resistorcalc.view.ResistorDetailsFragment" />
+    </data>
+
+    <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/details_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/details_title"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/chosen_colors_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/chosen_colors_title"
-            app:layout_constraintEnd_toStartOf="@+id/nominal_value_title"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_title" />
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/details_title"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/nominal_value_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nominal_value_title"
-            app:layout_constraintBottom_toBottomOf="@+id/chosen_colors_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/chosen_colors_title"
-            app:layout_constraintTop_toTopOf="@+id/chosen_colors_title" />
+            <TextView
+                android:id="@+id/exp_value_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/exp_value_title"
+                app:layout_constraintEnd_toStartOf="@+id/nominal_value_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_title" />
 
-        <TextView
-            android:id="@+id/chosen_colors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/chosen_colors"
-            app:layout_constraintEnd_toEndOf="@+id/chosen_colors_title"
-            app:layout_constraintStart_toStartOf="@+id/chosen_colors_title"
-            app:layout_constraintTop_toBottomOf="@+id/chosen_colors_title" />
+            <TextView
+                android:id="@+id/exp_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.expValue.toString()}"
+                app:layout_constraintEnd_toEndOf="@+id/exp_value_title"
+                app:layout_constraintStart_toStartOf="@+id/exp_value_title"
+                app:layout_constraintTop_toBottomOf="@+id/exp_value_title" />
 
-        <TextView
-            android:id="@+id/nominal_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/nominal_value"
-            app:layout_constraintEnd_toEndOf="@+id/nominal_value_title"
-            app:layout_constraintStart_toStartOf="@+id/nominal_value_title"
-            app:layout_constraintTop_toBottomOf="@+id/nominal_value_title" />
+            <TextView
+                android:id="@+id/nominal_value_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nominal_value_title"
+                app:layout_constraintBottom_toBottomOf="@+id/exp_value_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/exp_value_title"
+                app:layout_constraintTop_toTopOf="@+id/exp_value_title" />
 
-        <TextView
-            android:id="@+id/tolerance_value_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/tolerance_value_title"
-            app:layout_constraintEnd_toStartOf="@+id/exp_value_title"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chosen_colors" />
+            <TextView
+                android:id="@+id/nominal_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.nomValue.toString()}"
+                app:layout_constraintEnd_toEndOf="@+id/nominal_value_title"
+                app:layout_constraintStart_toStartOf="@+id/nominal_value_title"
+                app:layout_constraintTop_toBottomOf="@+id/nominal_value_title" />
 
-        <TextView
-            android:id="@+id/exp_value_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/exp_value_title"
-            app:layout_constraintBottom_toBottomOf="@+id/tolerance_value_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tolerance_value_title"
-            app:layout_constraintTop_toTopOf="@+id/tolerance_value_title" />
+            <TextView
+                android:id="@+id/val_max_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/val_max_title"
+                app:layout_constraintEnd_toStartOf="@+id/val_min_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/exp_value" />
 
-        <TextView
-            android:id="@+id/tolerance_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/tolerance_value"
-            app:layout_constraintEnd_toEndOf="@+id/tolerance_value_title"
-            app:layout_constraintStart_toStartOf="@+id/tolerance_value_title"
-            app:layout_constraintTop_toBottomOf="@+id/tolerance_value_title" />
+            <TextView
+                android:id="@+id/val_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.maxVal.toString()}"
+                app:layout_constraintEnd_toEndOf="@+id/val_max_title"
+                app:layout_constraintStart_toStartOf="@+id/val_max_title"
+                app:layout_constraintTop_toBottomOf="@+id/val_max_title" />
 
-        <TextView
-            android:id="@+id/exp_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/exp_value"
-            app:layout_constraintEnd_toEndOf="@+id/exp_value_title"
-            app:layout_constraintStart_toStartOf="@+id/exp_value_title"
-            app:layout_constraintTop_toBottomOf="@+id/exp_value_title" />
+            <TextView
+                android:id="@+id/val_min_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/val_min_title"
+                app:layout_constraintBottom_toBottomOf="@+id/val_max_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/val_max_title"
+                app:layout_constraintTop_toTopOf="@+id/val_max_title"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/val_max_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/val_max_title"
-            app:layout_constraintEnd_toStartOf="@+id/val_min_title"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tolerance_value" />
+            <TextView
+                android:id="@+id/val_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.minVal.toString()}"
+                app:layout_constraintEnd_toEndOf="@+id/val_min_title"
+                app:layout_constraintStart_toStartOf="@+id/val_min_title"
+                app:layout_constraintTop_toBottomOf="@+id/val_min_title" />
 
-        <TextView
-            android:id="@+id/val_min_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/val_min_title"
-            app:layout_constraintBottom_toBottomOf="@+id/val_max_title"
-            app:layout_constraintEnd_toStartOf="@+id/state_title"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/val_max_title"
-            app:layout_constraintTop_toTopOf="@+id/val_max_title" />
+            <TextView
+                android:id="@+id/tolerance_value_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tolerance_value_title"
+                app:layout_constraintEnd_toStartOf="@+id/state_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/val_max" />
 
-        <TextView
-            android:id="@+id/state_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/state_title"
-            app:layout_constraintBottom_toBottomOf="@+id/val_min_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/val_min_title"
-            app:layout_constraintTop_toTopOf="@+id/val_min_title" />
+            <TextView
+                android:id="@+id/tolerance_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.tolerance.toString()}"
+                app:layout_constraintEnd_toEndOf="@+id/tolerance_value_title"
+                app:layout_constraintStart_toStartOf="@+id/tolerance_value_title"
+                app:layout_constraintTop_toBottomOf="@+id/tolerance_value_title" />
 
-        <TextView
-            android:id="@+id/val_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/val_max"
-            app:layout_constraintEnd_toEndOf="@+id/val_max_title"
-            app:layout_constraintStart_toStartOf="@+id/val_max_title"
-            app:layout_constraintTop_toBottomOf="@+id/val_max_title" />
+            <TextView
+                android:id="@+id/state_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/state_title"
+                app:layout_constraintBottom_toBottomOf="@+id/tolerance_value_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tolerance_value_title"
+                app:layout_constraintTop_toTopOf="@+id/tolerance_value_title" />
 
-        <TextView
-            android:id="@+id/val_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/val_min"
-            app:layout_constraintEnd_toEndOf="@+id/val_min_title"
-            app:layout_constraintStart_toStartOf="@+id/val_min_title"
-            app:layout_constraintTop_toBottomOf="@+id/val_min_title" />
-
-        <TextView
-            android:id="@+id/state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/state"
-            app:layout_constraintEnd_toEndOf="@+id/state_title"
-            app:layout_constraintStart_toStartOf="@+id/state_title"
-            app:layout_constraintTop_toBottomOf="@+id/state_title" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.state}"
+                app:layout_constraintEnd_toEndOf="@+id/state_title"
+                app:layout_constraintStart_toStartOf="@+id/state_title"
+                app:layout_constraintTop_toBottomOf="@+id/state_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
 

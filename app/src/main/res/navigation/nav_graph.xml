@@ -14,10 +14,15 @@
             android:id="@+id/action_resistorCalcFragment_to_resistorDetailsFragment"
             app:destination="@id/resistorDetailsFragment"
             app:popUpToInclusive="false" />
+
     </fragment>
     <fragment
         android:id="@+id/resistorDetailsFragment"
         android:name="com.example.resistorcalc.view.ResistorDetailsFragment"
         android:label="fragment_resistor_details"
-        tools:layout="@layout/fragment_resistor_details" />
+        tools:layout="@layout/fragment_resistor_details" >
+        <argument
+            android:name="ervValue"
+            app:argType="float" />
+    </fragment>
 </navigation>
