@@ -2,14 +2,16 @@ package com.example.resistorcalc.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.resistorcalc.data.ResistorValues
 import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
 import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
 import com.example.resistorcalc.model.Constants.Companion.NOT_USABLE
 import com.example.resistorcalc.model.Constants.Companion.SIX_BANDS
-import com.example.resistorcalc.model.Constants.Companion.STRING_ZERO
 import com.example.resistorcalc.model.Constants.Companion.USABLE
+import com.example.resistorcalc.model.Constants.Companion.ZERO
+import java.text.DecimalFormat
 
 class ResCalcViewModel : ViewModel() {
 
@@ -25,31 +27,39 @@ class ResCalcViewModel : ViewModel() {
     private val _multiplier = MutableLiveData<Double>()
 
     private val _tolerance = MutableLiveData<Double?>()
-    val tolerance : LiveData<Double?> = _tolerance
+    val tolerance : LiveData<String?> = Transformations.map(_tolerance){
+        "$it %"
+    }
 
     private val _ppm = MutableLiveData<Double>()
+    val ppm :LiveData<Double> = _ppm
 
-    private val _result = MutableLiveData<String>()
-    val result : LiveData<String> = _result
+    private val _resistResult = MutableLiveData<Double>()
+    val resistResult : LiveData<String> = Transformations.map(_resistResult){
+        "${DecimalFormat.getInstance().format(it)} ohms"
+    }
 
     private val _expValue = MutableLiveData<Double>()
-    val expValue : LiveData<Double> = _expValue
-
-    private val _nomValue = MutableLiveData<Double>()
-    val nomValue : LiveData<Double> = _nomValue
+    val expValue : LiveData<String> = Transformations.map(_expValue){
+        "${DecimalFormat.getInstance().format(it)} ohms"
+    }
 
     private val _maxVal = MutableLiveData<Double>()
-    val maxVal : LiveData<Double> = _maxVal
+    val maxVal : LiveData<String> = Transformations.map(_maxVal){
+        "${DecimalFormat.getInstance().format(it)} ohms"
+    }
 
     private val _minVal = MutableLiveData<Double>()
-    val minVal : LiveData<Double> = _minVal
+    val minVal : LiveData<String> = Transformations.map(_minVal){
+        "${DecimalFormat.getInstance().format(it)} ohms"
+    }
 
     private val _state = MutableLiveData<String>()
     val state : LiveData<String> = _state
 
     init{
         _noOfBands.value = FOUR_BANDS
-        _result.value = STRING_ZERO
+        _resistResult.value = ZERO
     }
 
     fun setNoOfBands(bands:Int){
@@ -73,7 +83,11 @@ class ResCalcViewModel : ViewModel() {
     }
 
     fun setTolerance(tolerance:String){
-        _tolerance.value = ResistorValues.toleranceValues[tolerance]
+        if(ResistorValues.toleranceValues[tolerance]==null){
+            _tolerance.value = ZERO
+        } else{
+            _tolerance.value = ResistorValues.toleranceValues[tolerance]
+        }
     }
 
     fun setPPM(ppm:String){
@@ -83,15 +97,15 @@ class ResCalcViewModel : ViewModel() {
     fun setResult(){
         when(noOfBands.value){
             FOUR_BANDS -> {
-                _result.value = getFourBandsResult(_band1.value,
+                _resistResult.value = getFourBandsResult(_band1.value,
                     _band2.value, _multiplier.value, _tolerance.value)
             }
             FIVE_BANDS -> {
-                _result.value = getFiveBandsResult(_band1.value,
+                _resistResult.value = getFiveBandsResult(_band1.value,
                     _band2.value, _band3.value, _multiplier.value, _tolerance.value)
             }
             SIX_BANDS -> {
-                _result.value = getSixBandsResult(_band1.value,
+                _resistResult.value = getSixBandsResult(_band1.value,
                     _band2.value, _band3.value, _multiplier.value, _tolerance.value, _ppm.value)
             }
         }
@@ -102,15 +116,15 @@ class ResCalcViewModel : ViewModel() {
     }
 
     fun setMaxVal(){
-        _maxVal.value = nomValue.value?.plus((tolerance.value?.div(100)!! * nomValue.value!!))
+        _maxVal.value = _resistResult.value?.plus((_tolerance.value?.div(100)!! * _resistResult.value!!))
     }
 
     fun setMinVal(){
-        _minVal.value = nomValue.value?.minus((tolerance.value?.div(100)!! * nomValue.value!!))
+        _minVal.value = _resistResult.value?.minus((_tolerance.value?.div(100)!! * _resistResult.value!!))
     }
 
     fun setState() {
-        if(_expValue.value!! > _minVal.value!! && _expValue.value!! < _maxVal.value!!){
+        if(_expValue.value!! >= _minVal.value!! && _expValue.value!! <= _maxVal.value!!){
             _state.value = USABLE
         } else{
             _state.value = NOT_USABLE
@@ -118,12 +132,13 @@ class ResCalcViewModel : ViewModel() {
     }
 
     private fun getFourBandsResult(band1: Double?, band2: Double?,
-                                   multiplier: Double?, tolerance: Double?): String {
-        return if(band1!=null && band2!=null && multiplier!=null && tolerance!=null){
-            _nomValue.value = ((band1*10)+band2)*multiplier
-            "${((band1*10)+band2)*multiplier} ohms, $tolerance %"
+                                   multiplier: Double?, tolerance: Double?): Double {
+        return if(band1!=null && band2!=null && multiplier!=null &&
+            tolerance!=null && tolerance != ZERO){
+            ((band1*10)+band2)*multiplier
         } else{
-            STRING_ZERO
+            _tolerance.value = ZERO
+            ZERO
         }
     }
 
@@ -133,12 +148,13 @@ class ResCalcViewModel : ViewModel() {
         band3: Double?,
         multiplier: Double?,
         tolerance: Double?
-    ): String {
-        return if(band1!=null && band2!=null && band3!=null && multiplier!=null && tolerance!=null){
-            _nomValue.value = ((band1*100)+(band2*10)+band3)*multiplier
-            "${((band1*100)+(band2*10)+band3)*multiplier} ohms, $tolerance %"
+    ): Double {
+        return if(band1!=null && band2!=null && band3!=null && multiplier!=null &&
+            tolerance!=null && tolerance != ZERO){
+            ((band1*100)+(band2*10)+band3)*multiplier
         } else{
-            STRING_ZERO
+            _tolerance.value = ZERO
+            ZERO
         }
     }
 
@@ -148,13 +164,13 @@ class ResCalcViewModel : ViewModel() {
         band3: Double?,
         multiplier: Double?,
         tolerance: Double?,
-        ppm: Double?): String {
+        ppm: Double?): Double {
         return if(band1!=null && band2!=null && band3!=null &&
-            multiplier!=null && tolerance!=null && ppm!=null){
-            _nomValue.value = ((band1*100)+(band2*10)+band3)*multiplier
-            "${((band1*100)+(band2*10)+band3)*multiplier} ohms, $tolerance %, $ppm ppm"
+            multiplier!=null && tolerance!=null && tolerance != ZERO && ppm!=null){
+            ((band1*100)+(band2*10)+band3)*multiplier
         } else{
-            STRING_ZERO
+            _tolerance.value = ZERO
+            ZERO
         }
     }
 }

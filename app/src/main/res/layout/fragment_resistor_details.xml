@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.nomValue.toString()}"
+                android:text="@{viewModel.resistResult.toString()}"
                 app:layout_constraintEnd_toEndOf="@+id/nominal_value_title"
                 app:layout_constraintStart_toStartOf="@+id/nominal_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/nominal_value_title" />

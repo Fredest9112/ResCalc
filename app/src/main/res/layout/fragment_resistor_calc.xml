@@ -132,11 +132,11 @@
             <Spinner
                 android:id="@+id/color2_selection"
                 style="@style/spinner_style"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:entries="@array/color_options"
+                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/colors_title" />
@@ -144,10 +144,10 @@
             <Spinner
                 android:id="@+id/color3_selection"
                 style="@style/spinner_style"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/color_options"
+                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/color2_selection"
                 app:layout_constraintTop_toTopOf="@+id/color2_selection" />
@@ -185,10 +185,10 @@
             <Spinner
                 android:id="@+id/multiplier_selection"
                 style="@style/spinner_style"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/multiplier_options"
+                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 app:layout_constraintEnd_toStartOf="@+id/tolerance_selection"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
@@ -196,11 +196,11 @@
             <Spinner
                 android:id="@+id/tolerance_selection"
                 style="@style/spinner_style"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:entries="@array/tolerance_options"
+                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/color2_selection" />
@@ -208,10 +208,10 @@
             <Spinner
                 android:id="@+id/ppm_selection"
                 style="@style/spinner_style"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/ppm_options"
+                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tolerance_selection"
                 app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
@@ -228,9 +228,9 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color1_indicator"
+                    style="@style/indicator_style"
                     android:layout_width="40dp"
                     android:layout_height="70dp"
-                    style="@style/indicator_style"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
@@ -280,21 +280,65 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/trv_label"
-                app:layout_constraintEnd_toStartOf="@+id/trv_value"
+                app:layout_constraintEnd_toStartOf="@+id/trv_result"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <TextView
-                android:id="@+id/trv_value"
+                android:id="@+id/trv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.result}"
+                android:text="@{viewModel.resistResult}"
                 app:layout_constraintBottom_toBottomOf="@+id/trv_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/trv_label"
                 app:layout_constraintTop_toTopOf="@+id/trv_label" />
+
+            <TextView
+                android:id="@+id/tolerance_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tolerance_label"
+                app:layout_constraintEnd_toStartOf="@+id/tolerance_result"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/trv_label" />
+
+            <TextView
+                android:id="@+id/tolerance_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.tolerance}"
+                app:layout_constraintBottom_toBottomOf="@+id/tolerance_label"
+                app:layout_constraintEnd_toStartOf="@+id/ppm_label"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tolerance_label"
+                app:layout_constraintTop_toTopOf="@+id/tolerance_label" />
+
+            <TextView
+                android:id="@+id/ppm_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ppm_label"
+                app:layout_constraintBottom_toBottomOf="@+id/tolerance_result"
+                app:layout_constraintEnd_toStartOf="@+id/ppm_result"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tolerance_result"
+                app:layout_constraintTop_toTopOf="@+id/tolerance_result" />
+
+            <TextView
+                android:id="@+id/ppm_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.ppm.toString()}"
+                app:layout_constraintBottom_toBottomOf="@+id/ppm_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/ppm_label"
+                app:layout_constraintTop_toTopOf="@+id/ppm_label" />
 
             <TextView
                 android:id="@+id/erv_label"
@@ -305,7 +349,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/erv_value"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trv_label" />
+                app:layout_constraintTop_toBottomOf="@+id/tolerance_label" />
 
             <EditText
                 android:id="@+id/erv_value"

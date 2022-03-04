@@ -5,6 +5,7 @@ class Constants {
         const val FOUR_BANDS = 4
         const val FIVE_BANDS = 5
         const val SIX_BANDS = 6
+        const val ZERO = 0.0
         const val STRING_ZERO = "0.0"
         const val USABLE = "Usable"
         const val NOT_USABLE = "No usable"

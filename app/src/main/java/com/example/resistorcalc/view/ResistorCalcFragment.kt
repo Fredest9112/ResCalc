@@ -2,6 +2,7 @@ package com.example.resistorcalc.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
@@ -90,6 +90,8 @@ class ResistorCalcFragment : Fragment() {
             ppmTitle.visibility = View.VISIBLE
             ppmIndicator.visibility = View.VISIBLE
             ppmSelection.visibility = View.VISIBLE
+            ppmLabel.visibility = View.VISIBLE
+            ppmResult.visibility = View.VISIBLE
         }
     }
 
@@ -101,6 +103,8 @@ class ResistorCalcFragment : Fragment() {
             ppmTitle.visibility = View.GONE
             ppmIndicator.visibility = View.GONE
             ppmSelection.visibility = View.GONE
+            ppmLabel.visibility = View.GONE
+            ppmResult.visibility = View.GONE
         }
     }
 
@@ -112,6 +116,8 @@ class ResistorCalcFragment : Fragment() {
             ppmTitle.visibility = View.GONE
             ppmIndicator.visibility = View.GONE
             ppmSelection.visibility = View.GONE
+            ppmLabel.visibility = View.GONE
+            ppmResult.visibility = View.GONE
         }
     }
 
