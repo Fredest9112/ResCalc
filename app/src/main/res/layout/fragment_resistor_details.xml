@@ -26,6 +26,7 @@
 
             <TextView
                 android:id="@+id/details_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -37,6 +38,7 @@
 
             <TextView
                 android:id="@+id/exp_value_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -58,6 +60,7 @@
 
             <TextView
                 android:id="@+id/nominal_value_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/nominal_value_title"
@@ -65,7 +68,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/exp_value_title"
-                app:layout_constraintTop_toTopOf="@+id/exp_value_title" />
+                app:layout_constraintTop_toTopOf="@+id/exp_value_title"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/nominal_value"
@@ -79,6 +83,7 @@
 
             <TextView
                 android:id="@+id/val_max_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -100,6 +105,7 @@
 
             <TextView
                 android:id="@+id/val_min_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/val_min_title"
@@ -122,6 +128,7 @@
 
             <TextView
                 android:id="@+id/tolerance_value_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -143,6 +150,7 @@
 
             <TextView
                 android:id="@+id/state_title"
+                style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/state_title"
@@ -150,7 +158,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tolerance_value_title"
-                app:layout_constraintTop_toTopOf="@+id/tolerance_value_title" />
+                app:layout_constraintTop_toTopOf="@+id/tolerance_value_title"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/state"
