@@ -8,16 +8,21 @@
     <fragment
         android:id="@+id/resistorCalcFragment"
         android:name="com.example.resistorcalc.view.ResistorCalcFragment"
-        android:label="fragment_resistor_calc"
-        tools:layout="@layout/fragment_resistor_calc" >
+        android:label="@string/fragment_resistor_calc_name"
+        tools:layout="@layout/fragment_resistor_calc">
         <action
             android:id="@+id/action_resistorCalcFragment_to_resistorDetailsFragment"
             app:destination="@id/resistorDetailsFragment"
             app:popUpToInclusive="false" />
+
     </fragment>
     <fragment
         android:id="@+id/resistorDetailsFragment"
         android:name="com.example.resistorcalc.view.ResistorDetailsFragment"
-        android:label="fragment_resistor_details"
-        tools:layout="@layout/fragment_resistor_details" />
+        android:label="@string/fragment_resistor_details_name"
+        tools:layout="@layout/fragment_resistor_details">
+        <argument
+            android:name="ervValue"
+            app:argType="float" />
+    </fragment>
 </navigation>
