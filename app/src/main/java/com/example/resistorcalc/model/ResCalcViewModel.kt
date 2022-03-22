@@ -26,32 +26,30 @@ class ResCalcViewModel : ViewModel() {
 
     private val _multiplier = MutableLiveData<Double>()
 
-    private val _tolerance = MutableLiveData<Double?>()
-    val tolerance : LiveData<String?> = Transformations.map(_tolerance){
-        "$it %"
-    }
+    private val _tolerance = MutableLiveData<Double>()
+    val tolerance : LiveData<String?> = Transformations.map(_tolerance){ it.toString() }
 
     private val _ppm = MutableLiveData<Double>()
     val ppm :LiveData<Double> = _ppm
 
     private val _resistResult = MutableLiveData<Double>()
     val resistResult : LiveData<String> = Transformations.map(_resistResult){
-        "${DecimalFormat.getInstance().format(it)} ohms"
+        DecimalFormat.getInstance().format(it)
     }
 
     private val _expValue = MutableLiveData<Double>()
     val expValue : LiveData<String> = Transformations.map(_expValue){
-        "${DecimalFormat.getInstance().format(it)} ohms"
+        DecimalFormat.getInstance().format(it)
     }
 
     private val _maxVal = MutableLiveData<Double>()
     val maxVal : LiveData<String> = Transformations.map(_maxVal){
-        "${DecimalFormat.getInstance().format(it)} ohms"
+        DecimalFormat.getInstance().format(it)
     }
 
     private val _minVal = MutableLiveData<Double>()
     val minVal : LiveData<String> = Transformations.map(_minVal){
-        "${DecimalFormat.getInstance().format(it)} ohms"
+        DecimalFormat.getInstance().format(it)
     }
 
     private val _state = MutableLiveData<String>()

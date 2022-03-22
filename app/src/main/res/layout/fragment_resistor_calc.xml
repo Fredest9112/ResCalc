@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
                 android:text="@string/calc_title"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:onClick="@{() -> resistorCalcFragment.setCalcState(4)}"
                     android:text="@string/four_bands_label" />
 
@@ -299,7 +299,7 @@
                 android:id="@+id/trv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.resistResult}"
+                android:text="@{@string/trv_value(viewModel.resistResult)}"
                 app:layout_constraintBottom_toBottomOf="@+id/trv_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -322,7 +322,7 @@
                 android:id="@+id/tolerance_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.tolerance}"
+                android:text="@{@string/tolerance_value(viewModel.tolerance)}"
                 app:layout_constraintBottom_toBottomOf="@+id/tolerance_label"
                 app:layout_constraintEnd_toStartOf="@+id/ppm_label"
                 app:layout_constraintHorizontal_bias="0.5"

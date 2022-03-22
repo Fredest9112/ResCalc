@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.expValue.toString()}"
+                android:text="@{@string/exp_value(viewModel.expValue)}"
                 app:layout_constraintEnd_toEndOf="@+id/exp_value_title"
                 app:layout_constraintStart_toStartOf="@+id/exp_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/exp_value_title" />
@@ -63,7 +63,7 @@
                 style="@style/title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/nominal_value_title"
+                android:text="@string/theoretical_value_title"
                 app:layout_constraintBottom_toBottomOf="@+id/exp_value_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.resistResult.toString()}"
+                android:text="@{@string/trv_value(viewModel.resistResult)}"
                 app:layout_constraintEnd_toEndOf="@+id/nominal_value_title"
                 app:layout_constraintStart_toStartOf="@+id/nominal_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/nominal_value_title" />
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.maxVal.toString()}"
+                android:text="@{@string/val_max_value(viewModel.maxVal)}"
                 app:layout_constraintEnd_toEndOf="@+id/val_max_title"
                 app:layout_constraintStart_toStartOf="@+id/val_max_title"
                 app:layout_constraintTop_toBottomOf="@+id/val_max_title" />
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.minVal.toString()}"
+                android:text="@{@string/val_min_value(viewModel.minVal)}"
                 app:layout_constraintEnd_toEndOf="@+id/val_min_title"
                 app:layout_constraintStart_toStartOf="@+id/val_min_title"
                 app:layout_constraintTop_toBottomOf="@+id/val_min_title" />
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{viewModel.tolerance.toString()}"
+                android:text="@{@string/tolerance_value(viewModel.tolerance)}"
                 app:layout_constraintEnd_toEndOf="@+id/tolerance_value_title"
                 app:layout_constraintStart_toStartOf="@+id/tolerance_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/tolerance_value_title" />

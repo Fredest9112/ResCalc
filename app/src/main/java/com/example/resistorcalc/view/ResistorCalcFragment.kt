@@ -65,6 +65,7 @@ class ResistorCalcFragment : Fragment() {
     fun setCalcState(noOfBands:Int){
         when(noOfBands) {
             FOUR_BANDS ->{
+                binding!!.fourBands.isChecked = true
                 setFourBandsCalc()
                 resCalcViewModel.setNoOfBands(FOUR_BANDS)
                 resCalcViewModel.setResult()
