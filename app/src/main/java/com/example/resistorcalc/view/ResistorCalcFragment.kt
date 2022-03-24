@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
 import com.example.resistorcalc.databinding.FragmentResistorCalcBinding
@@ -18,6 +19,7 @@ import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
 import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
 import com.example.resistorcalc.model.Constants.Companion.SIX_BANDS
 import com.example.resistorcalc.model.ResCalcViewModel
+import com.example.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
 
 class ResistorCalcFragment : Fragment() {
 
@@ -39,19 +41,71 @@ class ResistorCalcFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = resCalcViewModel
             resistorCalcFragment = this@ResistorCalcFragment
-            ervValue.setOnKeyListener { v, keyCode, _ ->
+            ervValueInput.setOnKeyListener { v, keyCode, _ ->
                 handleKeyEvent(v, keyCode)
             }
+            setDropDownMenu(requireContext(), color1Selection, resources.getStringArray(R.array.color_options))
+            setDropDownMenu(requireContext(), color2Selection, resources.getStringArray(R.array.color_options))
+            setDropDownMenu(requireContext(), color3Selection, resources.getStringArray(R.array.color_options))
+            setDropDownMenu(requireContext(), multiplierSelection, resources.getStringArray(R.array.multiplier_options))
+            setDropDownMenu(requireContext(), toleranceSelection, resources.getStringArray(R.array.tolerance_options))
+            setDropDownMenu(requireContext(), ppmSelection, resources.getStringArray(R.array.ppm_options))
         }
+
         resCalcViewModel.noOfBands.value?.let { setCalcState(it) }
+
+        binding?.apply {
+            color1Selection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color1Indicator)
+                resCalcViewModel.apply {
+                    setBand1(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+            color2Selection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color2Indicator)
+                resCalcViewModel.apply {
+                    setBand2(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+            color3Selection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color3Indicator)
+                resCalcViewModel.apply {
+                    setBand3(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+            toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, toleranceIndicator)
+                resCalcViewModel.apply {
+                    setTolerance(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+            multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, multiplierIndicator)
+                resCalcViewModel.apply {
+                    setMultiplier(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+            ppmSelection.setOnItemClickListener { parent, _, position, _ ->
+                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, ppmIndicator)
+                resCalcViewModel.apply {
+                    setPPM(parent.adapter.getItem(position).toString())
+                    setResult()
+                }
+            }
+        }
     }
 
     fun goToDetailsScreen() {
         binding?.apply {
-            if(ervValue.text.toString().isNotEmpty()){
+            if(ervValueInput.text.toString().isNotEmpty()){
                 val action = ResistorCalcFragmentDirections
                     .actionResistorCalcFragmentToResistorDetailsFragment(
-                        ervValue = ervValue.text.toString().toFloat())
+                        ervValue = ervValueInput.text.toString().toFloat())
                 findNavController().navigate(action)
                 resCalcViewModel.setMaxVal()
                 resCalcViewModel.setMinVal()
@@ -119,32 +173,6 @@ class ResistorCalcFragment : Fragment() {
             ppmSelection.visibility = View.GONE
             ppmLabel.visibility = View.GONE
             ppmResult.visibility = View.GONE
-        }
-    }
-
-    fun setValues(){
-        binding?.apply {
-            resCalcViewModel.apply {
-                setBand1(color1Selection.selectedItem.toString())
-                ColorCardView().setCardViewColor(color1Selection.selectedItem.toString(),
-                    context, color1Indicator)
-                setBand2(color2Selection.selectedItem.toString())
-                ColorCardView().setCardViewColor(color2Selection.selectedItem.toString(),
-                    context, color2Indicator)
-                setBand3(color3Selection.selectedItem.toString())
-                ColorCardView().setCardViewColor(color3Selection.selectedItem.toString(),
-                    context, color3Indicator)
-                setMultiplier(multiplierSelection.selectedItem.toString())
-                ColorCardView().setCardViewColor(multiplierSelection.selectedItem.toString(),
-                    context, multiplierIndicator)
-                setTolerance(toleranceSelection.selectedItem.toString())
-                ColorCardView().setCardViewColor(toleranceSelection.selectedItem.toString(),
-                    context, toleranceIndicator)
-                setPPM(ppmSelection.selectedItem.toString())
-                ColorCardView().setCardViewColor(ppmSelection.selectedItem.toString(),
-                    context, ppmIndicator)
-                setResult()
-            }
         }
     }
 

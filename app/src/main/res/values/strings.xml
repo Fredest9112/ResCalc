@@ -18,7 +18,7 @@
     <string name="ppm_title">PPM</string>
     <string name="trv_label">Resistencia \n(valor teorico):</string>
     <string name="trv_value">%s ohms</string>
-    <string name="erv_label">Resistencia \n(valor experimental):</string>
+    <string name="erv_label">Res. valor experimental</string>
     <string name="tolerance_label">Tolerancia:</string>
     <string name="tolerance_value">%s %%</string>
     <string name="ppm_label">ppm:</string>
@@ -89,6 +89,14 @@
     <!-- Fragment Initial-->
     <string name="fragment_initial_name">ResCalc</string>
     <string name="initial_title">CALCULADORA DE RESISTENCIAS</string>
-    <string name="res_calc_color_btn">RESISTENCIA POR COLORES</string>
-    <string name="res_calc_value_btn">RESISTENCIA POR VALORES</string>
+    <string name="res_calc_color_btn">RESISTENCIAS POR COLORES</string>
+    <string name="res_calc_value_btn">RESISTENCIAS POR VALORES</string>
+    <!-- Fragment from value resistor-->
+    <string name="calc_value_title">CALCULADORA DE RESISTENCIAS \nPOR VALOR</string>
+    <string name="value_4_bands_option">4 bandas</string>
+    <string name="value_5_6_bands">5 o 6 bandas</string>
+    <string name="value_resist_hint">Valor de la resistencia</string>
+    <string name="value_tolerance_label">Tolerancia</string>
+    <string name="value_ppm_label">PPM</string>
+    <string name="value_calc_btn">calcular</string>
 </resources>

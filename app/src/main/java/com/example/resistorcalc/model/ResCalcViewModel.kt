@@ -1,5 +1,6 @@
 package com.example.resistorcalc.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -18,11 +19,11 @@ class ResCalcViewModel : ViewModel() {
     private val _noOfBands = MutableLiveData<Int>()
     val noOfBands : LiveData<Int> = _noOfBands
 
-    private val _band1 = MutableLiveData<Double>()
+    private val _band1 = MutableLiveData<Double?>()
 
-    private val _band2 = MutableLiveData<Double>()
+    private val _band2 = MutableLiveData<Double?>()
 
-    private val _band3 = MutableLiveData<Double>()
+    private val _band3 = MutableLiveData<Double?>()
 
     private val _multiplier = MutableLiveData<Double>()
 
@@ -55,9 +56,14 @@ class ResCalcViewModel : ViewModel() {
     private val _state = MutableLiveData<String>()
     val state : LiveData<String> = _state
 
-    init{
+    fun setInitialState(){
         _noOfBands.value = FOUR_BANDS
         _resistResult.value = ZERO
+        _tolerance.value = ZERO
+        _multiplier.value = ZERO
+        _band1.value = null
+        _band2.value = null
+        _band3.value = null
     }
 
     fun setNoOfBands(bands:Int){
@@ -107,6 +113,7 @@ class ResCalcViewModel : ViewModel() {
                     _band2.value, _band3.value, _multiplier.value, _tolerance.value, _ppm.value)
             }
         }
+        Log.i("setResult","Called! ${resistResult.value}")
     }
 
     fun setExpResult(expValue:Float){
@@ -135,7 +142,6 @@ class ResCalcViewModel : ViewModel() {
             tolerance!=null && tolerance != ZERO){
             ((band1*10)+band2)*multiplier
         } else{
-            _tolerance.value = ZERO
             ZERO
         }
     }
@@ -151,7 +157,6 @@ class ResCalcViewModel : ViewModel() {
             tolerance!=null && tolerance != ZERO){
             ((band1*100)+(band2*10)+band3)*multiplier
         } else{
-            _tolerance.value = ZERO
             ZERO
         }
     }
@@ -167,7 +172,6 @@ class ResCalcViewModel : ViewModel() {
             multiplier!=null && tolerance!=null && tolerance != ZERO && ppm!=null){
             ((band1*100)+(band2*10)+band3)*multiplier
         } else{
-            _tolerance.value = ZERO
             ZERO
         }
     }

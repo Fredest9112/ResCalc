@@ -17,7 +17,7 @@ import com.example.resistorcalc.model.Constants.Companion.ROJO
 import com.example.resistorcalc.model.Constants.Companion.VERDE
 import com.example.resistorcalc.model.Constants.Companion.VIOLETA
 
-class ColorCardView {
+object ColorCardView {
 
     fun setCardViewColor(color: String, context: Context?, indicator: CardView){
         when(color){
@@ -89,6 +89,12 @@ class ColorCardView {
             PLATEADO -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
                     context!!, R.color.silver
+                )
+            )
+
+            else -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, com.google.android.material.R.color.design_default_color_background
                 )
             )
         }

@@ -12,7 +12,7 @@
         <item name="android:layout_height">70dp</item>
     </style>
     <style
-        name="Widget.TipTime.CompoundButton.RadioButton"
+        name="Widget.ResCalc.CompoundButton.RadioButton"
         parent="Widget.MaterialComponents.CompoundButton.RadioButton">
         <item name="android:paddingStart">8dp</item>
         <item name="textAppearanceBody1">?attr/textAppearanceBody1</item>
