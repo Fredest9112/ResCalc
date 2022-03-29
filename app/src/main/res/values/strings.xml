@@ -92,9 +92,14 @@
     <string name="res_calc_color_btn">RESISTENCIAS POR COLORES</string>
     <string name="res_calc_value_btn">RESISTENCIAS POR VALORES</string>
     <!-- Fragment from value resistor-->
+    <string name="fragment_from_value_resistor">Resistencias desde valores</string>
     <string name="calc_value_title">CALCULADORA DE RESISTENCIAS \nPOR VALOR</string>
+    <string name="more_than_11_ohms_message">El valor de la resistencia debe ser mayor a 10 ohms!</string>
+    <string name="more_than_4_bands_message">La resistencia parece tener mas de 4 bandas!</string>
+    <string name="less_than_5_bands_message">La resistencia parece tener menos de 5 bandas!</string>
     <string name="value_4_bands_option">4 bandas</string>
-    <string name="value_5_6_bands">5 o 6 bandas</string>
+    <string name="value_5_bands_option">5 bandas</string>
+    <string name="value_6_bands_option">6 bandas</string>
     <string name="value_resist_hint">Valor de la resistencia</string>
     <string name="value_tolerance_label">Tolerancia</string>
     <string name="value_ppm_label">PPM</string>

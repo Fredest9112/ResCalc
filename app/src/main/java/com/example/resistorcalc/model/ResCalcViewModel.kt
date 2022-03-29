@@ -56,6 +56,9 @@ class ResCalcViewModel : ViewModel() {
     private val _state = MutableLiveData<String>()
     val state : LiveData<String> = _state
 
+    private val _resultOfValues = mutableListOf<String>()
+    val resultOfValues : List<String> = _resultOfValues
+
     fun setInitialState(){
         _noOfBands.value = FOUR_BANDS
         _resistResult.value = ZERO
@@ -98,22 +101,46 @@ class ResCalcViewModel : ViewModel() {
         _ppm.value = ResistorValues.ppmValues[ppm]
     }
 
-    fun setResult(){
+    fun setResultForColors(){
         when(noOfBands.value){
             FOUR_BANDS -> {
-                _resistResult.value = getFourBandsResult(_band1.value,
+                _resistResult.value = getFourBandsResultForColors(_band1.value,
                     _band2.value, _multiplier.value, _tolerance.value)
             }
             FIVE_BANDS -> {
-                _resistResult.value = getFiveBandsResult(_band1.value,
+                _resistResult.value = getFiveBandsResultForColors(_band1.value,
                     _band2.value, _band3.value, _multiplier.value, _tolerance.value)
             }
             SIX_BANDS -> {
-                _resistResult.value = getSixBandsResult(_band1.value,
+                _resistResult.value = getSixBandsResultForColors(_band1.value,
                     _band2.value, _band3.value, _multiplier.value, _tolerance.value, _ppm.value)
             }
         }
         Log.i("setResult","Called! ${resistResult.value}")
+    }
+
+    fun setResultForValues(resistInput: String) {
+        var numb = resistInput.toLong()
+        var mult = 1.0
+        for(i in 1..resistInput.length){
+            if(numb > 999){
+                mult *= 10
+                numb = numb.div(10)
+            } else{
+                numb = if(numb<=999){
+                    _resultOfValues.add(ResistorValues.valuesToBands[numb.mod(10)].toString())
+                    numb.div(10)
+                } else{
+                    numb.div(10)
+                }
+            }
+        }
+        _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
+        Log.i("resultOfValues","$_resultOfValues")
+    }
+
+    fun emptyResultOfValues(){
+        _resultOfValues.clear()
     }
 
     fun setExpResult(expValue:Float){
@@ -136,8 +163,8 @@ class ResCalcViewModel : ViewModel() {
         }
     }
 
-    private fun getFourBandsResult(band1: Double?, band2: Double?,
-                                   multiplier: Double?, tolerance: Double?): Double {
+    private fun getFourBandsResultForColors(band1: Double?, band2: Double?,
+                                            multiplier: Double?, tolerance: Double?): Double {
         return if(band1!=null && band2!=null && multiplier!=null &&
             tolerance!=null && tolerance != ZERO){
             ((band1*10)+band2)*multiplier
@@ -146,7 +173,7 @@ class ResCalcViewModel : ViewModel() {
         }
     }
 
-    private fun getFiveBandsResult(
+    private fun getFiveBandsResultForColors(
         band1: Double?,
         band2: Double?,
         band3: Double?,
@@ -161,7 +188,7 @@ class ResCalcViewModel : ViewModel() {
         }
     }
 
-    private fun getSixBandsResult(
+    private fun getSixBandsResultForColors(
         band1: Double?,
         band2: Double?,
         band3: Double?,

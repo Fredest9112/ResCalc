@@ -40,6 +40,6 @@
     <fragment
         android:id="@+id/fromValueResistorFragment"
         android:name="com.example.resistorcalc.view.FromValueResistorFragment"
-        android:label="fragment_from_value_resistor"
+        android:label="@string/fragment_from_value_resistor"
         tools:layout="@layout/fragment_from_value_resistor" />
 </navigation>

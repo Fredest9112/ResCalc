@@ -2,7 +2,6 @@ package com.example.resistorcalc.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
 import com.example.resistorcalc.databinding.FragmentResistorCalcBinding
@@ -44,6 +42,7 @@ class ResistorCalcFragment : Fragment() {
             ervValueInput.setOnKeyListener { v, keyCode, _ ->
                 handleKeyEvent(v, keyCode)
             }
+            setCalcState(resCalcViewModel.noOfBands.value!!)
             setDropDownMenu(requireContext(), color1Selection, resources.getStringArray(R.array.color_options))
             setDropDownMenu(requireContext(), color2Selection, resources.getStringArray(R.array.color_options))
             setDropDownMenu(requireContext(), color3Selection, resources.getStringArray(R.array.color_options))
@@ -52,49 +51,47 @@ class ResistorCalcFragment : Fragment() {
             setDropDownMenu(requireContext(), ppmSelection, resources.getStringArray(R.array.ppm_options))
         }
 
-        resCalcViewModel.noOfBands.value?.let { setCalcState(it) }
-
         binding?.apply {
             color1Selection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color1Indicator)
                 resCalcViewModel.apply {
                     setBand1(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
             color2Selection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color2Indicator)
                 resCalcViewModel.apply {
                     setBand2(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
             color3Selection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color3Indicator)
                 resCalcViewModel.apply {
                     setBand3(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
             toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, toleranceIndicator)
                 resCalcViewModel.apply {
                     setTolerance(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
             multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, multiplierIndicator)
                 resCalcViewModel.apply {
                     setMultiplier(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
             ppmSelection.setOnItemClickListener { parent, _, position, _ ->
                 ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, ppmIndicator)
                 resCalcViewModel.apply {
                     setPPM(parent.adapter.getItem(position).toString())
-                    setResult()
+                    setResultForColors()
                 }
             }
         }
@@ -122,17 +119,17 @@ class ResistorCalcFragment : Fragment() {
                 binding!!.fourBands.isChecked = true
                 setFourBandsCalc()
                 resCalcViewModel.setNoOfBands(FOUR_BANDS)
-                resCalcViewModel.setResult()
+                resCalcViewModel.setResultForColors()
             }
             FIVE_BANDS ->{
                 setFiveBandsCalc()
                 resCalcViewModel.setNoOfBands(FIVE_BANDS)
-                resCalcViewModel.setResult()
+                resCalcViewModel.setResultForColors()
             }
             SIX_BANDS ->{
                 setSixBandsCalc()
                 resCalcViewModel.setNoOfBands(SIX_BANDS)
-                resCalcViewModel.setResult()
+                resCalcViewModel.setResultForColors()
             }
         }
     }
