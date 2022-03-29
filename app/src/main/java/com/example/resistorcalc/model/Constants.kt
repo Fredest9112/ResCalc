@@ -1,7 +1,7 @@
 package com.example.resistorcalc.model
 
 class Constants {
-    companion object{
+    companion object {
         const val FOUR_BANDS = 4
         const val FIVE_BANDS = 5
         const val SIX_BANDS = 6

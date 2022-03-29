@@ -11,7 +11,7 @@ object MenuDropDownSetup {
         context: Context,
         autoCompleteTextView: AutoCompleteTextView,
         stringArray: Array<String>
-    ){
+    ) {
         val arrayAdapter = ArrayAdapter(context, R.layout.list_items, stringArray)
         autoCompleteTextView.setAdapter(arrayAdapter)
     }

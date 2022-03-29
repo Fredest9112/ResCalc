@@ -19,8 +19,8 @@ import com.example.resistorcalc.model.Constants.Companion.VIOLETA
 
 object ColorCardView {
 
-    fun setCardViewColor(color: String, context: Context?, indicator: CardView){
-        when(color){
+    fun setCardViewColor(color: String, context: Context?, indicator: CardView) {
+        when (color) {
             NEGRO -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
                     context!!, R.color.black

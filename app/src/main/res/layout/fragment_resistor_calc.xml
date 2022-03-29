@@ -5,6 +5,7 @@
     tools:context=".view.ResistorCalcFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.resistorcalc.model.ResCalcViewModel" />

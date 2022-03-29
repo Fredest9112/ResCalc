@@ -21,6 +21,7 @@
         <!-- Radio buttons -->
         <item name="radioButtonStyle">@style/Widget.ResCalc.CompoundButton.RadioButton</item>
         <!-- Text input fields -->
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox
+        </item>
     </style>
 </resources>

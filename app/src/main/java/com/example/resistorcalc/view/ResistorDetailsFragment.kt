@@ -13,7 +13,7 @@ import com.example.resistorcalc.model.ResCalcViewModel
 class ResistorDetailsFragment : Fragment() {
 
     private var binding: FragmentResistorDetailsBinding? = null
-    private val resCalcViewModel : ResCalcViewModel by activityViewModels()
+    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,8 @@ class ResistorDetailsFragment : Fragment() {
         }
 
         arguments?.let {
-            resCalcViewModel.setExpResult(it.getFloat("ervValue")) }
+            resCalcViewModel.setExpResult(it.getFloat("ervValue"))
+        }
         resCalcViewModel.setState()
     }
 

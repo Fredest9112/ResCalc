@@ -21,8 +21,8 @@ import com.example.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
 
 class ResistorCalcFragment : Fragment() {
 
-    private var binding:FragmentResistorCalcBinding? = null
-    private val resCalcViewModel : ResCalcViewModel by activityViewModels()
+    private var binding: FragmentResistorCalcBinding? = null
+    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,52 +43,100 @@ class ResistorCalcFragment : Fragment() {
                 handleKeyEvent(v, keyCode)
             }
             setCalcState(resCalcViewModel.noOfBands.value!!)
-            setDropDownMenu(requireContext(), color1Selection, resources.getStringArray(R.array.color_options))
-            setDropDownMenu(requireContext(), color2Selection, resources.getStringArray(R.array.color_options))
-            setDropDownMenu(requireContext(), color3Selection, resources.getStringArray(R.array.color_options))
-            setDropDownMenu(requireContext(), multiplierSelection, resources.getStringArray(R.array.multiplier_options))
-            setDropDownMenu(requireContext(), toleranceSelection, resources.getStringArray(R.array.tolerance_options))
-            setDropDownMenu(requireContext(), ppmSelection, resources.getStringArray(R.array.ppm_options))
+            setDropDownMenu(
+                requireContext(),
+                color1Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                requireContext(),
+                color2Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                requireContext(),
+                color3Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                requireContext(),
+                multiplierSelection,
+                resources.getStringArray(R.array.multiplier_options)
+            )
+            setDropDownMenu(
+                requireContext(),
+                toleranceSelection,
+                resources.getStringArray(R.array.tolerance_options)
+            )
+            setDropDownMenu(
+                requireContext(),
+                ppmSelection,
+                resources.getStringArray(R.array.ppm_options)
+            )
         }
 
         binding?.apply {
             color1Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color1Indicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    color1Indicator
+                )
                 resCalcViewModel.apply {
                     setBand1(parent.adapter.getItem(position).toString())
                     setResultForColors()
                 }
             }
             color2Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color2Indicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    color2Indicator
+                )
                 resCalcViewModel.apply {
                     setBand2(parent.adapter.getItem(position).toString())
                     setResultForColors()
                 }
             }
             color3Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, color3Indicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    color3Indicator
+                )
                 resCalcViewModel.apply {
                     setBand3(parent.adapter.getItem(position).toString())
                     setResultForColors()
                 }
             }
             toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, toleranceIndicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    toleranceIndicator
+                )
                 resCalcViewModel.apply {
                     setTolerance(parent.adapter.getItem(position).toString())
                     setResultForColors()
                 }
             }
             multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, multiplierIndicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    multiplierIndicator
+                )
                 resCalcViewModel.apply {
                     setMultiplier(parent.adapter.getItem(position).toString())
                     setResultForColors()
                 }
             }
             ppmSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(parent.adapter.getItem(position).toString(), context, ppmIndicator)
+                ColorCardView.setCardViewColor(
+                    parent.adapter.getItem(position).toString(),
+                    context,
+                    ppmIndicator
+                )
                 resCalcViewModel.apply {
                     setPPM(parent.adapter.getItem(position).toString())
                     setResultForColors()
@@ -99,34 +147,39 @@ class ResistorCalcFragment : Fragment() {
 
     fun goToDetailsScreen() {
         binding?.apply {
-            if(ervValueInput.text.toString().isNotEmpty()){
+            if (ervValueInput.text.toString().isNotEmpty()) {
                 val action = ResistorCalcFragmentDirections
                     .actionResistorCalcFragmentToResistorDetailsFragment(
-                        ervValue = ervValueInput.text.toString().toFloat())
+                        ervValue = ervValueInput.text.toString().toFloat()
+                    )
                 findNavController().navigate(action)
                 resCalcViewModel.setMaxVal()
                 resCalcViewModel.setMinVal()
-            } else{
-                Toast.makeText(activity, resources.getString(R.string.erv_empty_value), Toast.LENGTH_SHORT)
+            } else {
+                Toast.makeText(
+                    activity,
+                    resources.getString(R.string.erv_empty_value),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }
     }
 
-    fun setCalcState(noOfBands:Int){
-        when(noOfBands) {
-            FOUR_BANDS ->{
+    fun setCalcState(noOfBands: Int) {
+        when (noOfBands) {
+            FOUR_BANDS -> {
                 binding!!.fourBands.isChecked = true
                 setFourBandsCalc()
                 resCalcViewModel.setNoOfBands(FOUR_BANDS)
                 resCalcViewModel.setResultForColors()
             }
-            FIVE_BANDS ->{
+            FIVE_BANDS -> {
                 setFiveBandsCalc()
                 resCalcViewModel.setNoOfBands(FIVE_BANDS)
                 resCalcViewModel.setResultForColors()
             }
-            SIX_BANDS ->{
+            SIX_BANDS -> {
                 setSixBandsCalc()
                 resCalcViewModel.setNoOfBands(SIX_BANDS)
                 resCalcViewModel.setResultForColors()
@@ -173,10 +226,11 @@ class ResistorCalcFragment : Fragment() {
         }
     }
 
-    private fun handleKeyEvent(view: View, keyCode: Int): Boolean{
-        if(keyCode == KeyEvent.KEYCODE_ENTER){
-            val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            val inputMethodManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
             return true
         }
         return false

@@ -12,8 +12,8 @@ import com.example.resistorcalc.model.ResCalcViewModel
 
 class InitialFragment : Fragment() {
 
-    private var binding:FragmentInitialBinding? = null
-    private val resCalcViewModel : ResCalcViewModel by activityViewModels()
+    private var binding: FragmentInitialBinding? = null
+    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +32,13 @@ class InitialFragment : Fragment() {
         }
     }
 
-    fun goToResistorCalcFragment(){
+    fun goToResistorCalcFragment() {
         resCalcViewModel.setInitialState()
         val action = InitialFragmentDirections.actionInitialFragmentToResistorCalcFragment()
         findNavController().navigate(action)
     }
 
-    fun goToFromValueResistorFragment(){
+    fun goToFromValueResistorFragment() {
         resCalcViewModel.setInitialState()
         val action = InitialFragmentDirections.actionInitialFragmentToFromValueResistorFragment()
         findNavController().navigate(action)
