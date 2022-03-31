@@ -15,16 +15,16 @@ object ResistorValues {
     )
 
     val valuesToBands = mapOf(
-        0 to "Negro",
-        1 to "Cafe",
-        2 to "Rojo",
-        3 to "Naranja",
-        4 to "Amarillo",
-        5 to "Verde",
-        6 to "Azul",
-        7 to "Violeta",
-        8 to "Gris",
-        9 to "Blanco"
+        "0" to "Negro",
+        "1" to "Cafe",
+        "2" to "Rojo",
+        "3" to "Naranja",
+        "4" to "Amarillo",
+        "5" to "Verde",
+        "6" to "Azul",
+        "7" to "Violeta",
+        "8" to "Gris",
+        "9" to "Blanco"
     )
 
     val valuesToMultiplierBand = mapOf(

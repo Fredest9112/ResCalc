@@ -2,6 +2,7 @@ package com.example.resistorcalc.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
@@ -35,6 +37,7 @@ class ResistorCalcFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setCalcState(resCalcViewModel.noOfBands.value!!)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = resCalcViewModel
@@ -42,7 +45,9 @@ class ResistorCalcFragment : Fragment() {
             ervValueInput.setOnKeyListener { v, keyCode, _ ->
                 handleKeyEvent(v, keyCode)
             }
-            setCalcState(resCalcViewModel.noOfBands.value!!)
+        }
+
+        binding?.apply {
             setDropDownMenu(
                 requireContext(),
                 color1Selection,
@@ -85,6 +90,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setBand1(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
             color2Selection.setOnItemClickListener { parent, _, position, _ ->
@@ -96,6 +102,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setBand2(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
             color3Selection.setOnItemClickListener { parent, _, position, _ ->
@@ -107,6 +114,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setBand3(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
             toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
@@ -118,6 +126,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setTolerance(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
             multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
@@ -129,6 +138,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setMultiplier(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
             ppmSelection.setOnItemClickListener { parent, _, position, _ ->
@@ -140,6 +150,7 @@ class ResistorCalcFragment : Fragment() {
                 resCalcViewModel.apply {
                     setPPM(parent.adapter.getItem(position).toString())
                     setResultForColors()
+                    setBntDetailsValidator()
                 }
             }
         }

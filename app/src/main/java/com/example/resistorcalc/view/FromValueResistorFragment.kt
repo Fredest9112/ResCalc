@@ -32,6 +32,8 @@ class FromValueResistorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
+            viewModel = resCalcViewModel
+            lifecycleOwner = viewLifecycleOwner
             fromValueResistorFragment = this@FromValueResistorFragment
             setDropDownMenu(
                 requireContext(), valueToleranceSelect,
@@ -41,12 +43,24 @@ class FromValueResistorFragment : Fragment() {
                 requireContext(), valuePpmSelect,
                 resources.getStringArray(R.array.ppm_options)
             )
+            resCalcViewModel.apply {
+                valueToleranceSelect.setOnItemClickListener { parent, _, position, _ ->
+                    setTolerance(parent.adapter.getItem(position).toString())
+                    setBtnValueToColorValidator()
+                }
+                valuePpmSelect.setOnItemClickListener { parent, _, position, _ ->
+                    setPPM(parent.adapter.getItem(position).toString())
+                    setBtnValueToColorValidator()
+                }
+            }
         }
 
         setCalcState(resCalcViewModel.noOfBands.value!!)
 
         binding!!.valueCalcBtn.setOnClickListener {
-            if (binding!!.valueResistInput.text.toString().toInt() > 10) {
+            if (binding!!.valueResistInput.text!!.isNotEmpty() &&
+                binding!!.valueResistInput.text.toString().toInt() >= 10
+            ) {
                 when (resCalcViewModel.noOfBands.value) {
                     FOUR_BANDS -> {
                         setFourBandsResult()
@@ -63,8 +77,7 @@ class FromValueResistorFragment : Fragment() {
                     activity,
                     resources.getString(R.string.more_than_11_ohms_message),
                     Toast.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
             }
         }
     }
@@ -73,27 +86,20 @@ class FromValueResistorFragment : Fragment() {
         binding?.apply {
             resCalcViewModel.apply {
                 setResultForValues(valueResistInput.text.toString())
-                if (resultOfValues.size < 4) {
-                    Toast.makeText(
-                        context, resources.getString(R.string.less_than_5_bands_message),
-                        Toast.LENGTH_LONG
-                    ).show()
-                    emptyResultOfValues()
-                } else {
-                    ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor1)
-                    ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
-                    ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor3)
-                    ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
-                    ColorCardView.setCardViewColor(
-                        valueToleranceSelect.text.toString(),
-                        context, valueTolerance
-                    )
-                    ColorCardView.setCardViewColor(
-                        valuePpmSelect.text.toString(),
-                        context, ppmValue
-                    )
-                    emptyResultOfValues()
-                }
+                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
+                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
+                ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
+                ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
+                ColorCardView.setCardViewColor(
+                    valueToleranceSelect.text.toString(),
+                    context, valueTolerance
+                )
+                ColorCardView.setCardViewColor(
+                    valuePpmSelect.text.toString(),
+                    context, ppmValue
+                )
+                emptyResultOfValues()
+
             }
         }
     }
@@ -102,24 +108,17 @@ class FromValueResistorFragment : Fragment() {
         binding?.apply {
             resCalcViewModel.apply {
                 setResultForValues(valueResistInput.text.toString())
-                if (resultOfValues.size < 4) {
-                    Toast.makeText(
-                        context, resources.getString(R.string.less_than_5_bands_message),
-                        Toast.LENGTH_LONG
-                    ).show()
-                    emptyResultOfValues()
-                } else {
-                    ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor1)
-                    ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
-                    ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor3)
-                    ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
-                    ColorCardView.setCardViewColor(
-                        valueToleranceSelect.text.toString(),
-                        context, valueTolerance
-                    )
-                    emptyResultOfValues()
-                }
+                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
+                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
+                ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
+                ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
+                ColorCardView.setCardViewColor(
+                    valueToleranceSelect.text.toString(),
+                    context, valueTolerance
+                )
+                emptyResultOfValues()
             }
+
         }
     }
 
@@ -127,19 +126,13 @@ class FromValueResistorFragment : Fragment() {
         binding?.apply {
             resCalcViewModel.apply {
                 setResultForValues(valueResistInput.text.toString())
-                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor1)
-                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor2)
+                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
+                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
                 ColorCardView.setCardViewColor(resultOfValues[2], context, multiplierValue)
                 ColorCardView.setCardViewColor(
                     valueToleranceSelect.text.toString(),
                     context, valueTolerance
                 )
-                if (resultOfValues.size > 3) {
-                    Toast.makeText(
-                        context, resources.getString(R.string.more_than_4_bands_message),
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
                 emptyResultOfValues()
             }
         }
@@ -149,16 +142,25 @@ class FromValueResistorFragment : Fragment() {
         when (noOfBands) {
             FOUR_BANDS -> {
                 binding!!.valueFourBands.isChecked = true
-                resCalcViewModel.setNoOfBands(FOUR_BANDS)
                 setFourBandsCalc()
+                resCalcViewModel.apply {
+                    setNoOfBands(FOUR_BANDS)
+                    setBtnValueToColorValidator()
+                }
             }
             FIVE_BANDS -> {
-                resCalcViewModel.setNoOfBands(FIVE_BANDS)
                 setFiveBandsCalc()
+                resCalcViewModel.apply {
+                    setNoOfBands(FIVE_BANDS)
+                    setBtnValueToColorValidator()
+                }
             }
             SIX_BANDS -> {
-                resCalcViewModel.setNoOfBands(SIX_BANDS)
                 setSixBandsCalc()
+                resCalcViewModel.apply {
+                    setNoOfBands(SIX_BANDS)
+                    setBtnValueToColorValidator()
+                }
             }
         }
     }

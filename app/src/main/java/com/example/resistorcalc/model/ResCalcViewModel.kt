@@ -56,8 +56,14 @@ class ResCalcViewModel : ViewModel() {
     private val _state = MutableLiveData<String>()
     val state: LiveData<String> = _state
 
+    private val _isDetailsValid = MutableLiveData<Boolean>()
+    val isDetailsValid = _isDetailsValid
+
     private val _resultOfValues = mutableListOf<String>()
     val resultOfValues: List<String> = _resultOfValues
+
+    private val _isCalcValueToColorValid = MutableLiveData<Boolean>()
+    val isCalcValueToColorValid = _isCalcValueToColorValid
 
     fun setInitialState() {
         _noOfBands.value = FOUR_BANDS
@@ -122,31 +128,6 @@ class ResCalcViewModel : ViewModel() {
                 )
             }
         }
-        Log.i("setResult", "Called! ${resistResult.value}")
-    }
-
-    fun setResultForValues(resistInput: String) {
-        var numb = resistInput.toLong()
-        var mult = 1.0
-        for (i in 1..resistInput.length) {
-            if (numb > 999) {
-                mult *= 10
-                numb = numb.div(10)
-            } else {
-                numb = if (numb <= 999) {
-                    _resultOfValues.add(ResistorValues.valuesToBands[numb.mod(10)].toString())
-                    numb.div(10)
-                } else {
-                    numb.div(10)
-                }
-            }
-        }
-        _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
-        Log.i("resultOfValues", "$_resultOfValues")
-    }
-
-    fun emptyResultOfValues() {
-        _resultOfValues.clear()
     }
 
     fun setExpResult(expValue: Float) {
@@ -214,6 +195,60 @@ class ResCalcViewModel : ViewModel() {
             ((band1 * 100) + (band2 * 10) + band3) * multiplier
         } else {
             ZERO
+        }
+    }
+
+    fun setBntDetailsValidator(){
+        when(noOfBands.value){
+            SIX_BANDS -> {
+                _isDetailsValid.value = _resistResult.value != ZERO && _tolerance.value != ZERO && _ppm.value != null
+            }
+            else -> {
+                _isDetailsValid.value = _resistResult.value != ZERO && _tolerance.value != ZERO
+            }
+        }
+    }
+
+    //methods for FromValueResistorFragment
+
+    fun setResultForValues(resistInput: String) {
+        val input = resistInput.toLong().toString()
+        if (noOfBands.value == FOUR_BANDS) {
+            ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
+            ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
+            var numb = resistInput.toLong()
+            var mult = 1.0
+            while (numb > 99) {
+                mult *= 10
+                numb = numb.div(10)
+            }
+            _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
+        } else {
+            ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
+            ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
+            ResistorValues.valuesToBands[input[2].toString()]?.let { _resultOfValues.add(it) }
+            var numb = resistInput.toLong()
+            var mult = 1.0
+            while (numb > 999) {
+                mult *= 10
+                numb = numb.div(10)
+            }
+            _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
+        }
+    }
+
+    fun emptyResultOfValues() {
+        _resultOfValues.clear()
+    }
+
+    fun setBtnValueToColorValidator() {
+        when (noOfBands.value) {
+            SIX_BANDS -> {
+                _isCalcValueToColorValid.value = (_tolerance.value != ZERO && ppm.value != null)
+            }
+            else -> {
+                _isCalcValueToColorValid.value = _tolerance.value != ZERO
+            }
         }
     }
 }

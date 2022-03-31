@@ -6,7 +6,9 @@
     tools:context=".view.MainActivity">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.example.resistorcalc.model.ResCalcViewModel" />
         <variable
             name="fromValueResistorFragment"
             type="com.example.resistorcalc.view.FromValueResistorFragment" />
@@ -124,6 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/value_calc_btn"
+            android:enabled="@{viewModel.isCalcValueToColorValid}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tolerance_menu" />

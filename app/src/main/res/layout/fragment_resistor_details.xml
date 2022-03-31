@@ -171,6 +171,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/state_title"
                 app:layout_constraintStart_toStartOf="@+id/state_title"
                 app:layout_constraintTop_toBottomOf="@+id/state_title" />
+
+            <Button
+                android:id="@+id/return_to_calc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/return_to_calc_btn"
+                android:onClick="@{() -> resistorDetailsFrag.returnToCalc()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tolerance_value" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

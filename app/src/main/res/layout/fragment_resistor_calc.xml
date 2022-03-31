@@ -371,6 +371,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:onClick="@{() -> resistorCalcFragment.goToDetailsScreen()}"
+                android:enabled="@{viewModel.isDetailsValid()}"
                 android:text="@string/details_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.49"
