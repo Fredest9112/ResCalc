@@ -9,11 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
+import com.example.resistorcalc.data.InputValidator.checkInputColorToValue
+import com.example.resistorcalc.data.InputValidator.isValidInput
 import com.example.resistorcalc.databinding.FragmentResistorCalcBinding
 import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
 import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
@@ -158,21 +158,15 @@ class ResistorCalcFragment : Fragment() {
 
     fun goToDetailsScreen() {
         binding?.apply {
-            if (ervValueInput.text.toString().isNotEmpty()) {
+            val input = checkInputColorToValue(ervValueInput, activity, resources)
+            if (isValidInput) {
                 val action = ResistorCalcFragmentDirections
                     .actionResistorCalcFragmentToResistorDetailsFragment(
-                        ervValue = ervValueInput.text.toString().toFloat()
+                        ervValue = input
                     )
                 findNavController().navigate(action)
                 resCalcViewModel.setMaxVal()
                 resCalcViewModel.setMinVal()
-            } else {
-                Toast.makeText(
-                    activity,
-                    resources.getString(R.string.erv_empty_value),
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
             }
         }
     }

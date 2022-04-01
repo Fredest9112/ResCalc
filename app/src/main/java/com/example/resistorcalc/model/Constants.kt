@@ -6,7 +6,7 @@ class Constants {
         const val FIVE_BANDS = 5
         const val SIX_BANDS = 6
         const val ZERO = 0.0
-        const val STRING_ZERO = "0.0"
+        const val MAX_RESIST_VALUE = 999999999999
         const val USABLE = "Usable"
         const val NOT_USABLE = "No usable"
         const val NEGRO = "Negro"

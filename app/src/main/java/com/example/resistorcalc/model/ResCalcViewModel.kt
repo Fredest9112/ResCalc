@@ -211,12 +211,12 @@ class ResCalcViewModel : ViewModel() {
 
     //methods for FromValueResistorFragment
 
-    fun setResultForValues(resistInput: String) {
-        val input = resistInput.toLong().toString()
+    fun setResultForValues(resistInput: Long) {
+        val input = resistInput.toString()
         if (noOfBands.value == FOUR_BANDS) {
             ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
             ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
-            var numb = resistInput.toLong()
+            var numb = resistInput
             var mult = 1.0
             while (numb > 99) {
                 mult *= 10
@@ -227,7 +227,7 @@ class ResCalcViewModel : ViewModel() {
             ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
             ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
             ResistorValues.valuesToBands[input[2].toString()]?.let { _resultOfValues.add(it) }
-            var numb = resistInput.toLong()
+            var numb = resistInput
             var mult = 1.0
             while (numb > 999) {
                 mult *= 10

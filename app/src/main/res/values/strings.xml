@@ -95,7 +95,9 @@
     <!-- Fragment from value resistor-->
     <string name="fragment_from_value_resistor">Resistencias desde valores</string>
     <string name="calc_value_title">CALCULADORA DE RESISTENCIAS \nPOR VALOR</string>
-    <string name="more_than_11_ohms_message">El valor de la resistencia debe ser mayor a 9 ohms!</string>
+    <string name="more_than_9_ohms_message">El valor de la resistencia debe ser mayor a 9 ohms!</string>
+    <string name="more_than_max_resistor_message">El valor de la resistencia supera el rango maximo!</string>
+    <string name="error_input_message">Error en el valor ingresado!</string>
     <string name="not_selected_values_message">Hay valores sin seleccionar!</string>
     <string name="less_than_5_bands_message">La resistencia parece tener menos de 5 bandas</string>
     <string name="value_4_bands_option">4 bandas</string>

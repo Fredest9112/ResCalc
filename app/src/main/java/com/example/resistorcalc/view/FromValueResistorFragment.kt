@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.resistorcalc.R
+import com.example.resistorcalc.data.InputValidator.checkInputValueToColor
+import com.example.resistorcalc.data.InputValidator.isValidInput
 import com.example.resistorcalc.databinding.FragmentFromValueResistorBinding
 import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
 import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
@@ -58,34 +59,31 @@ class FromValueResistorFragment : Fragment() {
         setCalcState(resCalcViewModel.noOfBands.value!!)
 
         binding!!.valueCalcBtn.setOnClickListener {
-            if (binding!!.valueResistInput.text!!.isNotEmpty() &&
-                binding!!.valueResistInput.text.toString().toInt() >= 10
-            ) {
+            val input = checkInputValueToColor(
+                binding!!.valueResistInput,
+                activity,
+                resources
+            )
+            if(isValidInput){
                 when (resCalcViewModel.noOfBands.value) {
                     FOUR_BANDS -> {
-                        setFourBandsResult()
+                        setFourBandsResult(input)
                     }
                     FIVE_BANDS -> {
-                        setFiveBandsResult()
+                        setFiveBandsResult(input)
                     }
                     SIX_BANDS -> {
-                        setSixBandsResult()
+                        setSixBandsResult(input)
                     }
                 }
-            } else {
-                Toast.makeText(
-                    activity,
-                    resources.getString(R.string.more_than_11_ohms_message),
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
     }
 
-    private fun setSixBandsResult() {
+    private fun setSixBandsResult(value: Long) {
         binding?.apply {
             resCalcViewModel.apply {
-                setResultForValues(valueResistInput.text.toString())
+                setResultForValues(value)
                 ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
                 ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
                 ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
@@ -104,10 +102,10 @@ class FromValueResistorFragment : Fragment() {
         }
     }
 
-    private fun setFiveBandsResult() {
+    private fun setFiveBandsResult(value: Long) {
         binding?.apply {
             resCalcViewModel.apply {
-                setResultForValues(valueResistInput.text.toString())
+                setResultForValues(value)
                 ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
                 ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
                 ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
@@ -122,10 +120,10 @@ class FromValueResistorFragment : Fragment() {
         }
     }
 
-    private fun setFourBandsResult() {
+    private fun setFourBandsResult(value: Long) {
         binding?.apply {
             resCalcViewModel.apply {
-                setResultForValues(valueResistInput.text.toString())
+                setResultForValues(value)
                 ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
                 ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
                 ColorCardView.setCardViewColor(resultOfValues[2], context, multiplierValue)
