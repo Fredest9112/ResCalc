@@ -111,6 +111,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/color1_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -131,6 +132,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/color2_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -152,6 +154,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/color3_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -172,6 +175,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/multiplier_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -192,6 +196,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/tolerance_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -212,6 +217,7 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/ppm_selection"
+                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />

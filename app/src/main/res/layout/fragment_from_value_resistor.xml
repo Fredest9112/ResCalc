@@ -14,249 +14,257 @@
             type="com.example.resistorcalc.view.FromValueResistorFragment" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/calc_value_title"
-            style="@style/title_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:text="@string/calc_value_title"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/value_band_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calc_value_title">
-
-            <RadioButton
-                android:id="@+id/value_four_bands"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> fromValueResistorFragment.setCalcState(4)}"
-                android:text="@string/value_4_bands_option" />
-
-            <RadioButton
-                android:id="@+id/value_5_bands"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> fromValueResistorFragment.setCalcState(5)}"
-                android:text="@string/value_5_bands_option" />
-
-            <RadioButton
-                android:id="@+id/value_6_bands"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> fromValueResistorFragment.setCalcState(6)}"
-                android:text="@string/value_6_bands_option" />
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/value_resist"
-            android:layout_width="190dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/value_resist_hint"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/value_band_options">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/value_resist_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tolerance_menu"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/value_tolerance_label"
-            app:layout_constraintEnd_toStartOf="@+id/ppm_menu"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/value_resist">
-
-            <AutoCompleteTextView
-                android:id="@+id/value_tolerance_select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ppm_menu"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/value_ppm_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tolerance_menu"
-            app:layout_constraintTop_toTopOf="@+id/tolerance_menu">
-
-            <AutoCompleteTextView
-                android:id="@+id/value_ppm_select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/value_calc_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/value_calc_btn"
-            android:enabled="@{viewModel.isCalcValueToColorValid}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tolerance_menu" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/value_calc_btn">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/value_color1"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+            <TextView
+                android:id="@+id/calc_value_title"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="@string/calc_value_title"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/value_color2"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+            <RadioGroup
+                android:id="@+id/value_band_options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/value_color1" />
+                app:layout_constraintTop_toBottomOf="@+id/calc_value_title">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/value_color3"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+                <RadioButton
+                    android:id="@+id/value_four_bands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(4)}"
+                    android:text="@string/value_4_bands_option" />
+
+                <RadioButton
+                    android:id="@+id/value_5_bands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(5)}"
+                    android:text="@string/value_5_bands_option" />
+
+                <RadioButton
+                    android:id="@+id/value_6_bands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(6)}"
+                    android:text="@string/value_6_bands_option" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/value_resist"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/value_resist_hint"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/value_color2" />
+                app:layout_constraintTop_toBottomOf="@+id/value_band_options">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/multiplier_value"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/value_resist_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tolerance_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/value_tolerance_label"
+                app:layout_constraintEnd_toStartOf="@+id/ppm_menu"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/value_color3" />
+                app:layout_constraintTop_toBottomOf="@+id/value_resist">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/value_tolerance"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+                <AutoCompleteTextView
+                    android:id="@+id/value_tolerance_select"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ppm_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/value_ppm_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tolerance_menu"
+                app:layout_constraintTop_toTopOf="@+id/tolerance_menu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/value_ppm_select"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/value_calc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/value_calc_btn"
+                android:enabled="@{viewModel.isCalcValueToColorValid}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/multiplier_value" />
+                app:layout_constraintTop_toBottomOf="@+id/tolerance_menu" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/ppm_value"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                app:cardCornerRadius="8dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+                app:layout_constraintTop_toBottomOf="@+id/value_calc_btn">
 
-            <TextView
-                android:id="@+id/band1_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/color1_title"
-                app:layout_constraintBottom_toTopOf="@+id/value_color2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/value_color1"
-                app:layout_constraintTop_toTopOf="@+id/value_color1" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/value_color1"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/band2_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/color2_title"
-                app:layout_constraintBottom_toBottomOf="@+id/value_color2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/value_color2"
-                app:layout_constraintTop_toTopOf="@+id/value_color2" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/value_color2"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/value_color1" />
 
-            <TextView
-                android:id="@+id/band3_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/color3_title"
-                app:layout_constraintBottom_toBottomOf="@+id/value_color3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/value_color3"
-                app:layout_constraintTop_toBottomOf="@+id/value_color2" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/value_color3"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/value_color2" />
 
-            <TextView
-                android:id="@+id/multiplier_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/multiplier_title"
-                app:layout_constraintBottom_toBottomOf="@+id/multiplier_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/multiplier_value"
-                app:layout_constraintTop_toBottomOf="@+id/value_color3" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/multiplier_value"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/value_color3" />
 
-            <TextView
-                android:id="@+id/tolerance_value_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tolerance_title"
-                app:layout_constraintBottom_toBottomOf="@+id/value_tolerance"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/value_tolerance"
-                app:layout_constraintTop_toBottomOf="@+id/multiplier_value" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/value_tolerance"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/multiplier_value" />
 
-            <TextView
-                android:id="@+id/ppm_value_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ppm_title"
-                app:layout_constraintBottom_toBottomOf="@+id/ppm_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ppm_value"
-                app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ppm_value"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+
+                <TextView
+                    android:id="@+id/band1_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color1_title"
+                    app:layout_constraintBottom_toTopOf="@+id/value_color2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/value_color1"
+                    app:layout_constraintTop_toTopOf="@+id/value_color1" />
+
+                <TextView
+                    android:id="@+id/band2_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color2_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/value_color2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/value_color2"
+                    app:layout_constraintTop_toTopOf="@+id/value_color2" />
+
+                <TextView
+                    android:id="@+id/band3_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color3_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/value_color3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/value_color3"
+                    app:layout_constraintTop_toBottomOf="@+id/value_color2" />
+
+                <TextView
+                    android:id="@+id/multiplier_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/multiplier_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/multiplier_value"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/multiplier_value"
+                    app:layout_constraintTop_toBottomOf="@+id/value_color3" />
+
+                <TextView
+                    android:id="@+id/tolerance_value_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tolerance_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/value_tolerance"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/value_tolerance"
+                    app:layout_constraintTop_toBottomOf="@+id/multiplier_value" />
+
+                <TextView
+                    android:id="@+id/ppm_value_label"
+                    style="@style/title_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ppm_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/ppm_value"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ppm_value"
+                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 </layout>
 

@@ -32,6 +32,9 @@ class ResistorCalcFragment : Fragment() {
     ): View {
         val fragmentBinding = FragmentResistorCalcBinding.inflate(inflater, container, false)
         binding = fragmentBinding
+        binding?.apply {
+            color1Indicator
+        }
         return fragmentBinding.root
     }
 
@@ -45,39 +48,6 @@ class ResistorCalcFragment : Fragment() {
             ervValueInput.setOnKeyListener { v, keyCode, _ ->
                 handleKeyEvent(v, keyCode)
             }
-        }
-
-        binding?.apply {
-            setDropDownMenu(
-                requireContext(),
-                color1Selection,
-                resources.getStringArray(R.array.color_options)
-            )
-            setDropDownMenu(
-                requireContext(),
-                color2Selection,
-                resources.getStringArray(R.array.color_options)
-            )
-            setDropDownMenu(
-                requireContext(),
-                color3Selection,
-                resources.getStringArray(R.array.color_options)
-            )
-            setDropDownMenu(
-                requireContext(),
-                multiplierSelection,
-                resources.getStringArray(R.array.multiplier_options)
-            )
-            setDropDownMenu(
-                requireContext(),
-                toleranceSelection,
-                resources.getStringArray(R.array.tolerance_options)
-            )
-            setDropDownMenu(
-                requireContext(),
-                ppmSelection,
-                resources.getStringArray(R.array.ppm_options)
-            )
         }
 
         binding?.apply {
@@ -153,6 +123,50 @@ class ResistorCalcFragment : Fragment() {
                     setBntDetailsValidator()
                 }
             }
+        }
+
+        binding?.apply {
+            ColorCardView.setCardViewColor(
+                color1Selection.text.toString(),
+                context,
+                color1Indicator
+            )
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding?.apply {
+            setDropDownMenu(
+                context,
+                color1Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                context,
+                color2Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                context,
+                color3Selection,
+                resources.getStringArray(R.array.color_options)
+            )
+            setDropDownMenu(
+                context,
+                multiplierSelection,
+                resources.getStringArray(R.array.multiplier_options)
+            )
+            setDropDownMenu(
+                context,
+                toleranceSelection,
+                resources.getStringArray(R.array.tolerance_options)
+            )
+            setDropDownMenu(
+                context,
+                ppmSelection,
+                resources.getStringArray(R.array.ppm_options)
+            )
         }
     }
 

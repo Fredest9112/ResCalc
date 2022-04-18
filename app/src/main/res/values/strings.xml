@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ResistorCalc</string>
-    <string name="empty" />
+    <string name="empty"/>
     <!-- Fragment Resistor Calc Strings -->
     <string name="fragment_resistor_calc_name">Resistencias por Colores</string>
     <string name="calc_title">CALCULADORA DE RESISTENCIAS \nPOR COLOR</string>

@@ -36,14 +36,7 @@ class FromValueResistorFragment : Fragment() {
             viewModel = resCalcViewModel
             lifecycleOwner = viewLifecycleOwner
             fromValueResistorFragment = this@FromValueResistorFragment
-            setDropDownMenu(
-                requireContext(), valueToleranceSelect,
-                resources.getStringArray(R.array.tolerance_options)
-            )
-            setDropDownMenu(
-                requireContext(), valuePpmSelect,
-                resources.getStringArray(R.array.ppm_options)
-            )
+
             resCalcViewModel.apply {
                 valueToleranceSelect.setOnItemClickListener { parent, _, position, _ ->
                     setTolerance(parent.adapter.getItem(position).toString())
@@ -64,7 +57,7 @@ class FromValueResistorFragment : Fragment() {
                 activity,
                 resources
             )
-            if(isValidInput){
+            if (isValidInput) {
                 when (resCalcViewModel.noOfBands.value) {
                     FOUR_BANDS -> {
                         setFourBandsResult(input)
@@ -77,6 +70,20 @@ class FromValueResistorFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding?.apply {
+            setDropDownMenu(
+                requireContext(), valueToleranceSelect,
+                resources.getStringArray(R.array.tolerance_options)
+            )
+            setDropDownMenu(
+                requireContext(), valuePpmSelect,
+                resources.getStringArray(R.array.ppm_options)
+            )
         }
     }
 

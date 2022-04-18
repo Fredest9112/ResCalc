@@ -42,7 +42,9 @@
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_initialFragment_to_fromValueResistorFragment"
-            app:destination="@id/fromValueResistorFragment" />
+            app:destination="@id/fromValueResistorFragment"
+            app:popUpTo="@id/fromValueResistorFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fromValueResistorFragment"
