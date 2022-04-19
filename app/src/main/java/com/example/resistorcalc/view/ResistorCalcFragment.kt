@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.AutoCompleteTextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.resistorcalc.R
@@ -51,86 +53,80 @@ class ResistorCalcFragment : Fragment() {
         }
 
         binding?.apply {
-            color1Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    color1Indicator
-                )
-                resCalcViewModel.apply {
+            resCalcViewModel.apply {
+                band1.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        color1Indicator
+                    )
+                }
+                color1Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand1(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-            }
-            color2Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    color2Indicator
-                )
-                resCalcViewModel.apply {
+                band2.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        color2Indicator
+                    )
+                }
+                color2Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand2(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-            }
-            color3Selection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    color3Indicator
-                )
-                resCalcViewModel.apply {
+                band3.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        color3Indicator
+                    )
+                }
+                color3Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand3(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-            }
-            toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    toleranceIndicator
-                )
-                resCalcViewModel.apply {
-                    setTolerance(parent.adapter.getItem(position).toString())
-                    setResultForColors()
-                    setBntDetailsValidator()
+                multiplier.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        multiplierIndicator
+                    )
                 }
-            }
-            multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    multiplierIndicator
-                )
-                resCalcViewModel.apply {
+                multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
                     setMultiplier(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-            }
-            ppmSelection.setOnItemClickListener { parent, _, position, _ ->
-                ColorCardView.setCardViewColor(
-                    parent.adapter.getItem(position).toString(),
-                    context,
-                    ppmIndicator
-                )
-                resCalcViewModel.apply {
+                sTolerance.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        toleranceIndicator
+                    )
+                }
+                toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
+                    setTolerance(parent.adapter.getItem(position).toString())
+                    setResultForColors()
+                    setBntDetailsValidator()
+                }
+                sPPM.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(
+                        it.toString(),
+                        context,
+                        ppmIndicator
+                    )
+                }
+                ppmSelection.setOnItemClickListener { parent, _, position, _ ->
                     setPPM(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
             }
-        }
-
-        binding?.apply {
-            ColorCardView.setCardViewColor(
-                color1Selection.text.toString(),
-                context,
-                color1Indicator
-            )
         }
     }
 

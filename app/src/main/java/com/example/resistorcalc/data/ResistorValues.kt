@@ -14,34 +14,6 @@ object ResistorValues {
         "Blanco" to 9.0
     )
 
-    val valuesToBands = mapOf(
-        "0" to "Negro",
-        "1" to "Cafe",
-        "2" to "Rojo",
-        "3" to "Naranja",
-        "4" to "Amarillo",
-        "5" to "Verde",
-        "6" to "Azul",
-        "7" to "Violeta",
-        "8" to "Gris",
-        "9" to "Blanco"
-    )
-
-    val valuesToMultiplierBand = mapOf(
-        1.0 to "Negro",
-        10.0 to "Cafe",
-        100.0 to "Rojo",
-        1000.0 to "Naranja",
-        10000.0 to "Amarillo",
-        100000.0 to "Verde",
-        1000000.0 to "Azul",
-        10000000.0 to "Violeta",
-        100000000.0 to "Gris",
-        1000000000.0 to "Blanco",
-        0.1 to "Dorado",
-        0.01 to "Plateado"
-    )
-
     val multiplierValues = mapOf(
         "Negro" to 1.0,
         "Cafe" to 10.0,
@@ -75,5 +47,53 @@ object ResistorValues {
         "Amarillo" to 25.0,
         "Azul" to 10.0,
         "Violeta" to 5.0
+    )
+
+    val valuesToBands = mapOf(
+        "0" to "Negro",
+        "1" to "Cafe",
+        "2" to "Rojo",
+        "3" to "Naranja",
+        "4" to "Amarillo",
+        "5" to "Verde",
+        "6" to "Azul",
+        "7" to "Violeta",
+        "8" to "Gris",
+        "9" to "Blanco"
+    )
+
+    val valuesToMultiplierBand = mapOf(
+        1.0 to "Negro",
+        10.0 to "Cafe",
+        100.0 to "Rojo",
+        1000.0 to "Naranja",
+        10000.0 to "Amarillo",
+        100000.0 to "Verde",
+        1000000.0 to "Azul",
+        10000000.0 to "Violeta",
+        100000000.0 to "Gris",
+        1000000000.0 to "Blanco",
+        0.1 to "Dorado",
+        0.01 to "Plateado"
+    )
+
+    val valuesToTolerance = mapOf(
+        1.0 to "Cafe",
+        2.0 to "Rojo",
+        0.5 to "Verde",
+        0.25 to "Azul",
+        0.1 to "Violeta",
+        0.05 to "Gris",
+        5.0 to "Dorado",
+        10.0 to "Plateado"
+    )
+
+    val valuesToPPM = mapOf(
+        100.0 to "Cafe",
+        50.0 to "Rojo",
+        15.0 to "Naranja",
+        25.0 to "Amarillo",
+        10.0 to "Azul",
+        5.0 to "Violeta"
     )
 }

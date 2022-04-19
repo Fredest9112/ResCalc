@@ -20,18 +20,36 @@ class ResCalcViewModel : ViewModel() {
     val noOfBands: LiveData<Int> = _noOfBands
 
     private val _band1 = MutableLiveData<Double?>()
+    val band1: LiveData<String?> = Transformations.map(_band1){
+        ResistorValues.valuesToBands[it?.toInt().toString()]
+    }
 
     private val _band2 = MutableLiveData<Double?>()
+    val band2: LiveData<String?> = Transformations.map(_band2){
+        ResistorValues.valuesToBands[it?.toInt().toString()]
+    }
 
     private val _band3 = MutableLiveData<Double?>()
+    val band3: LiveData<String?> = Transformations.map(_band3){
+        ResistorValues.valuesToBands[it?.toInt().toString()]
+    }
 
     private val _multiplier = MutableLiveData<Double>()
+    val multiplier: LiveData<String?> = Transformations.map(_multiplier){
+        ResistorValues.valuesToMultiplierBand[it]
+    }
 
     private val _tolerance = MutableLiveData<Double>()
     val tolerance: LiveData<String?> = Transformations.map(_tolerance) { it.toString() }
+    val sTolerance: LiveData<String?> = Transformations.map(_tolerance){
+        ResistorValues.valuesToTolerance[it]
+    }
 
     private val _ppm = MutableLiveData<Double>()
     val ppm: LiveData<Double> = _ppm
+    val sPPM : LiveData<String?> = Transformations.map(_ppm){
+        ResistorValues.valuesToPPM[it]
+    }
 
     private val _resistResult = MutableLiveData<Double>()
     val resistResult: LiveData<String> = Transformations.map(_resistResult) {
@@ -57,13 +75,7 @@ class ResCalcViewModel : ViewModel() {
     val state: LiveData<String> = _state
 
     private val _isDetailsValid = MutableLiveData<Boolean>()
-    val isDetailsValid = _isDetailsValid
-
-    private val _resultOfValues = mutableListOf<String>()
-    val resultOfValues: List<String> = _resultOfValues
-
-    private val _isCalcValueToColorValid = MutableLiveData<Boolean>()
-    val isCalcValueToColorValid = _isCalcValueToColorValid
+    val isDetailsValid : LiveData<Boolean> = _isDetailsValid
 
     fun setInitialState() {
         _noOfBands.value = FOUR_BANDS
@@ -214,41 +226,26 @@ class ResCalcViewModel : ViewModel() {
     fun setResultForValues(resistInput: Long) {
         val input = resistInput.toString()
         if (noOfBands.value == FOUR_BANDS) {
-            ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
-            ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
+            _band1.value = input[0].toString().toDouble()
+            _band2.value = input[1].toString().toDouble()
             var numb = resistInput
             var mult = 1.0
             while (numb > 99) {
                 mult *= 10
                 numb = numb.div(10)
             }
-            _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
+            _multiplier.value = mult
         } else {
-            ResistorValues.valuesToBands[input[0].toString()]?.let { _resultOfValues.add(it) }
-            ResistorValues.valuesToBands[input[1].toString()]?.let { _resultOfValues.add(it) }
-            ResistorValues.valuesToBands[input[2].toString()]?.let { _resultOfValues.add(it) }
+            _band1.value = input[0].toString().toDouble()
+            _band2.value = input[1].toString().toDouble()
+            _band3.value = input[2].toString().toDouble()
             var numb = resistInput
             var mult = 1.0
             while (numb > 999) {
                 mult *= 10
                 numb = numb.div(10)
             }
-            _resultOfValues.add(ResistorValues.valuesToMultiplierBand[mult].toString())
-        }
-    }
-
-    fun emptyResultOfValues() {
-        _resultOfValues.clear()
-    }
-
-    fun setBtnValueToColorValidator() {
-        when (noOfBands.value) {
-            SIX_BANDS -> {
-                _isCalcValueToColorValid.value = (_tolerance.value != ZERO && ppm.value != null)
-            }
-            else -> {
-                _isCalcValueToColorValid.value = _tolerance.value != ZERO
-            }
+            _multiplier.value = mult
         }
     }
 }

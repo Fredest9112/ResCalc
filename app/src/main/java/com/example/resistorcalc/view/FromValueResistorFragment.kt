@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.example.resistorcalc.R
 import com.example.resistorcalc.data.InputValidator.checkInputValueToColor
@@ -40,34 +41,60 @@ class FromValueResistorFragment : Fragment() {
             resCalcViewModel.apply {
                 valueToleranceSelect.setOnItemClickListener { parent, _, position, _ ->
                     setTolerance(parent.adapter.getItem(position).toString())
-                    setBtnValueToColorValidator()
                 }
                 valuePpmSelect.setOnItemClickListener { parent, _, position, _ ->
                     setPPM(parent.adapter.getItem(position).toString())
-                    setBtnValueToColorValidator()
                 }
             }
         }
 
-        setCalcState(resCalcViewModel.noOfBands.value!!)
+        binding?.apply {
+            resCalcViewModel.apply {
+                band1.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, valueColor1)
+                }
+                band2.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, valueColor2)
+                }
+                band3.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, valueColor3)
+                }
+                multiplier.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, multiplierValue)
+                }
+                sTolerance.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, valueTolerance)
+                }
+                sPPM.observe(viewLifecycleOwner) {
+                    ColorCardView.setCardViewColor(it.toString(), context, ppmValue)
+                }
+            }
+        }
 
-        binding!!.valueCalcBtn.setOnClickListener {
-            val input = checkInputValueToColor(
-                binding!!.valueResistInput,
-                activity,
-                resources
-            )
-            if (isValidInput) {
-                when (resCalcViewModel.noOfBands.value) {
-                    FOUR_BANDS -> {
-                        setFourBandsResult(input)
-                    }
-                    FIVE_BANDS -> {
-                        setFiveBandsResult(input)
-                    }
-                    SIX_BANDS -> {
-                        setSixBandsResult(input)
-                    }
+        setFourBandsCalc()
+
+        binding?.valueResistInput?.doOnTextChanged { enteredText, _, _, _ ->
+            updateResistorValues(enteredText.toString())
+        }
+    }
+
+    private fun updateResistorValues(enteredText: String) {
+        val input = checkInputValueToColor(
+            resCalcViewModel.noOfBands.value,
+            enteredText,
+            activity,
+            resources
+        )
+        if (isValidInput) {
+            when (resCalcViewModel.noOfBands.value) {
+                FOUR_BANDS -> {
+                    resCalcViewModel.setResultForValues(input)
+                }
+                FIVE_BANDS -> {
+                    resCalcViewModel.setResultForValues(input)
+                }
+                SIX_BANDS -> {
+                    resCalcViewModel.setResultForValues(input)
                 }
             }
         }
@@ -87,91 +114,35 @@ class FromValueResistorFragment : Fragment() {
         }
     }
 
-    private fun setSixBandsResult(value: Long) {
-        binding?.apply {
-            resCalcViewModel.apply {
-                setResultForValues(value)
-                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
-                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
-                ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
-                ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
-                ColorCardView.setCardViewColor(
-                    valueToleranceSelect.text.toString(),
-                    context, valueTolerance
-                )
-                ColorCardView.setCardViewColor(
-                    valuePpmSelect.text.toString(),
-                    context, ppmValue
-                )
-                emptyResultOfValues()
-
-            }
-        }
-    }
-
-    private fun setFiveBandsResult(value: Long) {
-        binding?.apply {
-            resCalcViewModel.apply {
-                setResultForValues(value)
-                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
-                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
-                ColorCardView.setCardViewColor(resultOfValues[2], context, valueColor3)
-                ColorCardView.setCardViewColor(resultOfValues[3], context, multiplierValue)
-                ColorCardView.setCardViewColor(
-                    valueToleranceSelect.text.toString(),
-                    context, valueTolerance
-                )
-                emptyResultOfValues()
-            }
-
-        }
-    }
-
-    private fun setFourBandsResult(value: Long) {
-        binding?.apply {
-            resCalcViewModel.apply {
-                setResultForValues(value)
-                ColorCardView.setCardViewColor(resultOfValues[0], context, valueColor1)
-                ColorCardView.setCardViewColor(resultOfValues[1], context, valueColor2)
-                ColorCardView.setCardViewColor(resultOfValues[2], context, multiplierValue)
-                ColorCardView.setCardViewColor(
-                    valueToleranceSelect.text.toString(),
-                    context, valueTolerance
-                )
-                emptyResultOfValues()
-            }
-        }
-    }
-
     fun setCalcState(noOfBands: Int) {
         when (noOfBands) {
             FOUR_BANDS -> {
-                binding!!.valueFourBands.isChecked = true
                 setFourBandsCalc()
                 resCalcViewModel.apply {
                     setNoOfBands(FOUR_BANDS)
-                    setBtnValueToColorValidator()
                 }
+                updateResistorValues(binding?.valueResistInput?.text.toString())
             }
             FIVE_BANDS -> {
                 setFiveBandsCalc()
                 resCalcViewModel.apply {
                     setNoOfBands(FIVE_BANDS)
-                    setBtnValueToColorValidator()
                 }
+                updateResistorValues(binding?.valueResistInput?.text.toString())
             }
             SIX_BANDS -> {
                 setSixBandsCalc()
                 resCalcViewModel.apply {
                     setNoOfBands(SIX_BANDS)
-                    setBtnValueToColorValidator()
                 }
+                updateResistorValues(binding?.valueResistInput?.text.toString())
             }
         }
     }
 
     private fun setFourBandsCalc() {
         binding?.apply {
+            valueFourBands.isChecked = true
             ppmMenu.visibility = View.GONE
             ppmValue.visibility = View.GONE
             valueColor3.visibility = View.GONE
