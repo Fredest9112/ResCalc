@@ -5,6 +5,7 @@
     tools:context=".view.ResistorCalcFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.resistorcalc.model.ResCalcViewModel" />
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
                 android:text="@string/calc_title"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +66,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:onClick="@{() -> resistorCalcFragment.setCalcState(4)}"
                     android:text="@string/four_bands_label" />
 
@@ -96,134 +97,132 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/no_bands_label" />
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/color1_title"
-                style="@style/title_style"
-                android:text="@string/color1_title"
-                app:layout_constraintBottom_toTopOf="@+id/color1_selection"
-                app:layout_constraintEnd_toEndOf="@+id/color1_selection"
-                app:layout_constraintStart_toStartOf="@+id/color1_selection" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/color1_title"
+                app:layout_constraintEnd_toStartOf="@+id/multiplier_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colors_title">
 
-            <TextView
+                <AutoCompleteTextView
+                    android:id="@+id/color1_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/color2_title"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/color2_title"
-                app:layout_constraintBottom_toTopOf="@+id/color2_selection"
-                app:layout_constraintEnd_toEndOf="@+id/color2_selection"
-                app:layout_constraintStart_toStartOf="@+id/color2_selection" />
+                android:layout_marginTop="8dp"
+                android:hint="@string/color2_title"
+                app:layout_constraintEnd_toStartOf="@+id/tolerance_title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/color1_title">
 
-            <TextView
+                <AutoCompleteTextView
+                    android:id="@+id/color2_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/color3_title"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/color3_title"
-                app:layout_constraintBottom_toTopOf="@+id/color3_selection"
-                app:layout_constraintEnd_toEndOf="@+id/color3_selection"
-                app:layout_constraintStart_toStartOf="@+id/color3_selection" />
-
-            <Spinner
-                android:id="@+id/color1_selection"
-                style="@style/spinner_style"
-                android:entries="@array/color_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
-                app:layout_constraintEnd_toStartOf="@+id/color2_selection"
+                android:layout_marginTop="8dp"
+                android:hint="@string/color3_title"
+                app:layout_constraintEnd_toStartOf="@+id/ppm_title"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/color2_selection" />
+                app:layout_constraintTop_toBottomOf="@+id/color2_title">
 
-            <Spinner
-                android:id="@+id/color2_selection"
-                style="@style/spinner_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:entries="@array/color_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colors_title" />
+                <AutoCompleteTextView
+                    android:id="@+id/color3_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
 
-            <Spinner
-                android:id="@+id/color3_selection"
-                style="@style/spinner_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/color_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/color2_selection"
-                app:layout_constraintTop_toTopOf="@+id/color2_selection" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/multiplier_title"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/multiplier_title"
-                app:layout_constraintBottom_toTopOf="@+id/multiplier_selection"
-                app:layout_constraintEnd_toEndOf="@+id/multiplier_selection"
-                app:layout_constraintStart_toStartOf="@+id/multiplier_selection" />
+                android:hint="@string/multiplier_title"
+                app:layout_constraintBottom_toBottomOf="@+id/color1_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/color1_title"
+                app:layout_constraintTop_toTopOf="@+id/color1_title">
 
-            <TextView
+                <AutoCompleteTextView
+                    android:id="@+id/multiplier_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tolerance_title"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/tolerance_title"
-                app:layout_constraintBottom_toTopOf="@+id/tolerance_selection"
-                app:layout_constraintEnd_toEndOf="@+id/tolerance_selection"
-                app:layout_constraintStart_toStartOf="@+id/tolerance_selection" />
+                android:hint="@string/tolerance_title"
+                app:layout_constraintBottom_toBottomOf="@+id/color2_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/color2_title"
+                app:layout_constraintTop_toTopOf="@+id/color2_title">
 
-            <TextView
+                <AutoCompleteTextView
+                    android:id="@+id/tolerance_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ppm_title"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/ppm_title"
-                app:layout_constraintBottom_toTopOf="@+id/ppm_selection"
-                app:layout_constraintEnd_toEndOf="@+id/ppm_selection"
-                app:layout_constraintStart_toStartOf="@+id/ppm_selection" />
-
-            <Spinner
-                android:id="@+id/multiplier_selection"
-                style="@style/spinner_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/multiplier_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
-                app:layout_constraintEnd_toStartOf="@+id/tolerance_selection"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
-
-            <Spinner
-                android:id="@+id/tolerance_selection"
-                style="@style/spinner_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:entries="@array/tolerance_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
+                android:hint="@string/ppm_title"
+                app:layout_constraintBottom_toBottomOf="@+id/color3_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/color2_selection" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/color3_title"
+                app:layout_constraintTop_toTopOf="@+id/color3_title">
 
-            <Spinner
-                android:id="@+id/ppm_selection"
-                style="@style/spinner_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/ppm_options"
-                android:onItemSelected="@{() -> resistorCalcFragment.setValues()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tolerance_selection"
-                app:layout_constraintTop_toTopOf="@+id/tolerance_selection" />
+                <AutoCompleteTextView
+                    android:id="@+id/ppm_selection"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -233,13 +232,13 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tolerance_selection">
+                app:layout_constraintTop_toBottomOf="@+id/color3_title">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color1_indicator"
                     style="@style/indicator_style"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
@@ -247,38 +246,38 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color2_indicator"
                     style="@style/indicator_style"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color3_indicator"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/multiplier_indicator"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tolerance_indicator"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ppm_indicator"
-                    android:layout_width="40dp"
-                    android:layout_height="70dp"
+                    android:layout_width="50dp"
+                    android:layout_height="75dp"
                     app:cardCornerRadius="8dp" />
 
             </LinearLayout>
@@ -299,7 +298,7 @@
                 android:id="@+id/trv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.resistResult}"
+                android:text="@{@string/trv_value(viewModel.resistResult)}"
                 app:layout_constraintBottom_toBottomOf="@+id/trv_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -322,7 +321,7 @@
                 android:id="@+id/tolerance_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.tolerance}"
+                android:text="@{@string/tolerance_value(viewModel.tolerance)}"
                 app:layout_constraintBottom_toBottomOf="@+id/tolerance_label"
                 app:layout_constraintEnd_toStartOf="@+id/ppm_label"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -353,30 +352,24 @@
                 app:layout_constraintStart_toEndOf="@+id/ppm_label"
                 app:layout_constraintTop_toTopOf="@+id/ppm_label" />
 
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:id="@+id/erv_label"
-                style="@style/title_style"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/erv_label"
-                app:layout_constraintEnd_toStartOf="@+id/erv_value"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tolerance_label" />
-
-            <EditText
-                android:id="@+id/erv_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/erv_value_hint"
-                android:inputType="number|numberDecimal"
-                app:layout_constraintBottom_toBottomOf="@+id/erv_label"
+                android:hint="@string/erv_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/erv_label"
-                app:layout_constraintTop_toTopOf="@+id/erv_label" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tolerance_label">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/erv_value_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/details_button"
@@ -384,8 +377,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:onClick="@{() -> resistorCalcFragment.goToDetailsScreen()}"
+                android:enabled="@{viewModel.isDetailsValid()}"
                 android:text="@string/details_button"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/erv_label" />
 

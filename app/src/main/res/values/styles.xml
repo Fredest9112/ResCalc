@@ -11,9 +11,8 @@
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">70dp</item>
     </style>
-    <style
-        name="Widget.TipTime.CompoundButton.RadioButton"
-        parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+
+    <style name="Widget.ResCalc.CompoundButton.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
         <item name="android:paddingStart">8dp</item>
         <item name="textAppearanceBody1">?attr/textAppearanceBody1</item>
     </style>
@@ -21,7 +20,6 @@
     <style name="title_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">16dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>

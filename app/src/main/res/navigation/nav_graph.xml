@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/resistorCalcFragment">
+    app:startDestination="@id/initialFragment">
 
     <fragment
         android:id="@+id/resistorCalcFragment"
@@ -13,7 +13,8 @@
         <action
             android:id="@+id/action_resistorCalcFragment_to_resistorDetailsFragment"
             app:destination="@id/resistorDetailsFragment"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/resistorCalcFragment"
+            app:popUpToInclusive="true" />
 
     </fragment>
     <fragment
@@ -24,5 +25,29 @@
         <argument
             android:name="ervValue"
             app:argType="float" />
+        <action
+            android:id="@+id/action_resistorDetailsFragment_to_resistorCalcFragment"
+            app:destination="@id/resistorCalcFragment"
+            app:popUpTo="@id/resistorDetailsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/initialFragment"
+        android:name="com.example.resistorcalc.view.InitialFragment"
+        android:label="@string/fragment_initial_name"
+        tools:layout="@layout/fragment_initial">
+        <action
+            android:id="@+id/action_initialFragment_to_resistorCalcFragment"
+            app:destination="@id/resistorCalcFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_initialFragment_to_fromValueResistorFragment"
+            app:destination="@id/fromValueResistorFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/fromValueResistorFragment"
+        android:name="com.example.resistorcalc.view.FromValueResistorFragment"
+        android:label="@string/fragment_from_value_resistor"
+        tools:layout="@layout/fragment_from_value_resistor" />
 </navigation>
