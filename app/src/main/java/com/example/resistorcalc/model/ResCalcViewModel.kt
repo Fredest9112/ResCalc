@@ -20,34 +20,34 @@ class ResCalcViewModel : ViewModel() {
     val noOfBands: LiveData<Int> = _noOfBands
 
     private val _band1 = MutableLiveData<Double?>()
-    val band1: LiveData<String?> = Transformations.map(_band1){
+    val band1: LiveData<String?> = Transformations.map(_band1) {
         ResistorValues.valuesToBands[it?.toInt().toString()]
     }
 
     private val _band2 = MutableLiveData<Double?>()
-    val band2: LiveData<String?> = Transformations.map(_band2){
+    val band2: LiveData<String?> = Transformations.map(_band2) {
         ResistorValues.valuesToBands[it?.toInt().toString()]
     }
 
     private val _band3 = MutableLiveData<Double?>()
-    val band3: LiveData<String?> = Transformations.map(_band3){
+    val band3: LiveData<String?> = Transformations.map(_band3) {
         ResistorValues.valuesToBands[it?.toInt().toString()]
     }
 
     private val _multiplier = MutableLiveData<Double>()
-    val multiplier: LiveData<String?> = Transformations.map(_multiplier){
+    val multiplier: LiveData<String?> = Transformations.map(_multiplier) {
         ResistorValues.valuesToMultiplierBand[it]
     }
 
     private val _tolerance = MutableLiveData<Double>()
     val tolerance: LiveData<String?> = Transformations.map(_tolerance) { it.toString() }
-    val sTolerance: LiveData<String?> = Transformations.map(_tolerance){
+    val sTolerance: LiveData<String?> = Transformations.map(_tolerance) {
         ResistorValues.valuesToTolerance[it]
     }
 
     private val _ppm = MutableLiveData<Double>()
     val ppm: LiveData<Double> = _ppm
-    val sPPM : LiveData<String?> = Transformations.map(_ppm){
+    val sPPM: LiveData<String?> = Transformations.map(_ppm) {
         ResistorValues.valuesToPPM[it]
     }
 
@@ -75,7 +75,7 @@ class ResCalcViewModel : ViewModel() {
     val state: LiveData<String> = _state
 
     private val _isDetailsValid = MutableLiveData<Boolean>()
-    val isDetailsValid : LiveData<Boolean> = _isDetailsValid
+    val isDetailsValid: LiveData<Boolean> = _isDetailsValid
 
     fun setInitialState() {
         _noOfBands.value = FOUR_BANDS
@@ -210,10 +210,11 @@ class ResCalcViewModel : ViewModel() {
         }
     }
 
-    fun setBntDetailsValidator(){
-        when(noOfBands.value){
+    fun setBntDetailsValidator() {
+        when (noOfBands.value) {
             SIX_BANDS -> {
-                _isDetailsValid.value = _resistResult.value != ZERO && _tolerance.value != ZERO && _ppm.value != null
+                _isDetailsValid.value =
+                    _resistResult.value != ZERO && _tolerance.value != ZERO && _ppm.value != null
             }
             else -> {
                 _isDetailsValid.value = _resistResult.value != ZERO && _tolerance.value != ZERO

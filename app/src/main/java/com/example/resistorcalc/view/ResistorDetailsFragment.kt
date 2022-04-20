@@ -40,7 +40,7 @@ class ResistorDetailsFragment : Fragment() {
         resCalcViewModel.setState()
     }
 
-    fun returnToCalc(){
+    fun returnToCalc() {
         findNavController().navigate(R.id.action_resistorDetailsFragment_to_resistorCalcFragment)
         resCalcViewModel.apply {
             setInitialState()

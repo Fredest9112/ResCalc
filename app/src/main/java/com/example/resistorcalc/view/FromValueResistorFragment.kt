@@ -104,11 +104,11 @@ class FromValueResistorFragment : Fragment() {
         super.onResume()
         binding?.apply {
             setDropDownMenu(
-                requireContext(), valueToleranceSelect,
+                context, valueToleranceSelect,
                 resources.getStringArray(R.array.tolerance_options)
             )
             setDropDownMenu(
-                requireContext(), valuePpmSelect,
+                context, valuePpmSelect,
                 resources.getStringArray(R.array.ppm_options)
             )
         }

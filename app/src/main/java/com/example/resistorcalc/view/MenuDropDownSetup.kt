@@ -19,8 +19,8 @@ object MenuDropDownSetup {
         textView.showDropDown(arrayAdapter)
     }
 
-    private fun AutoCompleteTextView.showDropDown(adapter: ArrayAdapter<String>?){
-        if(!TextUtils.isEmpty(this.text.toString())){
+    private fun AutoCompleteTextView.showDropDown(adapter: ArrayAdapter<String>?) {
+        if (!TextUtils.isEmpty(this.text.toString())) {
             adapter?.filter?.filter(null)
         }
     }

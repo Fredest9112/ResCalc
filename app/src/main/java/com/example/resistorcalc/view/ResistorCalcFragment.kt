@@ -34,9 +34,6 @@ class ResistorCalcFragment : Fragment() {
     ): View {
         val fragmentBinding = FragmentResistorCalcBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-        binding?.apply {
-            color1Indicator
-        }
         return fragmentBinding.root
     }
 
