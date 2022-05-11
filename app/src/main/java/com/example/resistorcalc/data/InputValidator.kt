@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentActivity
 import com.example.resistorcalc.R
 import com.example.resistorcalc.model.Constants
 import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
+import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS_MIN_VALUE
+import com.example.resistorcalc.model.Constants.Companion.OTHERS_BANDS_MIN_VALUE
 import com.google.android.material.textfield.TextInputEditText
 import java.lang.Exception
 
@@ -28,7 +30,7 @@ object InputValidator {
             when (noOfBands) {
                 FOUR_BANDS -> {
                     when {
-                        input < 10 -> {
+                        input < FOUR_BANDS_MIN_VALUE -> {
                             Toast.makeText(
                                 activity,
                                 resources.getString(R.string.more_than_9_ohms_message),
@@ -50,7 +52,7 @@ object InputValidator {
                 }
                 else -> {
                     when {
-                        input < 100 -> {
+                        input < OTHERS_BANDS_MIN_VALUE -> {
                             Toast.makeText(
                                 activity,
                                 resources.getString(R.string.more_than_99_ohms_message),

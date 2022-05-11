@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/resistorCalcFragment"
         android:name="com.example.resistorcalc.view.ResistorCalcFragment"
-        android:label="@string/fragment_resistor_calc_name"
+        android:label="@string/app_title"
         tools:layout="@layout/fragment_resistor_calc">
         <action
             android:id="@+id/action_resistorCalcFragment_to_resistorDetailsFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/resistorDetailsFragment"
         android:name="com.example.resistorcalc.view.ResistorDetailsFragment"
-        android:label="@string/fragment_resistor_details_name"
+        android:label="@string/app_title"
         tools:layout="@layout/fragment_resistor_details">
         <argument
             android:name="ervValue"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/initialFragment"
         android:name="com.example.resistorcalc.view.InitialFragment"
-        android:label="@string/fragment_initial_name"
+        android:label="@string/app_title"
         tools:layout="@layout/fragment_initial">
         <action
             android:id="@+id/action_initialFragment_to_resistorCalcFragment"
@@ -48,6 +48,6 @@
     <fragment
         android:id="@+id/fromValueResistorFragment"
         android:name="com.example.resistorcalc.view.FromValueResistorFragment"
-        android:label="@string/fragment_from_value_resistor"
+        android:label="@string/app_title"
         tools:layout="@layout/fragment_from_value_resistor" />
 </navigation>

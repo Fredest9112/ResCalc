@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ResistorCalc</string>
+    <string name="app_name">ElectronicCalc</string>
     <string name="empty"/>
     <!-- Fragment Resistor Calc Strings -->
-    <string name="fragment_resistor_calc_name">Resistencias por Colores</string>
     <string name="calc_title">CALCULADORA DE RESISTENCIAS \nPOR COLOR</string>
     <string name="no_bands_label">Numero de \nBandas:</string>
     <string name="four_bands_label">4</string>
@@ -76,7 +75,6 @@
     </string-array>
 
     <!-- Fragment Resistor Details Strings-->
-    <string name="fragment_resistor_details_name">Detalles</string>
     <string name="details_title">DETALLES DE LA RESISTENCIA</string>
     <string name="theoretical_value_title">Valor Teorico:</string>
     <string name="tolerance_value_title">Tolerancia:</string>
@@ -88,12 +86,10 @@
     <string name="val_min_value">%s ohms</string>
     <string name="state_title">Estado:</string>
     <!-- Fragment Initial-->
-    <string name="fragment_initial_name">ResCalc</string>
-    <string name="initial_title">CALCULADORA DE RESISTENCIAS</string>
+    <string name="app_title">Calculadora Electrónica</string>
     <string name="res_calc_color_btn">RESISTENCIAS POR COLORES</string>
     <string name="res_calc_value_btn">RESISTENCIAS POR VALORES</string>
     <!-- Fragment from value resistor-->
-    <string name="fragment_from_value_resistor">Resistencias desde valores</string>
     <string name="calc_value_title">CALCULADORA DE RESISTENCIAS \nPOR VALOR</string>
     <string name="more_than_9_ohms_message">El valor de la resistencia debe ser mayor a 9 ohms!</string>
     <string name="more_than_99_ohms_message">El valor de la resistencia debe ser mayor a 99 ohms!</string>

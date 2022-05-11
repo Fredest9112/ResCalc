@@ -21,5 +21,9 @@ class Constants {
         const val BLANCO = "Blanco"
         const val DORADO = "Dorado"
         const val PLATEADO = "Plateado"
+        const val NIGHT_MODE = 33
+        const val LIGHT_MODE = 17
+        const val FOUR_BANDS_MIN_VALUE = 10
+        const val OTHERS_BANDS_MIN_VALUE = 100
     }
 }
