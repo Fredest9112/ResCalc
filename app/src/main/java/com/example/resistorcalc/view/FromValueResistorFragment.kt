@@ -1,10 +1,13 @@
 package com.example.resistorcalc.view
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.example.resistorcalc.R
@@ -37,6 +40,9 @@ class FromValueResistorFragment : Fragment() {
             viewModel = resCalcViewModel
             lifecycleOwner = viewLifecycleOwner
             fromValueResistorFragment = this@FromValueResistorFragment
+            valueResistInput.setOnKeyListener { v, keyCode, _ ->
+                handleKeyEvent(v, keyCode)
+            }
 
             resCalcViewModel.apply {
                 valueToleranceSelect.setOnItemClickListener { parent, _, position, _ ->
@@ -169,6 +175,16 @@ class FromValueResistorFragment : Fragment() {
             band3Label.visibility = View.VISIBLE
             ppmValueLabel.visibility = View.VISIBLE
         }
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            val inputMethodManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 
     override fun onDestroyView() {
