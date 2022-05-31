@@ -1,14 +1,14 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.resistorcalc.databinding.FragmentInitialBinding
-import com.example.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.databinding.FragmentInitialBinding
+import com.itc.resistorcalc.model.ResCalcViewModel
 
 class InitialFragment : Fragment() {
 

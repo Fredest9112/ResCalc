@@ -8,11 +8,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.resistorcalc.model.ResCalcViewModel" />
+            type="com.itc.resistorcalc.model.ResCalcViewModel" />
 
         <variable
             name="resistorCalcFragment"
-            type="com.example.resistorcalc.view.ResistorCalcFragment" />
+            type="com.itc.resistorcalc.view.ResistorCalcFragment" />
 
     </data>
 

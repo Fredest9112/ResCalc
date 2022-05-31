@@ -1,17 +1,16 @@
-package com.example.resistorcalc.model
+package com.itc.resistorcalc.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.resistorcalc.data.ResistorValues
-import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
-import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.example.resistorcalc.model.Constants.Companion.NOT_USABLE
-import com.example.resistorcalc.model.Constants.Companion.SIX_BANDS
-import com.example.resistorcalc.model.Constants.Companion.USABLE
-import com.example.resistorcalc.model.Constants.Companion.ZERO
+import com.itc.resistorcalc.data.ResistorValues
+import com.itc.resistorcalc.model.Constants.Companion.FIVE_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.NOT_USABLE
+import com.itc.resistorcalc.model.Constants.Companion.SIX_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.USABLE
+import com.itc.resistorcalc.model.Constants.Companion.ZERO
 import java.text.DecimalFormat
 
 class ResCalcViewModel : ViewModel() {

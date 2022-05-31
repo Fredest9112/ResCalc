@@ -1,4 +1,4 @@
-package com.example.resistorcalc.data
+package com.itc.resistorcalc.data
 
 object ResistorValues {
     val bandValues = mapOf(

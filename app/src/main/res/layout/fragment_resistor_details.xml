@@ -9,11 +9,11 @@
 
         <variable
             name="viewModel"
-            type="com.example.resistorcalc.model.ResCalcViewModel" />
+            type="com.itc.resistorcalc.model.ResCalcViewModel" />
 
         <variable
             name="resistorDetailsFrag"
-            type="com.example.resistorcalc.view.ResistorDetailsFragment" />
+            type="com.itc.resistorcalc.view.ResistorDetailsFragment" />
     </data>
 
     <ScrollView

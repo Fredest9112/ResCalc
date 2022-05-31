@@ -1,27 +1,24 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.resistorcalc.R
-import com.example.resistorcalc.data.InputValidator.checkInputColorToValue
-import com.example.resistorcalc.data.InputValidator.isValidInput
-import com.example.resistorcalc.databinding.FragmentResistorCalcBinding
-import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
-import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.example.resistorcalc.model.Constants.Companion.SIX_BANDS
-import com.example.resistorcalc.model.ResCalcViewModel
-import com.example.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
+import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
+import com.itc.resistorcalc.data.InputValidator.isValidInput
+import com.itc.resistorcalc.R
+import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
+import com.itc.resistorcalc.model.Constants.Companion.FIVE_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.SIX_BANDS
+import com.itc.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
 
 class ResistorCalcFragment : Fragment() {
 

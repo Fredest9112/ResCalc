@@ -1,4 +1,4 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.content.Context
 import android.os.Bundle
@@ -10,19 +10,19 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
-import com.example.resistorcalc.R
-import com.example.resistorcalc.data.InputValidator.checkInputValueToColor
-import com.example.resistorcalc.data.InputValidator.isValidInput
-import com.example.resistorcalc.databinding.FragmentFromValueResistorBinding
-import com.example.resistorcalc.model.Constants.Companion.FIVE_BANDS
-import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.example.resistorcalc.model.Constants.Companion.SIX_BANDS
-import com.example.resistorcalc.model.ResCalcViewModel
-import com.example.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
+import com.itc.resistorcalc.data.InputValidator.checkInputValueToColor
+import com.itc.resistorcalc.data.InputValidator.isValidInput
+import com.itc.resistorcalc.model.Constants.Companion.FIVE_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.SIX_BANDS
+import com.itc.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
+import com.itc.resistorcalc.R
+import com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding
 
 class FromValueResistorFragment : Fragment() {
 
-    private var binding: FragmentFromValueResistorBinding? = null
+    private var binding: com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding? = null
     private val resCalcViewModel: ResCalcViewModel by activityViewModels()
 
     override fun onCreateView(

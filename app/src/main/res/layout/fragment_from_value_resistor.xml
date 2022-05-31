@@ -8,10 +8,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.resistorcalc.model.ResCalcViewModel" />
+            type="com.itc.resistorcalc.model.ResCalcViewModel" />
         <variable
             name="fromValueResistorFragment"
-            type="com.example.resistorcalc.view.FromValueResistorFragment" />
+            type="com.itc.resistorcalc.view.FromValueResistorFragment" />
     </data>
 
     <ScrollView

@@ -1,23 +1,23 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.content.Context
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.example.resistorcalc.R
-import com.example.resistorcalc.model.Constants.Companion.AMARILLO
-import com.example.resistorcalc.model.Constants.Companion.AZUL
-import com.example.resistorcalc.model.Constants.Companion.BLANCO
-import com.example.resistorcalc.model.Constants.Companion.CAFE
-import com.example.resistorcalc.model.Constants.Companion.DORADO
-import com.example.resistorcalc.model.Constants.Companion.GRIS
-import com.example.resistorcalc.model.Constants.Companion.LIGHT_MODE
-import com.example.resistorcalc.model.Constants.Companion.NARANJA
-import com.example.resistorcalc.model.Constants.Companion.NEGRO
-import com.example.resistorcalc.model.Constants.Companion.NIGHT_MODE
-import com.example.resistorcalc.model.Constants.Companion.PLATEADO
-import com.example.resistorcalc.model.Constants.Companion.ROJO
-import com.example.resistorcalc.model.Constants.Companion.VERDE
-import com.example.resistorcalc.model.Constants.Companion.VIOLETA
+import com.itc.resistorcalc.R
+import com.itc.resistorcalc.model.Constants.Companion.AMARILLO
+import com.itc.resistorcalc.model.Constants.Companion.AZUL
+import com.itc.resistorcalc.model.Constants.Companion.BLANCO
+import com.itc.resistorcalc.model.Constants.Companion.CAFE
+import com.itc.resistorcalc.model.Constants.Companion.DORADO
+import com.itc.resistorcalc.model.Constants.Companion.GRIS
+import com.itc.resistorcalc.model.Constants.Companion.LIGHT_MODE
+import com.itc.resistorcalc.model.Constants.Companion.NARANJA
+import com.itc.resistorcalc.model.Constants.Companion.NEGRO
+import com.itc.resistorcalc.model.Constants.Companion.NIGHT_MODE
+import com.itc.resistorcalc.model.Constants.Companion.PLATEADO
+import com.itc.resistorcalc.model.Constants.Companion.ROJO
+import com.itc.resistorcalc.model.Constants.Companion.VERDE
+import com.itc.resistorcalc.model.Constants.Companion.VIOLETA
 
 object ColorCardView {
 

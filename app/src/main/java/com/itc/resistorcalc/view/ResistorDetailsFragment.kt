@@ -1,16 +1,15 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.resistorcalc.R
-import com.example.resistorcalc.databinding.FragmentResistorDetailsBinding
-import com.example.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.R
+import com.itc.resistorcalc.databinding.FragmentResistorDetailsBinding
+import com.itc.resistorcalc.model.ResCalcViewModel
 
 class ResistorDetailsFragment : Fragment() {
 

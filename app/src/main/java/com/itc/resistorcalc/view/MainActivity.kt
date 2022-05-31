@@ -1,12 +1,11 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.resistorcalc.R
+import com.itc.resistorcalc.R
 
 class MainActivity : AppCompatActivity() {
 

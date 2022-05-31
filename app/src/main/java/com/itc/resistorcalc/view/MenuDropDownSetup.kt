@@ -1,11 +1,10 @@
-package com.example.resistorcalc.view
+package com.itc.resistorcalc.view
 
 import android.content.Context
 import android.text.TextUtils
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import com.example.resistorcalc.R
+import com.itc.resistorcalc.R
 
 object MenuDropDownSetup {
 

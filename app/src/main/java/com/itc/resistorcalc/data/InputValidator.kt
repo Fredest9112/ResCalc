@@ -1,14 +1,14 @@
-package com.example.resistorcalc.data
+package com.itc.resistorcalc.data
 
 import android.content.res.Resources
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
-import com.example.resistorcalc.R
-import com.example.resistorcalc.model.Constants
-import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.example.resistorcalc.model.Constants.Companion.FOUR_BANDS_MIN_VALUE
-import com.example.resistorcalc.model.Constants.Companion.OTHERS_BANDS_MIN_VALUE
+import com.itc.resistorcalc.model.Constants
+import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
+import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS_MIN_VALUE
+import com.itc.resistorcalc.model.Constants.Companion.OTHERS_BANDS_MIN_VALUE
 import com.google.android.material.textfield.TextInputEditText
+import com.itc.resistorcalc.R
 import java.lang.Exception
 
 object InputValidator {
