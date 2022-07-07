@@ -14,9 +14,7 @@ import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
 import com.itc.resistorcalc.data.InputValidator.isValidInput
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
-import com.itc.resistorcalc.model.Constants.Companion.FIVE_BANDS
-import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.itc.resistorcalc.model.Constants.Companion.SIX_BANDS
+import com.itc.resistorcalc.model.NoOfBands
 import com.itc.resistorcalc.model.ResCalcViewModel
 import com.itc.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
 
@@ -36,7 +34,6 @@ class ResistorCalcFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setCalcState(resCalcViewModel.noOfBands.value!!)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = resCalcViewModel
@@ -48,72 +45,30 @@ class ResistorCalcFragment : Fragment() {
 
         binding?.apply {
             resCalcViewModel.apply {
-                band1.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        color1Indicator
-                    )
-                }
                 color1Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand1(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
-                }
-                band2.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        color2Indicator
-                    )
                 }
                 color2Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand2(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-                band3.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        color3Indicator
-                    )
-                }
                 color3Selection.setOnItemClickListener { parent, _, position, _ ->
                     setBand3(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
-                }
-                multiplier.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        multiplierIndicator
-                    )
                 }
                 multiplierSelection.setOnItemClickListener { parent, _, position, _ ->
                     setMultiplier(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
                 }
-                sTolerance.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        toleranceIndicator
-                    )
-                }
                 toleranceSelection.setOnItemClickListener { parent, _, position, _ ->
                     setTolerance(parent.adapter.getItem(position).toString())
                     setResultForColors()
                     setBntDetailsValidator()
-                }
-                sPPM.observe(viewLifecycleOwner) {
-                    ColorCardView.setCardViewColor(
-                        it.toString(),
-                        context,
-                        ppmIndicator
-                    )
                 }
                 ppmSelection.setOnItemClickListener { parent, _, position, _ ->
                     setPPM(parent.adapter.getItem(position).toString())
@@ -175,63 +130,23 @@ class ResistorCalcFragment : Fragment() {
         }
     }
 
-    fun setCalcState(noOfBands: Int) {
+    fun setCalcState(noOfBands: NoOfBands) {
         when (noOfBands) {
-            FOUR_BANDS -> {
-                binding!!.fourBands.isChecked = true
-                setFourBandsCalc()
-                resCalcViewModel.setNoOfBands(FOUR_BANDS)
+            NoOfBands.FOUR_BANDS -> {
+                //setFourBandsCalc()
+                //resCalcViewModel.setNoOfBands(NoOfBands.FOUR_BANDS)
                 resCalcViewModel.setResultForColors()
             }
-            FIVE_BANDS -> {
-                setFiveBandsCalc()
-                resCalcViewModel.setNoOfBands(FIVE_BANDS)
+            NoOfBands.FIVE_BANDS -> {
+                //setFiveBandsCalc()
+                //resCalcViewModel.setNoOfBands(NoOfBands.FIVE_BANDS)
                 resCalcViewModel.setResultForColors()
             }
-            SIX_BANDS -> {
-                setSixBandsCalc()
-                resCalcViewModel.setNoOfBands(SIX_BANDS)
+            NoOfBands.SIX_BANDS -> {
+                //setSixBandsCalc()
+                //resCalcViewModel.setNoOfBands(NoOfBands.SIX_BANDS)
                 resCalcViewModel.setResultForColors()
             }
-        }
-    }
-
-    private fun setSixBandsCalc() {
-        binding?.apply {
-            color3Title.visibility = View.VISIBLE
-            color3Selection.visibility = View.VISIBLE
-            color3Indicator.visibility = View.VISIBLE
-            ppmTitle.visibility = View.VISIBLE
-            ppmIndicator.visibility = View.VISIBLE
-            ppmSelection.visibility = View.VISIBLE
-            ppmLabel.visibility = View.VISIBLE
-            ppmResult.visibility = View.VISIBLE
-        }
-    }
-
-    private fun setFiveBandsCalc() {
-        binding?.apply {
-            color3Title.visibility = View.VISIBLE
-            color3Selection.visibility = View.VISIBLE
-            color3Indicator.visibility = View.VISIBLE
-            ppmTitle.visibility = View.GONE
-            ppmIndicator.visibility = View.GONE
-            ppmSelection.visibility = View.GONE
-            ppmLabel.visibility = View.GONE
-            ppmResult.visibility = View.GONE
-        }
-    }
-
-    private fun setFourBandsCalc() {
-        binding?.apply {
-            color3Title.visibility = View.GONE
-            color3Selection.visibility = View.GONE
-            color3Indicator.visibility = View.GONE
-            ppmTitle.visibility = View.GONE
-            ppmIndicator.visibility = View.GONE
-            ppmSelection.visibility = View.GONE
-            ppmLabel.visibility = View.GONE
-            ppmResult.visibility = View.GONE
         }
     }
 

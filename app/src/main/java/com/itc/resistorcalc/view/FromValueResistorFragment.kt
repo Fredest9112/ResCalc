@@ -12,17 +12,15 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.itc.resistorcalc.data.InputValidator.checkInputValueToColor
 import com.itc.resistorcalc.data.InputValidator.isValidInput
-import com.itc.resistorcalc.model.Constants.Companion.FIVE_BANDS
-import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
-import com.itc.resistorcalc.model.Constants.Companion.SIX_BANDS
 import com.itc.resistorcalc.model.ResCalcViewModel
 import com.itc.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding
+import com.itc.resistorcalc.model.NoOfBands
 
 class FromValueResistorFragment : Fragment() {
 
-    private var binding: com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding? = null
+    private var binding: FragmentFromValueResistorBinding? = null
     private val resCalcViewModel: ResCalcViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -56,22 +54,22 @@ class FromValueResistorFragment : Fragment() {
 
         binding?.apply {
             resCalcViewModel.apply {
-                band1.observe(viewLifecycleOwner) {
+                stringBand1.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, valueColor1)
                 }
-                band2.observe(viewLifecycleOwner) {
+                stringBand2.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, valueColor2)
                 }
-                band3.observe(viewLifecycleOwner) {
+                stringBand3.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, valueColor3)
                 }
-                multiplier.observe(viewLifecycleOwner) {
+                stringMultiplier.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, multiplierValue)
                 }
-                sTolerance.observe(viewLifecycleOwner) {
+                stringTolerance.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, valueTolerance)
                 }
-                sPPM.observe(viewLifecycleOwner) {
+                stringPPM.observe(viewLifecycleOwner) {
                     ColorCardView.setCardViewColor(it.toString(), context, ppmValue)
                 }
             }
@@ -86,20 +84,20 @@ class FromValueResistorFragment : Fragment() {
 
     private fun updateResistorValues(enteredText: String) {
         val input = checkInputValueToColor(
-            resCalcViewModel.noOfBands.value,
+            resCalcViewModel.noOfBands.value!!,
             enteredText,
             activity,
             resources
         )
         if (isValidInput) {
             when (resCalcViewModel.noOfBands.value) {
-                FOUR_BANDS -> {
+                NoOfBands.FOUR_BANDS -> {
                     resCalcViewModel.setResultForValues(input)
                 }
-                FIVE_BANDS -> {
+                NoOfBands.FIVE_BANDS -> {
                     resCalcViewModel.setResultForValues(input)
                 }
-                SIX_BANDS -> {
+                else -> {
                     resCalcViewModel.setResultForValues(input)
                 }
             }
@@ -121,29 +119,29 @@ class FromValueResistorFragment : Fragment() {
     }
 
     fun setCalcState(noOfBands: Int) {
-        when (noOfBands) {
-            FOUR_BANDS -> {
-                setFourBandsCalc()
-                resCalcViewModel.apply {
-                    setNoOfBands(FOUR_BANDS)
-                }
-                updateResistorValues(binding?.valueResistInput?.text.toString())
-            }
-            FIVE_BANDS -> {
-                setFiveBandsCalc()
-                resCalcViewModel.apply {
-                    setNoOfBands(FIVE_BANDS)
-                }
-                updateResistorValues(binding?.valueResistInput?.text.toString())
-            }
-            SIX_BANDS -> {
-                setSixBandsCalc()
-                resCalcViewModel.apply {
-                    setNoOfBands(SIX_BANDS)
-                }
-                updateResistorValues(binding?.valueResistInput?.text.toString())
-            }
-        }
+//        when (noOfBands) {
+//            NoOfBands.FOUR_BANDS -> {
+//                setFourBandsCalc()
+//                resCalcViewModel.apply {
+//                    setNoOfBands(NoOfBands.FOUR_BANDS)
+//                }
+//                updateResistorValues(binding?.valueResistInput?.text.toString())
+//            }
+//            NoOfBands.FIVE_BANDS -> {
+//                setFiveBandsCalc()
+//                resCalcViewModel.apply {
+//                    setNoOfBands(NoOfBands.FIVE_BANDS)
+//                }
+//                updateResistorValues(binding?.valueResistInput?.text.toString())
+//            }
+//            NoOfBands.SIX_BANDS -> {
+//                setSixBandsCalc()
+//                resCalcViewModel.apply {
+//                    setNoOfBands(NoOfBands.SIX_BANDS)
+//                }
+//                updateResistorValues(binding?.valueResistInput?.text.toString())
+//            }
+//        }
     }
 
     private fun setFourBandsCalc() {

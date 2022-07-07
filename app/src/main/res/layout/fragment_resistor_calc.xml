@@ -66,7 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="@{() -> resistorCalcFragment.setCalcState(4)}"
+                    android:checked="true"
+                    android:onClick="@{() -> viewModel.setNoOfBands(4)}"
                     android:text="@string/four_bands_label" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -74,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="@{() -> resistorCalcFragment.setCalcState(5)}"
+                    android:onClick="@{() -> viewModel.setNoOfBands(5)}"
                     android:text="@string/five_bands_label" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -82,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="@{() -> resistorCalcFragment.setCalcState(6)}"
+                    android:onClick="@{() -> viewModel.setNoOfBands(6)}"
                     android:text="@string/six_bands_label" />
             </RadioGroup>
 
@@ -147,6 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/color3_title"
+                app:setBand3State="@{viewModel.noOfBands}"
                 app:layout_constraintEnd_toStartOf="@+id/ppm_title"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -209,6 +211,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/ppm_title"
+                app:setPPMState="@{viewModel.noOfBands}"
                 app:layout_constraintBottom_toBottomOf="@+id/color3_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -236,6 +239,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color1_indicator"
+                    app:setColorForBandIndicator="@{viewModel.stringBand1}"
                     style="@style/indicator_style"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
@@ -246,6 +250,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color2_indicator"
                     style="@style/indicator_style"
+                    app:setColorForBandIndicator="@{viewModel.stringBand2}"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
                     app:cardCornerRadius="8dp">
@@ -256,6 +261,8 @@
                     android:id="@+id/color3_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
+                    app:setBand3CardViewState="@{viewModel.noOfBands}"
+                    app:setColorForBandIndicator="@{viewModel.stringBand3}"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
@@ -264,6 +271,7 @@
                     android:id="@+id/multiplier_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
+                    app:setColorForBandIndicator="@{viewModel.stringMultiplier}"
                     app:cardCornerRadius="8dp">
 
                 </androidx.cardview.widget.CardView>
@@ -275,6 +283,7 @@
                     app:cardCornerRadius="8dp" />
 
                 <androidx.cardview.widget.CardView
+                    app:setPPMCardViewState="@{viewModel.noOfBands}"
                     android:id="@+id/ppm_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
@@ -298,7 +307,7 @@
                 android:id="@+id/trv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/trv_value(viewModel.resistResult)}"
+                android:text="@{@string/trv_value(viewModel.stringResistResult)}"
                 app:layout_constraintBottom_toBottomOf="@+id/trv_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -377,7 +386,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:onClick="@{() -> resistorCalcFragment.goToDetailsScreen()}"
-                android:enabled="@{viewModel.isDetailsValid()}"
+                android:enabled="@{viewModel.areDetailsValid}"
                 android:text="@string/details_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.49"

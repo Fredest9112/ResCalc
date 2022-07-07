@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{@string/exp_value(viewModel.expValue)}"
+                android:text="@{@string/exp_value(viewModel.stringExpValue)}"
                 app:layout_constraintEnd_toEndOf="@+id/exp_value_title"
                 app:layout_constraintStart_toStartOf="@+id/exp_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/exp_value_title" />
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{@string/trv_value(viewModel.resistResult)}"
+                android:text="@{@string/trv_value(viewModel.stringResistResult)}"
                 app:layout_constraintEnd_toEndOf="@+id/nominal_value_title"
                 app:layout_constraintStart_toStartOf="@+id/nominal_value_title"
                 app:layout_constraintTop_toBottomOf="@+id/nominal_value_title" />
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{@string/val_max_value(viewModel.maxVal)}"
+                android:text="@{@string/val_max_value(viewModel.stringMaxVal)}"
                 app:layout_constraintEnd_toEndOf="@+id/val_max_title"
                 app:layout_constraintStart_toStartOf="@+id/val_max_title"
                 app:layout_constraintTop_toBottomOf="@+id/val_max_title" />
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@{@string/val_min_value(viewModel.minVal)}"
+                android:text="@{@string/val_min_value(viewModel.stringMinVal)}"
                 app:layout_constraintEnd_toEndOf="@+id/val_min_title"
                 app:layout_constraintStart_toStartOf="@+id/val_min_title"
                 app:layout_constraintTop_toBottomOf="@+id/val_min_title" />

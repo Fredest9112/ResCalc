@@ -4,11 +4,11 @@ import android.content.res.Resources
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.itc.resistorcalc.model.Constants
-import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS
 import com.itc.resistorcalc.model.Constants.Companion.FOUR_BANDS_MIN_VALUE
 import com.itc.resistorcalc.model.Constants.Companion.OTHERS_BANDS_MIN_VALUE
 import com.google.android.material.textfield.TextInputEditText
 import com.itc.resistorcalc.R
+import com.itc.resistorcalc.model.NoOfBands
 import java.lang.Exception
 
 object InputValidator {
@@ -16,7 +16,7 @@ object InputValidator {
     var isValidInput: Boolean = false
 
     fun checkInputValueToColor(
-        noOfBands: Int?,
+        noOfBands: NoOfBands,
         numbOnEditText: String,
         activity: FragmentActivity?,
         resources: Resources
@@ -28,7 +28,7 @@ object InputValidator {
         }
         try {
             when (noOfBands) {
-                FOUR_BANDS -> {
+                NoOfBands.FOUR_BANDS -> {
                     when {
                         input < FOUR_BANDS_MIN_VALUE -> {
                             Toast.makeText(
