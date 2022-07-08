@@ -1,4 +1,4 @@
-package com.itc.resistorcalc.view
+package com.itc.resistorcalc.view.resistorcalc
 
 import android.content.Context
 import android.os.Bundle
@@ -14,9 +14,8 @@ import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
 import com.itc.resistorcalc.data.InputValidator.isValidInput
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
-import com.itc.resistorcalc.model.NoOfBands
 import com.itc.resistorcalc.model.ResCalcViewModel
-import com.itc.resistorcalc.view.MenuDropDownSetup.setDropDownMenu
+import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 
 class ResistorCalcFragment : Fragment() {
 
@@ -75,6 +74,22 @@ class ResistorCalcFragment : Fragment() {
                     setResultForColors()
                     setBntDetailsValidator()
                 }
+                bandsOptions.setOnCheckedChangeListener { radioGroup, _ ->
+                    when (radioGroup.checkedRadioButtonId) {
+                        R.id.four_bands -> {
+                            setNoOfBands(4)
+                            setResultForColors()
+                        }
+                        R.id.five_bands -> {
+                            setNoOfBands(5)
+                            setResultForColors()
+                        }
+                        R.id.six_bands -> {
+                            setNoOfBands(6)
+                            setResultForColors()
+                        }
+                    }
+                }
             }
         }
     }
@@ -126,26 +141,6 @@ class ResistorCalcFragment : Fragment() {
                 findNavController().navigate(action)
                 resCalcViewModel.setMaxVal()
                 resCalcViewModel.setMinVal()
-            }
-        }
-    }
-
-    fun setCalcState(noOfBands: NoOfBands) {
-        when (noOfBands) {
-            NoOfBands.FOUR_BANDS -> {
-                //setFourBandsCalc()
-                //resCalcViewModel.setNoOfBands(NoOfBands.FOUR_BANDS)
-                resCalcViewModel.setResultForColors()
-            }
-            NoOfBands.FIVE_BANDS -> {
-                //setFiveBandsCalc()
-                //resCalcViewModel.setNoOfBands(NoOfBands.FIVE_BANDS)
-                resCalcViewModel.setResultForColors()
-            }
-            NoOfBands.SIX_BANDS -> {
-                //setSixBandsCalc()
-                //resCalcViewModel.setNoOfBands(NoOfBands.SIX_BANDS)
-                resCalcViewModel.setResultForColors()
             }
         }
     }

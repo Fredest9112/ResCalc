@@ -1,4 +1,4 @@
-package com.itc.resistorcalc.view
+package com.itc.resistorcalc.viewutils
 
 import android.content.Context
 import android.text.TextUtils

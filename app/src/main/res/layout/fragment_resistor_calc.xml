@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.ResistorCalcFragment">
+    tools:context=".view.resistorcalc.ResistorCalcFragment">
 
     <data>
 
@@ -12,7 +12,7 @@
 
         <variable
             name="resistorCalcFragment"
-            type="com.itc.resistorcalc.view.ResistorCalcFragment" />
+            type="com.itc.resistorcalc.view.resistorcalc.ResistorCalcFragment" />
 
     </data>
 
@@ -67,7 +67,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:onClick="@{() -> viewModel.setNoOfBands(4)}"
                     android:text="@string/four_bands_label" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -75,7 +74,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="@{() -> viewModel.setNoOfBands(5)}"
                     android:text="@string/five_bands_label" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -83,7 +81,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:onClick="@{() -> viewModel.setNoOfBands(6)}"
                     android:text="@string/six_bands_label" />
             </RadioGroup>
 
@@ -239,21 +236,24 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color1_indicator"
-                    app:setColorForBandIndicator="@{viewModel.stringBand1}"
                     style="@style/indicator_style"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="2dp"
+                    app:setColorForBandIndicator="@{viewModel.stringBand1}">
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/color2_indicator"
                     style="@style/indicator_style"
-                    app:setColorForBandIndicator="@{viewModel.stringBand2}"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="6dp"
+                    app:setColorForBandIndicator="@{viewModel.stringBand2}">
 
                 </androidx.cardview.widget.CardView>
 
@@ -261,9 +261,10 @@
                     android:id="@+id/color3_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="7dp"
                     app:setBand3CardViewState="@{viewModel.noOfBands}"
-                    app:setColorForBandIndicator="@{viewModel.stringBand3}"
-                    app:cardCornerRadius="8dp">
+                    app:setColorForBandIndicator="@{viewModel.stringBand3}">
 
                 </androidx.cardview.widget.CardView>
 
@@ -271,8 +272,9 @@
                     android:id="@+id/multiplier_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
-                    app:setColorForBandIndicator="@{viewModel.stringMultiplier}"
-                    app:cardCornerRadius="8dp">
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    app:setColorForBandIndicator="@{viewModel.stringMultiplier}">
 
                 </androidx.cardview.widget.CardView>
 
@@ -280,14 +282,18 @@
                     android:id="@+id/tolerance_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
-                    app:cardCornerRadius="8dp" />
+                    app:setColorForBandIndicator="@{viewModel.stringTolerance}"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="9dp" />
 
                 <androidx.cardview.widget.CardView
-                    app:setPPMCardViewState="@{viewModel.noOfBands}"
                     android:id="@+id/ppm_indicator"
                     android:layout_width="50dp"
                     android:layout_height="75dp"
-                    app:cardCornerRadius="8dp" />
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="10dp"
+                    app:setPPMCardViewState="@{viewModel.noOfBands}"
+                    app:setColorForBandIndicator="@{viewModel.stringPPM}" />
 
             </LinearLayout>
 
@@ -343,6 +349,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ppm_label"
+                app:setPPMTitle="@{viewModel.noOfBands}"
                 app:layout_constraintBottom_toBottomOf="@+id/tolerance_result"
                 app:layout_constraintEnd_toStartOf="@+id/ppm_result"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -354,7 +361,8 @@
                 android:id="@+id/ppm_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.ppm.toString()}"
+                android:text="@{viewModel.ppm}"
+                app:setPPMTitle="@{viewModel.noOfBands}"
                 app:layout_constraintBottom_toBottomOf="@+id/ppm_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

@@ -16,7 +16,7 @@
         <!-- @color/black -->
         <item name="colorOnSecondary">#000000</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <!-- Radio buttons -->
         <item name="radioButtonStyle">@style/Widget.ResCalc.CompoundButton.RadioButton</item>

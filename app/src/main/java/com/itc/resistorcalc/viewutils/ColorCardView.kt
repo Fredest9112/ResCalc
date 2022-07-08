@@ -1,6 +1,7 @@
-package com.itc.resistorcalc.view
+package com.itc.resistorcalc.viewutils
 
 import android.content.Context
+import android.util.Log
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.itc.resistorcalc.R
@@ -21,12 +22,13 @@ import com.itc.resistorcalc.model.Constants.Companion.VIOLETA
 
 object ColorCardView {
 
-    fun setCardViewColor(color: String, context: Context?, indicator: CardView) {
+    fun setCardViewColor(color: String?, context: Context?, indicator: CardView) {
         when (color) {
             NEGRO -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
                     context!!, R.color.black
                 )
+
             )
             CAFE -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
@@ -94,8 +96,8 @@ object ColorCardView {
                 )
             )
 
-            else ->{
-                when(context?.resources?.configuration?.uiMode){
+            else -> {
+                when (context?.resources?.configuration?.uiMode) {
                     NIGHT_MODE -> {
                         indicator.setCardBackgroundColor(
                             ContextCompat.getColor(

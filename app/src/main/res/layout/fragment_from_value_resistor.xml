@@ -6,12 +6,14 @@
     tools:context=".view.MainActivity">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.itc.resistorcalc.model.ResCalcViewModel" />
+            type="com.itc.resistorcalc.model.FromValueResCalcViewModel" />
+
         <variable
             name="fromValueResistorFragment"
-            type="com.itc.resistorcalc.view.FromValueResistorFragment" />
+            type="com.itc.resistorcalc.view.fromvalueresistor.FromValueResistorFragment" />
     </data>
 
     <ScrollView
@@ -46,24 +48,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/calc_value_title">
 
                 <RadioButton
-                    android:id="@+id/value_four_bands"
+                    android:id="@+id/value_4_bands"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(4)}"
+                    android:checked="true"
                     android:text="@string/value_4_bands_option" />
 
                 <RadioButton
                     android:id="@+id/value_5_bands"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(5)}"
                     android:text="@string/value_5_bands_option" />
 
                 <RadioButton
                     android:id="@+id/value_6_bands"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> fromValueResistorFragment.setCalcState(6)}"
                     android:text="@string/value_6_bands_option" />
             </RadioGroup>
 
@@ -115,13 +115,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tolerance_menu"
-                app:layout_constraintTop_toTopOf="@+id/tolerance_menu">
+                app:layout_constraintTop_toTopOf="@+id/tolerance_menu"
+                app:setPPMState="@{viewModel.noOfBands}">
 
                 <AutoCompleteTextView
                     android:id="@+id/value_ppm_select"
-                    android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -144,7 +145,8 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setColorForBandIndicator="@{viewModel.stringBand1}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/value_color2"
@@ -152,7 +154,8 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/value_color1" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_color1"
+                    app:setColorForBandIndicator="@{viewModel.stringBand2}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/value_color3"
@@ -160,7 +163,9 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/value_color2" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_color2"
+                    app:setBand3CardViewState="@{viewModel.noOfBands}"
+                    app:setColorForBandIndicator="@{viewModel.stringBand3}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/multiplier_value"
@@ -168,7 +173,8 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/value_color3" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_color3"
+                    app:setColorForBandIndicator="@{viewModel.stringMultiplier}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/value_tolerance"
@@ -176,7 +182,8 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/multiplier_value" />
+                    app:layout_constraintTop_toBottomOf="@+id/multiplier_value"
+                    app:setColorForBandIndicator="@{viewModel.stringTolerance}" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ppm_value"
@@ -184,7 +191,9 @@
                     android:layout_height="40dp"
                     app:cardCornerRadius="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance"
+                    app:setColorForBandIndicator="@{viewModel.stringPPM}"
+                    app:setPPMCardViewState="@{viewModel.noOfBands}" />
 
                 <TextView
                     android:id="@+id/band1_label"
@@ -217,7 +226,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/value_color3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/value_color3"
-                    app:layout_constraintTop_toBottomOf="@+id/value_color2" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_color2"
+                    app:setBand3Title="@{viewModel.noOfBands}" />
 
                 <TextView
                     android:id="@+id/multiplier_label"
@@ -250,7 +260,8 @@
                     app:layout_constraintBottom_toBottomOf="@+id/ppm_value"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ppm_value"
-                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance" />
+                    app:layout_constraintTop_toBottomOf="@+id/value_tolerance"
+                    app:setPPMTitle="@{viewModel.noOfBands}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

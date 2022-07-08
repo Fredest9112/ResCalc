@@ -1,18 +1,15 @@
 package com.itc.resistorcalc.viewutils
 
 import android.view.View
+import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
-import com.itc.resistorcalc.data.Resistor
 import com.itc.resistorcalc.model.NoOfBands
-import com.itc.resistorcalc.model.ResCalcViewModel
-import com.itc.resistorcalc.view.ColorCardView
 
 @BindingAdapter("setBand3State")
-fun bindBand3InputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: NoOfBands){
-    when(noOfBands){
+fun bindBand3InputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: NoOfBands) {
+    when (noOfBands) {
         NoOfBands.FOUR_BANDS -> {
             textInputLayout.visibility = View.GONE
         }
@@ -23,8 +20,8 @@ fun bindBand3InputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: 
 }
 
 @BindingAdapter("setBand3CardViewState")
-fun bindBand3CardViewVisibility(cardView: CardView, noOfBands: NoOfBands){
-    when(noOfBands){
+fun bindBand3CardViewVisibility(cardView: CardView, noOfBands: NoOfBands) {
+    when (noOfBands) {
         NoOfBands.FOUR_BANDS -> {
             cardView.visibility = View.GONE
         }
@@ -35,8 +32,8 @@ fun bindBand3CardViewVisibility(cardView: CardView, noOfBands: NoOfBands){
 }
 
 @BindingAdapter("setPPMState")
-fun bindPPMInputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: NoOfBands){
-    when(noOfBands){
+fun bindPPMInputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: NoOfBands) {
+    when (noOfBands) {
         NoOfBands.FOUR_BANDS -> {
             textInputLayout.visibility = View.GONE
         }
@@ -50,8 +47,8 @@ fun bindPPMInputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: No
 }
 
 @BindingAdapter("setPPMCardViewState")
-fun bindPPMCardViewVisibility(cardView: CardView, noOfBands: NoOfBands){
-    when(noOfBands){
+fun bindPPMCardViewVisibility(cardView: CardView, noOfBands: NoOfBands) {
+    when (noOfBands) {
         NoOfBands.FOUR_BANDS -> {
             cardView.visibility = View.GONE
         }
@@ -64,9 +61,36 @@ fun bindPPMCardViewVisibility(cardView: CardView, noOfBands: NoOfBands){
     }
 }
 
+@BindingAdapter("setPPMTitle")
+fun bindPPMTitleVisibility(textView: TextView, noOfBands: NoOfBands) {
+    when (noOfBands) {
+        NoOfBands.FOUR_BANDS -> {
+            textView.visibility = View.GONE
+        }
+        NoOfBands.FIVE_BANDS -> {
+            textView.visibility = View.GONE
+        }
+        else -> {
+            textView.visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("setBand3Title")
+fun bindBand3TitleVisibility(textView: TextView, noOfBands: NoOfBands) {
+    when (noOfBands) {
+        NoOfBands.FOUR_BANDS -> {
+            textView.visibility = View.GONE
+        }
+        else -> {
+            textView.visibility = View.VISIBLE
+        }
+    }
+}
+
 @BindingAdapter("setColorForBandIndicator")
-fun bindColorForBandIndicator(color1Indicator: CardView, color: String){
+fun bindColorForBandIndicator(colorIndicator: CardView, color: String?) {
     ColorCardView.setCardViewColor(
-        color, color1Indicator.context, color1Indicator
+        color, colorIndicator.context, colorIndicator
     )
 }

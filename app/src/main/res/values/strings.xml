@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ElectronicCalc</string>
-    <string name="empty"/>
+    <string name="empty" />
     <!-- Fragment Resistor Calc Strings -->
     <string name="calc_title">CALCULADORA DE RESISTENCIAS \nPOR COLOR</string>
     <string name="no_bands_label">Numero de \nBandas:</string>

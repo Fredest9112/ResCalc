@@ -1,4 +1,4 @@
-package com.itc.resistorcalc.view
+package com.itc.resistorcalc.view.resistorcalc
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +45,6 @@ class ResistorDetailsFragment : Fragment() {
             setInitialState()
             setBntDetailsValidator()
         }
-
     }
 
     override fun onDestroyView() {

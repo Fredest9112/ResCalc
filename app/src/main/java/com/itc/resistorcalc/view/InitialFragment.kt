@@ -39,7 +39,6 @@ class InitialFragment : Fragment() {
     }
 
     fun goToFromValueResistorFragment() {
-        resCalcViewModel.setInitialState()
         val action = InitialFragmentDirections.actionInitialFragmentToFromValueResistorFragment()
         findNavController().navigate(action)
     }
