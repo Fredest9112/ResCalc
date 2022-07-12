@@ -1,23 +1,23 @@
-package com.itc.resistorcalc.model
+package com.itc.resistorcalc.model.resistorcalc
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.itc.resistorcalc.data.PropertyAwareMutableLiveData
-import com.itc.resistorcalc.data.Resistor
+import com.itc.resistorcalc.data.resistor.Resistor
 import com.itc.resistorcalc.data.ResistorValues
-import com.itc.resistorcalc.model.Constants.Companion.NOT_USABLE
-import com.itc.resistorcalc.model.Constants.Companion.USABLE
-import com.itc.resistorcalc.model.Constants.Companion.ZERO
+import com.itc.resistorcalc.data.Constants.Companion.NOT_USABLE
+import com.itc.resistorcalc.data.Constants.Companion.USABLE
+import com.itc.resistorcalc.data.Constants.Companion.ZERO
+import com.itc.resistorcalc.data.resistor.IResistor
 import java.text.DecimalFormat
 
 enum class NoOfBands {
     FOUR_BANDS, FIVE_BANDS, SIX_BANDS
 }
 
-class ResCalcViewModel : ViewModel() {
+class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
 
     private val _resistor = PropertyAwareMutableLiveData<Resistor>()
     private val resistor: LiveData<Resistor> = _resistor
@@ -82,8 +82,10 @@ class ResCalcViewModel : ViewModel() {
     val areDetailsValid: LiveData<Boolean> = _areDetailsValid
 
     fun setInitialState() {
-        _resistor.value = Resistor(null, null, null, null, 0.0, 0.0)
+        _resistor.value = iResistor.getResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
+        _resistor.value?.tolerance = ZERO
+        _resistor.value?.ppm = ZERO
         _resistResult.value = ZERO
     }
 

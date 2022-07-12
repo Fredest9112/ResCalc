@@ -1,24 +1,23 @@
 package com.itc.resistorcalc.viewutils
 
 import android.content.Context
-import android.util.Log
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.itc.resistorcalc.R
-import com.itc.resistorcalc.model.Constants.Companion.AMARILLO
-import com.itc.resistorcalc.model.Constants.Companion.AZUL
-import com.itc.resistorcalc.model.Constants.Companion.BLANCO
-import com.itc.resistorcalc.model.Constants.Companion.CAFE
-import com.itc.resistorcalc.model.Constants.Companion.DORADO
-import com.itc.resistorcalc.model.Constants.Companion.GRIS
-import com.itc.resistorcalc.model.Constants.Companion.LIGHT_MODE
-import com.itc.resistorcalc.model.Constants.Companion.NARANJA
-import com.itc.resistorcalc.model.Constants.Companion.NEGRO
-import com.itc.resistorcalc.model.Constants.Companion.NIGHT_MODE
-import com.itc.resistorcalc.model.Constants.Companion.PLATEADO
-import com.itc.resistorcalc.model.Constants.Companion.ROJO
-import com.itc.resistorcalc.model.Constants.Companion.VERDE
-import com.itc.resistorcalc.model.Constants.Companion.VIOLETA
+import com.itc.resistorcalc.data.Constants.Companion.AMARILLO
+import com.itc.resistorcalc.data.Constants.Companion.AZUL
+import com.itc.resistorcalc.data.Constants.Companion.BLANCO
+import com.itc.resistorcalc.data.Constants.Companion.CAFE
+import com.itc.resistorcalc.data.Constants.Companion.DORADO
+import com.itc.resistorcalc.data.Constants.Companion.GRIS
+import com.itc.resistorcalc.data.Constants.Companion.LIGHT_MODE
+import com.itc.resistorcalc.data.Constants.Companion.NARANJA
+import com.itc.resistorcalc.data.Constants.Companion.NEGRO
+import com.itc.resistorcalc.data.Constants.Companion.NIGHT_MODE
+import com.itc.resistorcalc.data.Constants.Companion.PLATEADO
+import com.itc.resistorcalc.data.Constants.Companion.ROJO
+import com.itc.resistorcalc.data.Constants.Companion.VERDE
+import com.itc.resistorcalc.data.Constants.Companion.VIOLETA
 
 object ColorCardView {
 

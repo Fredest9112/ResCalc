@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
-import com.itc.resistorcalc.model.NoOfBands
+import com.itc.resistorcalc.model.resistorcalc.NoOfBands
 
 @BindingAdapter("setBand3State")
 fun bindBand3InputLayoutVisibility(textInputLayout: TextInputLayout, noOfBands: NoOfBands) {

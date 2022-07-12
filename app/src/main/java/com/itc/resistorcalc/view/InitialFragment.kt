@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.databinding.FragmentInitialBinding
-import com.itc.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
 
 class InitialFragment : Fragment() {
 
     private var binding: FragmentInitialBinding? = null
-    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
+    private val resCalcViewModel: ResCalcViewModel by activityViewModels{
+        ResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

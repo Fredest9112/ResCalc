@@ -2,7 +2,6 @@ package com.itc.resistorcalc.view.fromvalueresistor
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,22 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.data.InputValidator.checkInputValueToColor
 import com.itc.resistorcalc.data.InputValidator.isValidInput
-import com.itc.resistorcalc.model.ResCalcViewModel
 import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding
-import com.itc.resistorcalc.model.FromValueResCalcViewModel
-import com.itc.resistorcalc.model.NoOfBands
-import com.itc.resistorcalc.viewutils.ColorCardView
+import com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModel
+import com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModelFactory
+import com.itc.resistorcalc.model.resistorcalc.NoOfBands
 
 class FromValueResistorFragment : Fragment() {
 
     private var binding: FragmentFromValueResistorBinding? = null
-    private val fromValueResCalcViewModel: FromValueResCalcViewModel by viewModels()
+    private val fromValueResCalcViewModel: FromValueResCalcViewModel by viewModels{
+        FromValueResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

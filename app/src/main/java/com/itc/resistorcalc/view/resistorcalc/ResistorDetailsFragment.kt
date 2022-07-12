@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorDetailsBinding
-import com.itc.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
 
 class ResistorDetailsFragment : Fragment() {
 

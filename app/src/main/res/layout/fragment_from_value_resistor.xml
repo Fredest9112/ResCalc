@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.itc.resistorcalc.model.FromValueResCalcViewModel" />
+            type="com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModel" />
 
         <variable
             name="fromValueResistorFragment"

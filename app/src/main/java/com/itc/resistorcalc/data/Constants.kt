@@ -1,4 +1,4 @@
-package com.itc.resistorcalc.model
+package com.itc.resistorcalc.data
 
 class Constants {
     companion object {

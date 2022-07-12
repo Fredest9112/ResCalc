@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.itc.resistorcalc.model.ResCalcViewModel" />
+            type="com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel" />
 
         <variable
             name="resistorDetailsFrag"

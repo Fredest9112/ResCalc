@@ -10,17 +10,21 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
 import com.itc.resistorcalc.data.InputValidator.isValidInput
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
-import com.itc.resistorcalc.model.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
 import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 
 class ResistorCalcFragment : Fragment() {
 
     private var binding: FragmentResistorCalcBinding? = null
-    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
+    private val resCalcViewModel: ResCalcViewModel by activityViewModels{
+        ResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,51 +1,56 @@
-package com.itc.resistorcalc.data
+package com.itc.resistorcalc.data.resistor
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 
 class Resistor(
-    band1: Double?, band2: Double?, band3: Double?, multiplier: Double?,
-    tolerance: Double?, ppm: Double?
-) : BaseObservable() {
+    band1: Double? = null, band2: Double? = null, band3: Double? = null,
+    multiplier: Double? = null, tolerance: Double? = null, ppm: Double? = null
+) : BaseObservable(), IResistor {
+
     @Bindable
-    var band1: Double? = band1
+    override var band1: Double? = band1
         set(value) {
             field = value
             notifyChange()
         }
 
     @Bindable
-    var band2: Double? = band2
+    override var band2: Double? = band2
         set(value) {
             field = value
             notifyChange()
         }
 
     @Bindable
-    var band3: Double? = band3
+    override var band3: Double? = band3
         set(value) {
             field = value
             notifyChange()
         }
 
     @Bindable
-    var multiplier: Double? = multiplier
+    override var multiplier: Double? = multiplier
         set(value) {
             field = value
             notifyChange()
         }
 
     @Bindable
-    var tolerance: Double? = tolerance
+    override var tolerance: Double? = tolerance
         set(value) {
             field = value
             notifyChange()
         }
 
     @Bindable
-    var ppm: Double? = ppm
+    override var ppm: Double? = ppm
         set(value) {
             field = value
             notifyChange()
         }
+
+    override fun getResistor(): Resistor{
+        return Resistor(band1, band2, band3, tolerance, multiplier, ppm)
+    }
 }
