@@ -104,4 +104,40 @@
     <string name="value_tolerance_label">Tolerancia</string>
     <string name="value_ppm_label">PPM</string>
     <string name="value_calc_btn">calcular</string>
+    <string name="tolerance_value_brown">±1%</string>
+    <string name="tolerance_value_red">±2%</string>
+    <string name="tolerance_value_green">±0.5%</string>
+    <string name="tolerance_value_blue">±0.25%</string>
+    <string name="tolerance_value_violet">±0.1%</string>
+    <string name="tolerance_value_grey">±0.05%</string>
+    <string name="tolerance_value_gold">±5%</string>
+    <string name="tolerance_value_silver">±10%</string>
+    <string name="ppm_value_brown">100ppm</string>
+    <string name="ppm_value_red">50ppm</string>
+    <string name="ppm_value_orange">15ppm</string>
+    <string name="ppm_value_yellow">25ppm</string>
+    <string name="ppm_value_blue">10ppm</string>
+    <string name="ppm_value_violet">5ppm</string>
+
+    <string-array name="tolerance_numeric_options">
+        <item>@string/empty</item>
+        <item>@string/tolerance_value_brown</item>
+        <item>@string/tolerance_value_red</item>
+        <item>@string/tolerance_value_green</item>
+        <item>@string/tolerance_value_blue</item>
+        <item>@string/tolerance_value_violet</item>
+        <item>@string/tolerance_value_grey</item>
+        <item>@string/tolerance_value_gold</item>
+        <item>@string/tolerance_value_silver</item>
+    </string-array>
+
+    <string-array name="ppm_numeric_options">
+        <item>@string/empty</item>
+        <item>@string/ppm_value_brown</item>
+        <item>@string/ppm_value_red</item>
+        <item>@string/ppm_value_orange</item>
+        <item>@string/ppm_value_yellow</item>
+        <item>@string/ppm_value_blue</item>
+        <item>@string/ppm_value_violet</item>
+    </string-array>
 </resources>

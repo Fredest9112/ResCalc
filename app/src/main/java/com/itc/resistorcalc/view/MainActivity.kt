@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.R
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 

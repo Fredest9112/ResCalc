@@ -37,7 +37,15 @@ object ResistorValues {
         "Violeta" to 0.1,
         "Gris" to 0.05,
         "Dorado" to 5.0,
-        "Plateado" to 10.0
+        "Plateado" to 10.0,
+        "±1%" to 1.0,
+        "±2%" to 2.0,
+        "±0.5%" to 0.5,
+        "±0.25%" to 0.25,
+        "±0.1%" to 0.1,
+        "±0.05%" to 0.05,
+        "±5%" to 5.0,
+        "±10%" to 10.0
     )
 
     val ppmValues = mapOf(
@@ -46,7 +54,13 @@ object ResistorValues {
         "Naranja" to 15.0,
         "Amarillo" to 25.0,
         "Azul" to 10.0,
-        "Violeta" to 5.0
+        "Violeta" to 5.0,
+        "100ppm" to 100.0,
+        "50ppm" to 50.0,
+        "15ppm" to 15.0,
+        "25ppm" to 25.0,
+        "10ppm" to 10.0,
+        "5ppm" to 5.0
     )
 
     val valuesToBands = mapOf(
@@ -78,22 +92,22 @@ object ResistorValues {
     )
 
     val valuesToTolerance = mapOf(
-        1.0 to "Cafe",
-        2.0 to "Rojo",
-        0.5 to "Verde",
-        0.25 to "Azul",
-        0.1 to "Violeta",
-        0.05 to "Gris",
-        5.0 to "Dorado",
-        10.0 to "Plateado"
+        1.0 to "±1%",
+        2.0 to "±2%",
+        0.5 to "±0.5%",
+        0.25 to "±0.25%",
+        0.1 to "±0.1%",
+        0.05 to "±0.05%",
+        5.0 to "±5%",
+        10.0 to "±10%"
     )
 
     val valuesToPPM = mapOf(
-        100.0 to "Cafe",
-        50.0 to "Rojo",
-        15.0 to "Naranja",
-        25.0 to "Amarillo",
-        10.0 to "Azul",
-        5.0 to "Violeta"
+        100.0 to "100ppm",
+        50.0 to "50ppm",
+        15.0 to "15ppm",
+        25.0 to "25ppm",
+        10.0 to "10ppm",
+        5.0 to "5ppm"
     )
 }

@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.itc.resistorcalc.data.Constants
+import com.itc.resistorcalc.data.NoOfBands
 import com.itc.resistorcalc.data.PropertyAwareMutableLiveData
-import com.itc.resistorcalc.data.resistor.Resistor
 import com.itc.resistorcalc.data.ResistorValues
 import com.itc.resistorcalc.data.resistor.IResistor
-import com.itc.resistorcalc.model.resistorcalc.NoOfBands
+import com.itc.resistorcalc.data.resistor.Resistor
 
-class FromValueResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
+class FromValueResCalcViewModel(iResistor: IResistor) : ViewModel() {
 
     private val _resistor = PropertyAwareMutableLiveData<Resistor>()
     private val resistor: LiveData<Resistor> = _resistor
@@ -35,7 +35,6 @@ class FromValueResCalcViewModel(private val iResistor: IResistor) : ViewModel() 
         ResistorValues.valuesToMultiplierBand[it.multiplier]
     }
 
-    val tolerance: LiveData<String?> = Transformations.map(resistor) { it.tolerance.toString() }
     val stringTolerance: LiveData<String?> = Transformations.map(resistor) {
         ResistorValues.valuesToTolerance[it.tolerance]
     }
@@ -45,7 +44,7 @@ class FromValueResCalcViewModel(private val iResistor: IResistor) : ViewModel() 
     }
 
     init {
-        _resistor.value = iResistor.getResistor()
+        _resistor.value = iResistor.provideResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
     }
 

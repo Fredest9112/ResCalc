@@ -1,5 +1,6 @@
 package com.itc.resistorcalc.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +12,11 @@ import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.databinding.FragmentInitialBinding
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
+import javax.inject.Inject
 
 class InitialFragment : Fragment() {
 
     private var binding: FragmentInitialBinding? = null
-    private val resCalcViewModel: ResCalcViewModel by activityViewModels{
-        ResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +36,6 @@ class InitialFragment : Fragment() {
     }
 
     fun goToResistorCalcFragment() {
-        resCalcViewModel.setInitialState()
         val action = InitialFragmentDirections.actionInitialFragmentToResistorCalcFragment()
         findNavController().navigate(action)
     }

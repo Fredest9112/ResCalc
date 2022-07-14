@@ -2,13 +2,14 @@ package com.itc.resistorcalc.view.resistorcalc
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
@@ -18,12 +19,22 @@ import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
 import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
+import javax.inject.Inject
 
 class ResistorCalcFragment : Fragment() {
 
     private var binding: FragmentResistorCalcBinding? = null
-    private val resCalcViewModel: ResCalcViewModel by activityViewModels{
-        ResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
+
+    @Inject
+    lateinit var resCalcViewModelFactory: ResCalcViewModelFactory
+
+    private val resCalcViewModel by lazy {
+        ViewModelProvider(requireActivity(), resCalcViewModelFactory)[ResCalcViewModel::class.java]
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireContext().applicationContext as MyApp).appComponent.injectResistorCalcFragment(this)
     }
 
     override fun onCreateView(
@@ -38,13 +49,15 @@ class ResistorCalcFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
-            lifecycleOwner = viewLifecycleOwner
             viewModel = resCalcViewModel
+            lifecycleOwner = viewLifecycleOwner
             resistorCalcFragment = this@ResistorCalcFragment
             ervValueInput.setOnKeyListener { v, keyCode, _ ->
                 handleKeyEvent(v, keyCode)
             }
         }
+
+        resCalcViewModel.setInitialState()
 
         binding?.apply {
             resCalcViewModel.apply {
@@ -89,6 +102,8 @@ class ResistorCalcFragment : Fragment() {
                             setResultForColors()
                         }
                         R.id.six_bands -> {
+                            Log.i("noOfBands Value", "$noOfBands")
+                            Log.i("resistor Value", "${resistor.value}")
                             setNoOfBands(6)
                             setResultForColors()
                         }

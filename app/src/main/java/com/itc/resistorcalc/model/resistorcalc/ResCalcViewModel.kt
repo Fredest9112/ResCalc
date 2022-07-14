@@ -1,26 +1,26 @@
 package com.itc.resistorcalc.model.resistorcalc
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.itc.resistorcalc.data.PropertyAwareMutableLiveData
-import com.itc.resistorcalc.data.resistor.Resistor
 import com.itc.resistorcalc.data.ResistorValues
 import com.itc.resistorcalc.data.Constants.Companion.NOT_USABLE
 import com.itc.resistorcalc.data.Constants.Companion.USABLE
 import com.itc.resistorcalc.data.Constants.Companion.ZERO
+import com.itc.resistorcalc.data.NoOfBands
 import com.itc.resistorcalc.data.resistor.IResistor
+import com.itc.resistorcalc.data.resistor.Resistor
 import java.text.DecimalFormat
-
-enum class NoOfBands {
-    FOUR_BANDS, FIVE_BANDS, SIX_BANDS
-}
+import javax.inject.Inject
+import javax.inject.Singleton
 
 class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
 
     private val _resistor = PropertyAwareMutableLiveData<Resistor>()
-    private val resistor: LiveData<Resistor> = _resistor
+    val resistor: LiveData<Resistor> = _resistor
 
     private val _noOfBands = MutableLiveData<NoOfBands>()
     val noOfBands: LiveData<NoOfBands> = _noOfBands
@@ -82,7 +82,7 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     val areDetailsValid: LiveData<Boolean> = _areDetailsValid
 
     fun setInitialState() {
-        _resistor.value = iResistor.getResistor()
+        _resistor.value = iResistor.provideResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
         _resistor.value?.tolerance = ZERO
         _resistor.value?.ppm = ZERO
@@ -142,7 +142,10 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     }
 
     fun setResultForColors() {
-        _resistResult.value = resistor.value?.let { getBandsResultForColors(it) }
+        Log.i("resistor value", "${_resistor.value}")
+        Log.i("tolerance value", "${_resistor.value?.tolerance}")
+        Log.i("ppm value", "${_resistor.value?.ppm}")
+        _resistResult.value = _resistor.value?.let { getBandsResultForColors(it) }
     }
 
     private fun getBandsResultForColors(

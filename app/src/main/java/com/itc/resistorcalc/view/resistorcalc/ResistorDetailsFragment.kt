@@ -1,20 +1,36 @@
 package com.itc.resistorcalc.view.resistorcalc
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorDetailsBinding
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
+import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
+import com.itc.resistorcalc.view.MainActivity
+import javax.inject.Inject
 
 class ResistorDetailsFragment : Fragment() {
 
     private var binding: FragmentResistorDetailsBinding? = null
-    private val resCalcViewModel: ResCalcViewModel by activityViewModels()
+
+    @Inject
+    lateinit var resCalcViewModelFactory: ResCalcViewModelFactory
+
+    private val resCalcViewModel by lazy {
+        ViewModelProvider(requireActivity(), resCalcViewModelFactory)[ResCalcViewModel::class.java]
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireContext().applicationContext as MyApp).appComponent.injectResistorCalcFragment(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

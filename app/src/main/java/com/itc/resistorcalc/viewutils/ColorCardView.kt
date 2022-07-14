@@ -1,6 +1,7 @@
 package com.itc.resistorcalc.viewutils
 
 import android.content.Context
+import android.util.Log
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.itc.resistorcalc.R
@@ -21,7 +22,7 @@ import com.itc.resistorcalc.data.Constants.Companion.VIOLETA
 
 object ColorCardView {
 
-    fun setCardViewColor(color: String?, context: Context?, indicator: CardView) {
+    fun setResCalcCardViewColor(color: String?, context: Context?, indicator: CardView) {
         when (color) {
             NEGRO -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
@@ -92,6 +93,90 @@ object ColorCardView {
             PLATEADO -> indicator.setCardBackgroundColor(
                 ContextCompat.getColor(
                     context!!, R.color.silver
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_brown) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.brown
+                )
+
+            )
+            context?.getString(R.string.tolerance_value_red) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.red
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_green) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.green
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_blue) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.blue
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_violet) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.violet
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_grey) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.grey
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_gold) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.gold
+                )
+            )
+
+            context?.getString(R.string.tolerance_value_silver) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.silver
+                )
+            )
+
+            context?.getString(R.string.ppm_value_brown) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.brown
+                )
+            )
+
+            context?.getString(R.string.ppm_value_red) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.red
+                )
+            )
+
+            context?.getString(R.string.ppm_value_orange) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.orange
+                )
+            )
+
+            context?.getString(R.string.ppm_value_yellow) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.yellow
+                )
+            )
+
+            context?.getString(R.string.ppm_value_blue) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.blue
+                )
+            )
+
+            context?.getString(R.string.ppm_value_violet) -> indicator.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    context!!, R.color.violet
                 )
             )
 

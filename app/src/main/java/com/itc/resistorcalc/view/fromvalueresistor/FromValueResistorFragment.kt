@@ -9,22 +9,37 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.itc.resistorcalc.MyApp
 import com.itc.resistorcalc.data.InputValidator.checkInputValueToColor
 import com.itc.resistorcalc.data.InputValidator.isValidInput
 import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 import com.itc.resistorcalc.R
+import com.itc.resistorcalc.data.NoOfBands
 import com.itc.resistorcalc.databinding.FragmentFromValueResistorBinding
 import com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModel
 import com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModelFactory
-import com.itc.resistorcalc.model.resistorcalc.NoOfBands
+import javax.inject.Inject
 
 class FromValueResistorFragment : Fragment() {
 
     private var binding: FragmentFromValueResistorBinding? = null
-    private val fromValueResCalcViewModel: FromValueResCalcViewModel by viewModels{
-        FromValueResCalcViewModelFactory((requireContext().applicationContext as MyApp).iResistor)
+
+    @Inject
+    lateinit var fromValueResCalcViewModelFactory: FromValueResCalcViewModelFactory
+
+    private val fromValueResCalcViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            fromValueResCalcViewModelFactory
+        )[FromValueResCalcViewModel::class.java]
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireContext().applicationContext as MyApp).appComponent.injectFromValueResistorFragment(
+            this
+        )
     }
 
     override fun onCreateView(
@@ -108,11 +123,11 @@ class FromValueResistorFragment : Fragment() {
         binding?.apply {
             setDropDownMenu(
                 context, valueToleranceSelect,
-                resources.getStringArray(R.array.tolerance_options)
+                resources.getStringArray(R.array.tolerance_numeric_options)
             )
             setDropDownMenu(
                 context, valuePpmSelect,
-                resources.getStringArray(R.array.ppm_options)
+                resources.getStringArray(R.array.ppm_numeric_options)
             )
         }
     }
