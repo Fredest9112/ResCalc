@@ -1,6 +1,5 @@
 package com.itc.resistorcalc.model.resistorcalc
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -14,8 +13,6 @@ import com.itc.resistorcalc.data.NoOfBands
 import com.itc.resistorcalc.data.resistor.IResistor
 import com.itc.resistorcalc.data.resistor.Resistor
 import java.text.DecimalFormat
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
 
@@ -52,7 +49,7 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     }
 
     private val _resistResult = MutableLiveData<Double>()
-    private val resistResult: LiveData<Double> = _resistResult
+    val resistResult: LiveData<Double> = _resistResult
     val stringResistResult: LiveData<String> = Transformations.map(resistResult) {
         DecimalFormat.getInstance().format(it)
     }
@@ -64,13 +61,13 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     }
 
     private val _maxVal = MutableLiveData<Double>()
-    private val maxVal: LiveData<Double> = _maxVal
+    val maxVal: LiveData<Double> = _maxVal
     val stringMaxVal: LiveData<String> = Transformations.map(_maxVal) {
         DecimalFormat.getInstance().format(it)
     }
 
     private val _minVal = MutableLiveData<Double>()
-    private val minVal: LiveData<Double> = _minVal
+    val minVal: LiveData<Double> = _minVal
     val stringMinVal: LiveData<String> = Transformations.map(_minVal) {
         DecimalFormat.getInstance().format(it)
     }
@@ -84,8 +81,6 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     fun setInitialState() {
         _resistor.value = iResistor.provideResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
-        _resistor.value?.tolerance = ZERO
-        _resistor.value?.ppm = ZERO
         _resistResult.value = ZERO
     }
 
@@ -142,46 +137,39 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     }
 
     fun setResultForColors() {
-        Log.i("resistor value", "${_resistor.value}")
-        Log.i("tolerance value", "${_resistor.value?.tolerance}")
-        Log.i("ppm value", "${_resistor.value?.ppm}")
-        _resistResult.value = _resistor.value?.let { getBandsResultForColors(it) }
-    }
-
-    private fun getBandsResultForColors(
-        resistor: Resistor
-    ): Double {
-        when (noOfBands.value) {
-            NoOfBands.FOUR_BANDS -> {
-                return if (resistor.band1 != null && resistor.band2 != null && resistor.multiplier != null &&
-                    resistor.tolerance != ZERO
-                ) {
-                    ((resistor.band1!! * 10) + resistor.band2!!) * resistor.multiplier!!
-                } else {
-                    ZERO
+        val resistor = resistor.value
+        _resistResult.value =
+            when (noOfBands.value) {
+                NoOfBands.FOUR_BANDS -> {
+                    if (resistor?.band1 != null && resistor.band2 != null && resistor.multiplier != null &&
+                        resistor.tolerance != ZERO
+                    ) {
+                        ((resistor.band1!! * 10) + resistor.band2!!) * resistor.multiplier!!
+                    } else {
+                        ZERO
+                    }
+                }
+                NoOfBands.FIVE_BANDS -> {
+                    if (resistor?.band1 != null && resistor.band2 != null && resistor.band3 != null
+                        && resistor.multiplier != null && resistor.tolerance != ZERO
+                    ) {
+                        ((resistor.band1!! * 100) + (resistor.band2!! * 10) + resistor.band3!!) *
+                                resistor.multiplier!!
+                    } else {
+                        ZERO
+                    }
+                }
+                else -> {
+                    if (resistor?.band1 != null && resistor.band2 != null && resistor.band3 != null &&
+                        resistor.multiplier != null && resistor.tolerance != ZERO && resistor.ppm != ZERO
+                    ) {
+                        ((resistor.band1!! * 100) + (resistor.band2!! * 10) + resistor.band3!!) *
+                                resistor.multiplier!!
+                    } else {
+                        ZERO
+                    }
                 }
             }
-            NoOfBands.FIVE_BANDS -> {
-                return if (resistor.band1 != null && resistor.band2 != null && resistor.band3 != null
-                    && resistor.multiplier != null && resistor.tolerance != ZERO
-                ) {
-                    ((resistor.band1!! * 100) + (resistor.band2!! * 10) + resistor.band3!!) *
-                            resistor.multiplier!!
-                } else {
-                    ZERO
-                }
-            }
-            else -> {
-                return if (resistor.band1 != null && resistor.band2 != null && resistor.band3 != null &&
-                    resistor.multiplier != null && resistor.tolerance != ZERO && resistor.ppm != ZERO
-                ) {
-                    ((resistor.band1!! * 100) + (resistor.band2!! * 10) + resistor.band3!!) *
-                            resistor.multiplier!!
-                } else {
-                    ZERO
-                }
-            }
-        }
     }
 
     fun setBntDetailsValidator() {

@@ -11,8 +11,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
 import com.itc.resistorcalc.MyApp
-import com.itc.resistorcalc.data.InputValidator.checkInputValueToColor
-import com.itc.resistorcalc.data.InputValidator.isValidInput
+import com.itc.resistorcalc.viewutils.InputValidator.checkInputValueToColor
+import com.itc.resistorcalc.viewutils.InputValidator.isValidInput
 import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.data.NoOfBands

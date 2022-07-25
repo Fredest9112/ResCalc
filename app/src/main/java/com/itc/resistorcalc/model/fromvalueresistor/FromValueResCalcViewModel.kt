@@ -14,7 +14,7 @@ import com.itc.resistorcalc.data.resistor.Resistor
 class FromValueResCalcViewModel(iResistor: IResistor) : ViewModel() {
 
     private val _resistor = PropertyAwareMutableLiveData<Resistor>()
-    private val resistor: LiveData<Resistor> = _resistor
+    val resistor: LiveData<Resistor> = _resistor
 
     private val _noOfBands = MutableLiveData<NoOfBands>()
     val noOfBands: LiveData<NoOfBands> = _noOfBands

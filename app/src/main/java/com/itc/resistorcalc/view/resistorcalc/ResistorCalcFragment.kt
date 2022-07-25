@@ -12,8 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.itc.resistorcalc.MyApp
-import com.itc.resistorcalc.data.InputValidator.checkInputColorToValue
-import com.itc.resistorcalc.data.InputValidator.isValidInput
+import com.itc.resistorcalc.viewutils.InputValidator.checkInputColorToValue
+import com.itc.resistorcalc.viewutils.InputValidator.isValidInput
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorCalcBinding
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel

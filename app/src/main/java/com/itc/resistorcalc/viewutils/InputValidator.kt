@@ -1,4 +1,4 @@
-package com.itc.resistorcalc.data
+package com.itc.resistorcalc.viewutils
 
 import android.content.res.Resources
 import android.widget.Toast
@@ -7,6 +7,8 @@ import com.itc.resistorcalc.data.Constants.Companion.FOUR_BANDS_MIN_VALUE
 import com.itc.resistorcalc.data.Constants.Companion.OTHERS_BANDS_MIN_VALUE
 import com.google.android.material.textfield.TextInputEditText
 import com.itc.resistorcalc.R
+import com.itc.resistorcalc.data.Constants
+import com.itc.resistorcalc.data.NoOfBands
 import java.lang.Exception
 
 object InputValidator {

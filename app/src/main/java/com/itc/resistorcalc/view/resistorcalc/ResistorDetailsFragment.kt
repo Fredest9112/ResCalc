@@ -13,7 +13,6 @@ import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentResistorDetailsBinding
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModel
 import com.itc.resistorcalc.model.resistorcalc.ResCalcViewModelFactory
-import com.itc.resistorcalc.view.MainActivity
 import javax.inject.Inject
 
 class ResistorDetailsFragment : Fragment() {

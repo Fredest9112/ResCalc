@@ -4,9 +4,9 @@ import android.app.Application
 import com.itc.resistorcalc.di.AppComponent
 import com.itc.resistorcalc.di.DaggerAppComponent
 
-class MyApp : Application() {
+open class MyApp : Application() {
 
-    val appComponent: AppComponent by lazy {
+    open val appComponent: AppComponent by lazy {
         DaggerAppComponent.create()
     }
 }
