@@ -1,7 +1,9 @@
 package com.itc.resistorcalc.model.fromvalueresistortest
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.itc.resistorcalc.data.NoOfBands
+import com.itc.resistorcalc.data.Constants.Companion.FIVE_BANDS
+import com.itc.resistorcalc.data.Constants.Companion.FOUR_BANDS
+import com.itc.resistorcalc.data.Constants.Companion.SIX_BANDS
 import com.itc.resistorcalc.data.resistor.ProvideResistor
 import com.itc.resistorcalc.model.fromvalueresistor.FromValueResCalcViewModel
 import org.junit.Assert.assertEquals
@@ -39,12 +41,15 @@ class FromValueResCalcTest {
         //Given a value
         val resistInput = 1200L
         //When noOfBands is 4
-        fromValueResCalcViewModel.setNoOfBands(4)
-        fromValueResCalcViewModel.setResultForValues(resistInput)
-        //Then check if resistor was correctly calculated
-        assertEquals(1.0, fromValueResCalcViewModel.resistor.value?.band1)
-        assertEquals(2.0, fromValueResCalcViewModel.resistor.value?.band2)
-        assertEquals(100.0, fromValueResCalcViewModel.resistor.value?.multiplier)
+        fromValueResCalcViewModel.apply {
+            setNoOfBands(FOUR_BANDS)
+            setResultForValues(resistInput)
+            //Then check if resistor was correctly calculated
+            assertEquals(1.0, resistor.value?.band1)
+            assertEquals(2.0, resistor.value?.band2)
+            assertEquals(100.0, resistor.value?.multiplier)
+        }
+
     }
 
     @Test
@@ -52,26 +57,30 @@ class FromValueResCalcTest {
         //Given a value
         val resistInput = 7630000L
         //When noOfBands is 5
-        fromValueResCalcViewModel.setNoOfBands(5)
-        fromValueResCalcViewModel.setResultForValues(resistInput)
-        //Then check if resistor was correctly calculated
-        assertEquals(7.0, fromValueResCalcViewModel.resistor.value?.band1)
-        assertEquals(6.0, fromValueResCalcViewModel.resistor.value?.band2)
-        assertEquals(3.0, fromValueResCalcViewModel.resistor.value?.band3)
-        assertEquals(10000.0, fromValueResCalcViewModel.resistor.value?.multiplier)
+        fromValueResCalcViewModel.apply {
+            setNoOfBands(FIVE_BANDS)
+            setResultForValues(resistInput)
+            //Then check if resistor was correctly calculated
+            assertEquals(7.0, resistor.value?.band1)
+            assertEquals(6.0, resistor.value?.band2)
+            assertEquals(3.0, resistor.value?.band3)
+            assertEquals(10000.0, resistor.value?.multiplier)
+        }
     }
 
     @Test
     fun fromSixBandsValue_calculate_returnsResistor(){
         //Given a value
         val resistInput = 589000000L
-        //When noOfBands is 5
-        fromValueResCalcViewModel.setNoOfBands(6)
-        fromValueResCalcViewModel.setResultForValues(resistInput)
-        //Then check if resistor was correctly calculated
-        assertEquals(5.0, fromValueResCalcViewModel.resistor.value?.band1)
-        assertEquals(8.0, fromValueResCalcViewModel.resistor.value?.band2)
-        assertEquals(9.0, fromValueResCalcViewModel.resistor.value?.band3)
-        assertEquals(1000000.0, fromValueResCalcViewModel.resistor.value?.multiplier)
+        //When noOfBands is 6
+        fromValueResCalcViewModel.apply {
+            setNoOfBands(SIX_BANDS)
+            setResultForValues(resistInput)
+            //Then check if resistor was correctly calculated
+            assertEquals(5.0, resistor.value?.band1)
+            assertEquals(8.0, resistor.value?.band2)
+            assertEquals(9.0, resistor.value?.band3)
+            assertEquals(1000000.0, resistor.value?.multiplier)
+        }
     }
 }

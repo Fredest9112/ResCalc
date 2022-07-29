@@ -61,13 +61,13 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     }
 
     private val _maxVal = MutableLiveData<Double>()
-    val maxVal: LiveData<Double> = _maxVal
+    private val maxVal: LiveData<Double> = _maxVal
     val stringMaxVal: LiveData<String> = Transformations.map(_maxVal) {
         DecimalFormat.getInstance().format(it)
     }
 
     private val _minVal = MutableLiveData<Double>()
-    val minVal: LiveData<Double> = _minVal
+    private val minVal: LiveData<Double> = _minVal
     val stringMinVal: LiveData<String> = Transformations.map(_minVal) {
         DecimalFormat.getInstance().format(it)
     }

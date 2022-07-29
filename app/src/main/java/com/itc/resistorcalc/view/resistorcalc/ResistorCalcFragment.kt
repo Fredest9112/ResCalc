@@ -102,8 +102,6 @@ class ResistorCalcFragment : Fragment() {
                             setResultForColors()
                         }
                         R.id.six_bands -> {
-                            Log.i("noOfBands Value", "$noOfBands")
-                            Log.i("resistor Value", "${resistor.value}")
                             setNoOfBands(6)
                             setResultForColors()
                         }
