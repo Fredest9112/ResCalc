@@ -44,10 +44,19 @@
             android:id="@+id/action_initialFragment_to_fromValueResistorFragment"
             app:destination="@id/fromValueResistorFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_initialFragment_to_numSysConversFragment"
+            app:destination="@id/numSysConversFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/fromValueResistorFragment"
         android:name="com.itc.resistorcalc.view.fromvalueresistor.FromValueResistorFragment"
         android:label="@string/app_title"
         tools:layout="@layout/fragment_from_value_resistor" />
+    <fragment
+        android:id="@+id/numSysConversFragment"
+        android:name="com.itc.resistorcalc.view.numsysconvers.NumSysConversFragment"
+        android:label="@string/app_title"
+        tools:layout="@layout/fragment_num_sys_convers" />
 </navigation>

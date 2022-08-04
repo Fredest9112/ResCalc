@@ -39,6 +39,11 @@ class InitialFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    fun goToNumSysConversFragment(){
+        val action = InitialFragmentDirections.actionInitialFragmentToNumSysConversFragment()
+        findNavController().navigate(action)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

@@ -6,7 +6,6 @@
     tools:context=".view.MainActivity">
 
     <data>
-
         <variable
             name="initialFragment"
             type="com.itc.resistorcalc.view.InitialFragment" />
@@ -41,6 +40,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/resCalcColorBtn" />
+
+            <Button
+                android:id="@+id/resCalcNumSysBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onClick="@{() -> initialFragment.goToNumSysConversFragment()}"
+                android:text="@string/res_calc_num_sys_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/resCalcValueBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
