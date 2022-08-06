@@ -89,6 +89,7 @@
     <string name="app_title">Calculadora Electrónica</string>
     <string name="res_calc_color_btn">RESISTENCIAS POR COLORES</string>
     <string name="res_calc_value_btn">RESISTENCIAS POR VALORES</string>
+    <string name="res_calc_num_sys_btn">SISTEMAS NUMERICOS</string>
     <!-- Fragment from value resistor-->
     <string name="calc_value_title">CALCULADORA DE RESISTENCIAS \nPOR VALOR</string>
     <string name="more_than_9_ohms_message">El valor de la resistencia debe ser mayor a 9 ohms!</string>
@@ -119,6 +120,27 @@
     <string name="ppm_value_blue">10ppm</string>
     <string name="ppm_value_violet">5ppm</string>
 
+    <!-- Fragment numeric system conversor-->
+    <string name="num_sys_title">CONVERSOR DE SISTEMAS\nNUMERICOS</string>
+    <string name="num_sys_label">Sistema Numerico</string>
+    <string name="num_input_label">Ingrese un numero</string>
+    <string name="bin_sys_label">Binario:</string>
+    <string name="oct_sys_label">Octal:</string>
+    <string name="dec_sys_label">Decimal:</string>
+    <string name="hex_sys_label">Hexadecimal:</string>
+    <string name="bin_sys_option">Binario</string>
+    <string name="oct_sys_option">Octal</string>
+    <string name="dec_sys_option">Decimal</string>
+    <string name="hex_sys_option">Hexadecimal</string>
+    <string name="default_value">0</string>
+
+    <string-array name="numeric_system_options">
+        <item>@string/bin_sys_option</item>
+        <item>@string/oct_sys_option</item>
+        <item>@string/dec_sys_option</item>
+        <item>@string/hex_sys_option</item>
+    </string-array>
+
     <string-array name="tolerance_numeric_options">
         <item>@string/empty</item>
         <item>@string/tolerance_value_brown</item>
@@ -140,4 +162,5 @@
         <item>@string/ppm_value_blue</item>
         <item>@string/ppm_value_violet</item>
     </string-array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
