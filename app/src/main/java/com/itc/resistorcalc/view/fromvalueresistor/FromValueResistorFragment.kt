@@ -65,6 +65,10 @@ class FromValueResistorFragment : Fragment() {
         binding?.apply {
             fromValueResCalcViewModel.apply {
 
+                resistResult.value?.let { valueResistInput.setText(it) }
+                valueBandOptions.check(getNoOfBands())
+                valueToleranceSelect.setText(stringTolerance.value)
+
                 valueToleranceSelect.setOnItemClickListener { parent, _, position, _ ->
                     setTolerance(parent.adapter.getItem(position).toString())
                 }
@@ -74,6 +78,7 @@ class FromValueResistorFragment : Fragment() {
 
                 valueResistInput.doOnTextChanged { enteredText, _, _, _ ->
                     updateResistorValues(enteredText.toString())
+                    setInput(enteredText.toString())
                 }
 
                 valueBandOptions.setOnCheckedChangeListener { radioGroup, _ ->
@@ -93,6 +98,14 @@ class FromValueResistorFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun getNoOfBands(): Int {
+        return when(fromValueResCalcViewModel.noOfBands.value){
+            NoOfBands.FOUR_BANDS -> R.id.value_4_bands
+            NoOfBands.FIVE_BANDS -> R.id.value_5_bands
+            else -> R.id.value_6_bands
         }
     }
 

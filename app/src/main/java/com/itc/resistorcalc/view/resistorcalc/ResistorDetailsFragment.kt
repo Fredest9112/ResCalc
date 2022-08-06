@@ -57,7 +57,6 @@ class ResistorDetailsFragment : Fragment() {
     fun returnToCalc() {
         findNavController().navigate(R.id.action_resistorDetailsFragment_to_resistorCalcFragment)
         resCalcViewModel.apply {
-            setInitialState()
             setBntDetailsValidator()
         }
     }

@@ -10,6 +10,7 @@ import com.itc.resistorcalc.R
 import com.itc.resistorcalc.data.Constants
 import com.itc.resistorcalc.data.NoOfBands
 import java.lang.Exception
+import kotlin.properties.Delegates
 
 object InputValidator {
 
@@ -21,67 +22,70 @@ object InputValidator {
         activity: FragmentActivity?,
         resources: Resources
     ): Long {
-        val input: Long = if (numbOnEditText.isEmpty()) {
-            0L
+        var input by Delegates.notNull<Long>()
+        if (numbOnEditText.isEmpty()) {
+            input = 0L
+            isValidInput = false
+            return input
         } else {
-            numbOnEditText.toLong()
-        }
-        try {
-            when (noOfBands) {
-                NoOfBands.FOUR_BANDS -> {
-                    when {
-                        input < FOUR_BANDS_MIN_VALUE -> {
-                            Toast.makeText(
-                                activity,
-                                resources.getString(R.string.more_than_9_ohms_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
+            input = numbOnEditText.toLong()
+            try {
+                when (noOfBands) {
+                    NoOfBands.FOUR_BANDS -> {
+                        when {
+                            input < FOUR_BANDS_MIN_VALUE -> {
+                                Toast.makeText(
+                                    activity,
+                                    resources.getString(R.string.more_than_9_ohms_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            input > Constants.MAX_RESIST_VALUE -> {
+                                Toast.makeText(
+                                    activity,
+                                    resources.getString(R.string.more_than_max_resistor_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else -> {
+                                isValidInput = true
+                                return input
+                            }
                         }
-                        input > Constants.MAX_RESIST_VALUE -> {
-                            Toast.makeText(
-                                activity,
-                                resources.getString(R.string.more_than_max_resistor_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else -> {
-                            isValidInput = true
-                            return input
+                    }
+                    else -> {
+                        when {
+                            input < OTHERS_BANDS_MIN_VALUE -> {
+                                Toast.makeText(
+                                    activity,
+                                    resources.getString(R.string.more_than_99_ohms_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            input > Constants.MAX_RESIST_VALUE -> {
+                                Toast.makeText(
+                                    activity,
+                                    resources.getString(R.string.more_than_max_resistor_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else -> {
+                                isValidInput = true
+                                return input
+                            }
                         }
                     }
                 }
-                else -> {
-                    when {
-                        input < OTHERS_BANDS_MIN_VALUE -> {
-                            Toast.makeText(
-                                activity,
-                                resources.getString(R.string.more_than_99_ohms_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        input > Constants.MAX_RESIST_VALUE -> {
-                            Toast.makeText(
-                                activity,
-                                resources.getString(R.string.more_than_max_resistor_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                        else -> {
-                            isValidInput = true
-                            return input
-                        }
-                    }
-                }
+            } catch (e: Exception) {
+                Toast.makeText(
+                    activity,
+                    resources.getString(R.string.error_input_message),
+                    Toast.LENGTH_LONG
+                ).show()
             }
-        } catch (e: Exception) {
-            Toast.makeText(
-                activity,
-                resources.getString(R.string.error_input_message),
-                Toast.LENGTH_LONG
-            ).show()
+            isValidInput = false
+            return input
         }
-        isValidInput = false
-        return input
     }
 
     fun checkInputColorToValue(

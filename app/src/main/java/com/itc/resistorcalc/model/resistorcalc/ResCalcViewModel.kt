@@ -14,7 +14,7 @@ import com.itc.resistorcalc.data.resistor.IResistor
 import com.itc.resistorcalc.data.resistor.Resistor
 import java.text.DecimalFormat
 
-class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
+class ResCalcViewModel(iResistor: IResistor) : ViewModel() {
 
     private val _resistor = PropertyAwareMutableLiveData<Resistor>()
     val resistor: LiveData<Resistor> = _resistor
@@ -78,7 +78,7 @@ class ResCalcViewModel(private val iResistor: IResistor) : ViewModel() {
     private val _areDetailsValid = MutableLiveData<Boolean>()
     val areDetailsValid: LiveData<Boolean> = _areDetailsValid
 
-    fun setInitialState() {
+    init {
         _resistor.value = iResistor.provideResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
         _resistResult.value = ZERO

@@ -43,6 +43,9 @@ class FromValueResCalcViewModel(iResistor: IResistor) : ViewModel() {
         ResistorValues.valuesToPPM[it.ppm]
     }
 
+    private val _resistResult = MutableLiveData<String>()
+    val resistResult: LiveData<String> = _resistResult
+
     init {
         _resistor.value = iResistor.provideResistor()
         _noOfBands.value = NoOfBands.FOUR_BANDS
@@ -82,6 +85,10 @@ class FromValueResCalcViewModel(iResistor: IResistor) : ViewModel() {
                 _noOfBands.value = NoOfBands.SIX_BANDS
             }
         }
+    }
+
+    fun setInput(resistInput: String){
+        _resistResult.value = resistInput
     }
 
     fun setResultForValues(resistInput: Long) {
