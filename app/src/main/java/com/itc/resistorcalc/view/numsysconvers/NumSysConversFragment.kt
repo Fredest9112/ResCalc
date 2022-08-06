@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.itc.resistorcalc.R
 import com.itc.resistorcalc.databinding.FragmentNumSysConversBinding
+import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
 
 class NumSysConversFragment : Fragment() {
 
@@ -23,6 +24,20 @@ class NumSysConversFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding?.apply {
+            setDropDownMenu(
+                context,
+                numSysSelector,
+                resources.getStringArray(R.array.numeric_system_options)
+            )
+        }
     }
 
     override fun onDestroyView() {

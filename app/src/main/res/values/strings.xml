@@ -122,13 +122,23 @@
 
     <!-- Fragment numeric system conversor-->
     <string name="num_sys_title">CONVERSOR DE SISTEMAS\nNUMERICOS</string>
+    <string name="num_sys_label">Sistema Numerico</string>
+    <string name="num_input_label">Ingrese un numero</string>
+    <string name="bin_sys_label">Binario:</string>
+    <string name="oct_sys_label">Octal:</string>
+    <string name="dec_sys_label">Decimal:</string>
+    <string name="hex_sys_label">Hexadecimal:</string>
     <string name="bin_sys_option">Binario</string>
-    <string name="oct_option">Octal</string>
+    <string name="oct_sys_option">Octal</string>
     <string name="dec_sys_option">Decimal</string>
     <string name="hex_sys_option">Hexadecimal</string>
+    <string name="default_value">0</string>
 
     <string-array name="numeric_system_options">
-        <item></item>
+        <item>@string/bin_sys_option</item>
+        <item>@string/oct_sys_option</item>
+        <item>@string/dec_sys_option</item>
+        <item>@string/hex_sys_option</item>
     </string-array>
 
     <string-array name="tolerance_numeric_options">
