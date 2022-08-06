@@ -22,5 +22,6 @@ class Constants {
         const val LIGHT_MODE = 17
         const val FOUR_BANDS_MIN_VALUE = 10
         const val OTHERS_BANDS_MIN_VALUE = 100
+        const val NOT_VALID_CONVERSION = "????"
     }
 }

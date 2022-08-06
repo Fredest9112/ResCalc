@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.numsysconvers.NumSysConversFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.itc.resistorcalc.model.numsysconvers.NumericSystemConversViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -22,26 +28,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/num_sys_label"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/num_sys_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/num_sys_title">
-
-            <AutoCompleteTextView
-                android:id="@+id/num_sys_selector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/num_input_label"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -49,18 +35,18 @@
             android:hint="@string/num_input_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/num_sys_label">
+            app:layout_constraintTop_toBottomOf="@+id/num_sys_title">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/num_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:orientation="vertical"
@@ -74,7 +60,7 @@
                 android:id="@+id/bin_option_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/bin_sys_label"
                 android:textSize="20sp"
@@ -91,13 +77,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/bin_option_label"
-                tools:text="@string/default_value" />
+                android:text="@{viewModel.binNumber}" />
 
             <TextView
                 android:id="@+id/oct_option_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/oct_sys_label"
                 android:textSize="20sp"
@@ -114,13 +100,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/oct_option_label"
-                tools:text="@string/default_value" />
+                android:text="@{viewModel.octNumber}"/>
 
             <TextView
                 android:id="@+id/dec_option_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/dec_sys_label"
                 android:textSize="20sp"
@@ -137,13 +123,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/dec_option_label"
-                tools:text="@string/default_value" />
+                android:text="@{viewModel.decNumber}"/>
 
             <TextView
                 android:id="@+id/hex_option_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/hex_sys_label"
@@ -162,7 +148,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/hex_option_label"
-                tools:text="@string/default_value" />
+                android:text="@{viewModel.hexNumber}"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"

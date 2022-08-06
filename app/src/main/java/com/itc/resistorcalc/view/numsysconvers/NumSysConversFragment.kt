@@ -1,17 +1,22 @@
 package com.itc.resistorcalc.view.numsysconvers
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.itc.resistorcalc.R
+import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.viewModels
 import com.itc.resistorcalc.databinding.FragmentNumSysConversBinding
-import com.itc.resistorcalc.viewutils.MenuDropDownSetup.setDropDownMenu
+import com.itc.resistorcalc.model.numsysconvers.NumericSystemConversViewModel
 
 class NumSysConversFragment : Fragment() {
 
     private var binding: FragmentNumSysConversBinding? = null
+    private val numericSystemConversViewModel: NumericSystemConversViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,19 +30,30 @@ class NumSysConversFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
+            viewModel = numericSystemConversViewModel
             lifecycleOwner = viewLifecycleOwner
+            numInput.setOnKeyListener { v, keyCode, _ ->
+                handleKeyEvent(v, keyCode)
+            }
+        }
+
+        binding?.apply {
+            numericSystemConversViewModel.apply {
+                numInput.doOnTextChanged { enteredText, _, _, _ ->
+                    setNumInput(enteredText.toString())
+                }
+            }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding?.apply {
-            setDropDownMenu(
-                context,
-                numSysSelector,
-                resources.getStringArray(R.array.numeric_system_options)
-            )
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            val inputMethodManager =
+                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
         }
+        return false
     }
 
     override fun onDestroyView() {
